@@ -1,12 +1,168 @@
+{% load staticfiles %}
 <!DOCTYPE html>
-<html>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Fri May 08 2015 08:58:46 GMT+0000 (UTC) -->
+<html data-wf-site="554b9bc88575a1637b482d2f" data-wf-page="554b9bc88575a1637b482d31">
 <head>
-    {% extends "foodroller/base.html" %}
+  <meta charset="utf-8">
+  <title>Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Webflow">
+  <link rel="stylesheet" type="text/css" href="{% static 'main/css/normalize.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'main/css/webflow.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'main/css/foodroller.webflow.css' %}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ["Oswald:300,400,700","Droid Sans:400,700","Roboto:300,regular,500"]
+      }
+    });
+  </script>
+  <script type="text/javascript" src="js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico">
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
 </head>
 <body>
-
-{%  block header %}
-<h1>Welcome to FoodRoller</h1>
-{% endblock %}
+  <div class="w-nav left-navigation" data-collapse="medium" data-animation="default" data-duration="400" data-no-scroll="1"><a class="w-nav-brand logo-link" href="#"><h1>Heading</h1><h1 class="brand-text">FOOD-ROLLER</h1></a>
+    <nav class="w-nav-menu nav-menu" role="navigation"><a class="w-nav-link nav-link" href="#home">Home</a><a class="w-nav-link nav-link" href="#food">FOOD</a><a class="w-nav-link nav-link" href="#gallery">ROLL</a><a class="w-nav-link nav-link" href="#add">ROLL</a>
+    </nav>
+    <div class="w-nav-button hamburger-button">
+      <div class="w-icon-nav-menu"></div>
+    </div>
+    <div class="w-hidden-medium w-hidden-small w-hidden-tiny social-footer">
+      <a class="w-inline-block social-icon-link" href="#"></a>
+      <a class="w-inline-block social-icon-link" href="#"></a>
+      <a class="w-inline-block social-icon-link" href="#"></a>
+      <a class="w-inline-block social-icon-link" href="#"></a>
+      <a class="w-inline-block social-icon-link" href="#"></a>
+      <a class="w-inline-block social-icon-link" href="#"></a>
+    </div>
+  </div>
+  <div class="content">
+    <div class="banner" id="home">
+      <div class="hero-title-wrapper">
+        <h1 class="hero-heading">Welcome to the Food-Roller</h1>
+        <div class="hero-subheading">This is some text inside of a div block.</div>
+        <div><a class="hollow-button red" href="#">ROLL NOW</a>
+        </div>
+      </div>
+    </div>
+    <div class="w-section section" id="food">
+      <div class="w-container">
+        <div class="section-title-group">
+          <h2 class="section-heading centered">FOOD</h2>
+          <div class="section-subheading center">This is some text inside of a div block.</div>
+        </div>
+        <div class="w-row">
+          <div class="w-col w-col-4 col-spc">
+            <a class="w-inline-block" href="#add"><img class="grid-image" src="{% static 'main/images/feather-12-black.svg' %}" width="100">
+            </a>
+            <h3>Add FOOD</h3>
+          </div>
+          <div class="w-col w-col-4 col-spc"><img class="grid-image" src="{% static 'main/images/feather-05-black.svg' %}" width="100">
+            <h3>LIST</h3>
+          </div>
+          <div class="w-col w-col-4 col-spc"><img class="grid-image" src="{% static 'main/images/feather-24-black.svg' %}" width="100">
+            <h3>SETTINGS</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-section call-to-action-section">
+      <div class="w-container">
+        <div class="w-row">
+          <div class="w-col w-col-8">
+            <h2 class="call-to-action-heading">ALREADY&nbsp;ROLLED?</h2>
+          </div>
+          <div class="w-col w-col-4 align-right"><a class="hollow-button white" href="#">ROLL NOW</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-section section section-gray" id="add">
+      <div class="w-container">
+        <div class="section-title-group">
+          <h2 class="section-heading centered">ADD&nbsp;FOOD</h2>
+        </div>
+        <div class="w-form form-wrapper squeezed">
+          <form id="email-form" name="email-form" data-name="Email Form">
+            <div class="w-row">
+              <div class="w-col w-col-6 col-0">
+                <input class="w-input form-field" id="name-7" type="text" placeholder="Name" name="name-7" data-name="Name 7">
+              </div>
+              <div class="w-col w-col-6 col-0"><img class="image" src="{% static 'main/images/feather-12-black.svg' %}">
+              </div>
+            </div>
+            <textarea class="w-input form-field text-area" id="field-4" placeholder="Recipe" name="field-4" data-name="Field 4"></textarea>
+            <textarea class="w-input form-field text-area" id="field-5" placeholder="Ingredients" name="field-5" required="required"></textarea>
+            <input class="w-button button full-width" type="submit" value="SAVE" data-wait="Please wait...">
+          </form>
+          <div class="w-form-done success-message">
+            <p class="p-form">Thank you! Your submission has been received!</p>
+          </div>
+          <div class="w-form-fail success-message">
+            <p class="p-form">Oops! Something went wrong while submitting the form :(</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-section section section-gray">
+      <div class="w-container">
+        <div class="section-title-group">
+          <h2 class="section-heading centered">FOOD LIST</h2>
+        </div>
+        <div class="w-slider" data-animation="slide" data-duration="500" data-infinite="1">
+          <div class="w-slider-mask">
+            <div class="w-slide slides"><img class="slide-icon" src="{% static 'main/images/Braten.jpg' %}">
+              <h1 class="slider-title">Schweinebraten</h1>
+              <p>Vegetarisch</p>
+              <p>2 Stunden 30 Minuten</p>
+            </div>
+            <div class="w-slide slides"><img class="slide-icon" src="{% static 'main/images/Braten.jpg' %}">
+              <h1 class="slider-title">Schweinebraten</h1>
+              <p>Vegetarisch</p>
+              <p>2 Stunden 30 Minuten</p>
+            </div>
+            <div class="w-slide slides"><img class="slide-icon" src="{% static 'main/images/Braten.jpg' %}">
+              <h1 class="slider-title">Schweinebraten</h1>
+              <p>Vegetarisch</p>
+              <p>2 Stunden 30 Minuten</p>
+            </div>
+            <div class="w-slide slides"><img class="slide-icon" src="{% static 'main/images/Braten.jpg' %}">
+              <h1 class="slider-title">Schweinebraten</h1>
+              <p>Vegetarisch</p>
+              <p>2 Stunden 30 Minuten</p>
+            </div>
+            <div class="w-slide slides"><img class="slide-icon" src="{% static 'main/images/Braten.jpg' %}">
+              <h1 class="slider-title">Schweinebraten</h1>
+              <p>Vegetarisch</p>
+              <p>2 Stunden 30 Minuten</p>
+            </div>
+            <div class="w-slide slides"><img class="slide-icon" src="{% static 'main/images/Braten.jpg' %}">
+              <h1 class="slider-title">Schweinebraten</h1>
+              <p>Vegetarisch</p>
+              <p>2 Stunden 30 Minuten</p>
+            </div>
+          </div>
+          <div class="w-slider-arrow-left">
+            <div class="w-icon-slider-left"></div>
+          </div>
+          <div class="w-slider-arrow-right">
+            <div class="w-icon-slider-right"></div>
+          </div>
+          <div class="w-slider-nav w-round"></div>
+        </div>
+      </div>
+    </div>
+    <footer class="w-section footer center">
+      <div class="w-container">
+        <div class="footer-text">Copyright Stefan Perndl</div>
+      </div>
+    </footer>
+  </div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/webflow.js"></script>
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
 </body>
 </html>
