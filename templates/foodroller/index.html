@@ -19,7 +19,7 @@
       }
     });
   </script>
-  <script type="text/javascript" src="js/modernizr.js"></script>
+  <script type="text/javascript" src="{% static 'main/js/modernizr.js' %}"></script>
   <link rel="shortcut icon" type="image/x-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico">
   <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
 </head>
@@ -86,16 +86,23 @@
           <h2 class="section-heading centered">ADD&nbsp;FOOD</h2>
         </div>
         <div class="w-form form-wrapper squeezed">
-          <form id="email-form" name="email-form" data-name="Email Form">
-            <div class="w-row">
-              <div class="w-col w-col-6 col-0">
-                <input class="w-input form-field" id="name-7" type="text" placeholder="Name" name="name-7" data-name="Name 7">
+          <form id="email-form" name="email-form" data-name="Email Form" method="post" action="add">
+                 {% csrf_token %}
+              {% for field in form %}
+                  <div class="form-area">
+                  {{field}}
+                  {{ field.help_text }}
+
+                  </div>
+              {%endfor%}
+              <!--<div class="w-col w-col-6 col-0">
+                <input class="w-input form-field" id="name-7" type="text" placeholder="Name" name="name-7" data-name="Name 7" required="required">
               </div>
               <div class="w-col w-col-6 col-0"><img class="image" src="{% static 'main/images/feather-12-black.svg' %}">
               </div>
             </div>
             <textarea class="w-input form-field text-area" id="field-4" placeholder="Recipe" name="field-4" data-name="Field 4"></textarea>
-            <textarea class="w-input form-field text-area" id="field-5" placeholder="Ingredients" name="field-5" required="required"></textarea>
+            <textarea class="w-input form-field text-area" id="field-5" placeholder="Ingredients" name="field-5" required="required"></textarea> -->
             <input class="w-button button full-width" type="submit" value="SAVE" data-wait="Please wait...">
           </form>
           <div class="w-form-done success-message">
@@ -162,7 +169,7 @@
     </footer>
   </div>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/webflow.js"></script>
+  <script type="text/javascript" src="{% static 'main/js/webflow.js' %}"></script>
   <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
 </body>
 </html>
