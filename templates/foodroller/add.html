@@ -1,0 +1,36 @@
+<head>
+  {% extends "foodroller/base.html" %}
+    {% load staticfiles %}
+
+</head>
+<body>
+{% block body %}
+<div class="w-section section section-gray" id="add">
+      <div class="w-container">
+        <div class="section-title-group">
+          <h2 class="section-heading centered">ADD&nbsp;FOOD</h2>
+        </div>
+        <div class="w-form form-wrapper squeezed">
+          <form id="email-form" name="email-form" data-name="Email Form" method="post" action="add.html">
+                 {% csrf_token %}
+              {% for field in form %}
+                  <div class="form-area">
+                  {{field}}
+                  {{ field.help_text }}
+                      {% for err in field.errors %}
+                        <span class="error_message">{{ err }}</span>
+                      {% endfor %}
+                  </div>
+              {%endfor%}
+            <input class="w-button button full-width" type="submit" value="SAVE" data-wait="Please wait...">
+          </form>
+          <div class="w-form-done success-message">
+            <p class="p-form">Thank you! Your submission has been received!</p>
+          </div>
+          <div class="w-form-fail success-message">
+            <p class="p-form">Oops! Something went wrong while submitting the form :(</p>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
