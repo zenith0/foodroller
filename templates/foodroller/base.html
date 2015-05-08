@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+    display: block;
+    width: 120px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #65665e;
+    text-align: center;
+    padding: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+a {
+    text-decoration: none;
+
+}
+
+a:hover, a:active {
+    background-color: #403e39;
+}
+
+.submenu{
+    display:none;
+}
+
+li:hover > ul{
+    display:block;
+}
+</style>
+
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul>
+  <li><a href="">Home</a></li>
+  <li>Food
+    <ul class="submenu">
+        <li><a href="add">Add food</a></li>
+        <li><a href="#List">List food</a></li>
+    </ul>
+  </li>
+  <li><a href="#Roll">Roll</a></li>
+  <li><a href="#Settings">Settings</a></li>
+</ul>
+
+{% block header %}
+
+{% endblock %}
+
+{% block body %}
+
+{% endblock %}
+
+</body>
+</html>
