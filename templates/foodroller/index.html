@@ -2,6 +2,7 @@
   {% extends "foodroller/base.html" %}
     {% load staticfiles %}
 
+
 </head>
 <body>
 {% block body %}
@@ -46,36 +47,16 @@
         </div>
         <div class="w-slider" data-animation="slide" data-duration="500" data-infinite="1">
           <div class="w-slider-mask">
-            <div class="w-slide slides"><img class="slide-icon" src="{% static 'main/images/Braten.jpg' %}">
-              <h1 class="slider-title">Schweinebraten</h1>
+              {% for dish in list %}
+              <div class="w-slide slides"><img class="slide-icon" src='media/{{ dish.image }}'>
+              <h1 class="slider-title">{{ dish.title }}</h1>
+              Kochzeit: {{ dish.cooking_time|time:'H:i' }}
+              {% if dish.vegetarian %}
               <p>Vegetarisch</p>
-              <p>2 Stunden 30 Minuten</p>
+              {% endif %}
+
             </div>
-            <div class="w-slide slides"><img class="slide-icon" src="{% static 'main/images/Braten.jpg' %}">
-              <h1 class="slider-title">Schweinebraten</h1>
-              <p>Vegetarisch</p>
-              <p>2 Stunden 30 Minuten</p>
-            </div>
-            <div class="w-slide slides"><img class="slide-icon" src="{% static 'main/images/Braten.jpg' %}">
-              <h1 class="slider-title">Schweinebraten</h1>
-              <p>Vegetarisch</p>
-              <p>2 Stunden 30 Minuten</p>
-            </div>
-            <div class="w-slide slides"><img class="slide-icon" src="{% static 'main/images/Braten.jpg' %}">
-              <h1 class="slider-title">Schweinebraten</h1>
-              <p>Vegetarisch</p>
-              <p>2 Stunden 30 Minuten</p>
-            </div>
-            <div class="w-slide slides"><img class="slide-icon" src="{% static 'main/images/Braten.jpg' %}">
-              <h1 class="slider-title">Schweinebraten</h1>
-              <p>Vegetarisch</p>
-              <p>2 Stunden 30 Minuten</p>
-            </div>
-            <div class="w-slide slides"><img class="slide-icon" src="{% static 'main/images/Braten.jpg' %}">
-              <h1 class="slider-title">Schweinebraten</h1>
-              <p>Vegetarisch</p>
-              <p>2 Stunden 30 Minuten</p>
-            </div>
+              {% endfor %}
           </div>
           <div class="w-slider-arrow-left">
             <div class="w-icon-slider-left"></div>

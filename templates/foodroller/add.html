@@ -5,13 +5,13 @@
 </head>
 <body>
 {% block body %}
-<div class="w-section section section-gray" id="add">
+<div class="w-section section section-gray add-section" id="add">
       <div class="w-container">
         <div class="section-title-group">
           <h2 class="section-heading centered">ADD&nbsp;FOOD</h2>
         </div>
         <div class="w-form form-wrapper squeezed">
-          <form id="email-form" name="email-form" data-name="Email Form" method="post" action="add.html">
+          <form id="email-form" name="email-form" data-name="Email Form" method="post" action="add.html" enctype="multipart/form-data">
                  {% csrf_token %}
               {% for field in form %}
                   <div class="form-area">
