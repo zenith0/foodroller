@@ -48,8 +48,8 @@
         <div class="w-slider" data-animation="slide" data-duration="500" data-infinite="1">
           <div class="w-slider-mask">
               {% for dish in list %}
-              <div class="w-slide slides"><img class="slide-icon" src='media/{{ dish.image }}'>
-              <h1 class="slider-title">{{ dish.title }}</h1>
+              <div class="w-slide slides"><a href="/edit/{{ dish.slug }}"> <img class="slide-icon"  src='media/{{ dish.image }}'></a>
+                  <h1 class="slider-title">{{ dish.title }}</h1>
               Kochzeit: {{ dish.cooking_time|time:'H:i' }}
               {% if dish.vegetarian %}
               <p>Vegetarisch</p>

@@ -1,0 +1,60 @@
+<head>
+  {% extends "foodroller/base.html" %}
+    {% load staticfiles %}
+
+</head>
+<body>
+{% block body %}
+
+
+<div class="w-section section section-gray" id="add">
+      <div class="w-container">
+        <div class="section-title-group">
+          <h2 class="section-heading centered">EDIT&nbsp;FOOD</h2>
+        </div>
+        <div class="w-form form-wrapper squeezed">
+          <form id="email-form" name="email-form" data-name="Email Form">
+            <div class="w-row">
+              <div class="w-col w-col-6 col-0">
+                <input class="w-input form-field" id="name-7" type="text" name="name-7" data-name="Name 7" value={{ dish.title }}>
+              </div>
+              <div class="w-col w-col-6 col-0 "><img class="image" src="{{ MEDIA_URL }}{{ dish.image }}">
+              </div>
+            </div>
+            <textarea class="w-input form-field text-area" id="field-4"  name="field-4" data-name="Field 4">{{ dish.recipe }}</textarea>
+            <textarea class="w-input form-field text-area" id="field-5"  name="field-5" required="required">{{ dish.ingredients }}</textarea>
+            <div class="w-row">
+             <div class="w-col w-col-6">
+              <input class="w-input time" id="field-6" type="text" name="field-6" required="required" value="{{ dish.cooking_time|time:'H:i' }}">
+             </div>
+             <div class="w-col w-col-6">
+               <div class="w-checkbox">
+                   {% if dish.vegetarian %}
+                      <input class="w-checkbox-input" id="Vegetarian" type="checkbox" name="Vegetarian" data-name="Vegetarian" checked>
+                   {% else %}
+                       <input class="w-checkbox-input" id="Vegetarian" type="checkbox" name="Vegetarian" data-name="Vegetarian">
+                   {% endif %}
+                 <label class="w-form-label" for="Vegetarian">Vegetarian</label>
+               </div>
+             </div>
+            </div>
+            <div class="w-row">
+              <div class="w-col w-col-6 w-clearfix">
+                <input class="w-button button full-width" type="submit" value="SAVE" data-wait="Please wait...">
+              </div>
+              <div class="w-col w-col-6 w-clearfix">
+                <input class="w-button button full-width" type="submit" value="DELETE" data-wait="Please wait...">
+              </div>
+            </div>
+          </form>
+          <div class="w-form-done success-message">
+            <p class="p-form">Thank you! Your submission has been received!</p>
+          </div>
+          <div class="w-form-fail success-message">
+            <p class="p-form">Oops! Something went wrong while submitting the form :(</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

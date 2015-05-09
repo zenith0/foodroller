@@ -2,6 +2,7 @@ from django.db import models
 from PIL import Image
 
 # Create your models here.
+from django.template.defaultfilters import slugify
 
 
 class Dish(models.Model):
@@ -12,6 +13,7 @@ class Dish(models.Model):
     cooking_time = models.TimeField('cooking time', default='')
     recipe = models.CharField(max_length=2000, default='')
     ingredients = models.CharField(max_length=2000, default='')
+    slug = models.SlugField(unique=True, default='')
 
     def __str__(self):
         return self.title
@@ -21,3 +23,7 @@ class Dish(models.Model):
 
     def time_needed(self):
         return self.cooking_time
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Dish, self).save(*args, **kwargs)

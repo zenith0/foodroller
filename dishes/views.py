@@ -27,3 +27,8 @@ def add(request):
         # If the request was not a POST, display the form to enter details.
         form = DishForm()
     return render(request, 'foodroller/add.html', {'form': form})
+
+def edit(request, dish_slug):
+
+    dish = Dish.objects.get(slug=dish_slug)
+    return render(request, 'foodroller/edit.html', {'dish': dish})
