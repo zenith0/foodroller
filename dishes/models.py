@@ -5,7 +5,7 @@ from PIL import Image
 
 
 class Dish(models.Model):
-    title = models.CharField(max_length=50, default='')
+    title = models.CharField(max_length=50, default='', primary_key=True)
     last_cooked = models.DateField('last time cooked', default='1970-01-01')
     image = models.FileField(upload_to='photo', default='photo/Braten.jpg')
     vegetarian = models.BooleanField(default=False)
