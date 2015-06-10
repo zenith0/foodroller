@@ -28,7 +28,8 @@ def add(request):
         form = DishForm()
     return render(request, 'foodroller/add.html', {'form': form})
 
-def edit(request, dish_slug):
 
+def edit(request, dish_slug):
+    print '###########EDIT'
     dish = Dish.objects.get(slug=dish_slug)
     return render(request, 'foodroller/edit.html', {'dish': dish})
