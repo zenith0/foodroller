@@ -21,7 +21,7 @@ def add(request):
             return index(request)
         else:
             # The supplied form contained errors - just print them to the terminal.
-            print form.errors
+            print(form.errors)
 
     else:
         # If the request was not a POST, display the form to enter details.
@@ -30,6 +30,15 @@ def add(request):
 
 
 def edit(request, dish_slug):
-    print '###########EDIT'
-    dish = Dish.objects.get(slug=dish_slug)
-    return render(request, 'foodroller/edit.html', {'dish': dish})
+    if request.method == 'POST':
+        print ('##########POST')
+#        if 'delete' in request.POST:
+#            print ('###########DELETE')
+
+#        if request.method == 'POST' and 'edit' in request.POST:
+#            print ('###########EDIT')
+
+    else:
+        print ('########GET')
+        dish = Dish.objects.get(slug=dish_slug)
+        return render(request, 'foodroller/edit.html', {'dish': dish})
