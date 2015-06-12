@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from dishes.forms import DishForm
-from dishes.models import Dish
+from foodroller.forms import DishForm
+from foodroller.models import Dish
 
-# in the index all dishes are shown in the slider
+# in the index all foodroller are shown in the slider
 def index(request):
     return render(request, 'foodroller/index.html', {'list': Dish.objects.all()})
 

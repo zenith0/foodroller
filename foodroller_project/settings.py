@@ -37,7 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'dishes',
+    'foodroller',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -50,9 +50,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'foodroller.urls'
+ROOT_URLCONF = 'foodroller_project.urls'
 
-WSGI_APPLICATION = 'foodroller.wsgi.application'
+WSGI_APPLICATION = 'foodroller_project.wsgi.application'
 
 
 # Database

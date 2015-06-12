@@ -8,7 +8,7 @@ from django.template.defaultfilters import slugify
 class Dish(models.Model):
     title = models.CharField(max_length=50, default='', primary_key=True)
     last_cooked = models.DateField('last time cooked', default='1970-01-01')
-    image = models.FileField(upload_to='photo', default='photo/Braten.jpg')
+    image = models.ImageField(upload_to='photo', default='photo/Braten.jpg')
     vegetarian = models.BooleanField(default=False)
     cooking_time = models.TimeField('cooking time', default='')
     recipe = models.CharField(max_length=2000, default='')

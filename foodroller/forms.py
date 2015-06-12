@@ -1,13 +1,12 @@
 __author__ = 'stefan'
 from django import forms
-from dishes.models import Dish
+from foodroller.models import Dish
 
 
 class DishForm(forms.ModelForm):
     title = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Name'}), required=True,
                             label="Name")
-    image = forms.ImageField(label='Select a file'
-                             )
+    image = forms.ImageField(label='Select a file')
     recipe = forms.CharField(label="Recipe", max_length=2000,
                              widget=forms.Textarea(attrs={'placeholder': 'Recipe', 'cols': 78, 'rows': 15}),
                              required=False)

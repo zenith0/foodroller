@@ -1,6 +1,6 @@
 from django.conf.urls import include, url, patterns
 from django.contrib import admin
-from dishes import views
+from foodroller import views
 from django.conf.urls.static import static
 import settings
 
