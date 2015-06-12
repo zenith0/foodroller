@@ -11,7 +11,7 @@
           <h2 class="section-heading centered">ADD&nbsp;FOOD</h2>
         </div>
         <div class="w-form form-wrapper squeezed">
-          <form id="add-form" name="add-form" data-name="Email Form" method="post" action="add.html" enctype="multipart/form-data">
+          <form id="add-form" name="add-form" data-name="Add Form" method="post" action="/add/" enctype="multipart/form-data">
                  {% csrf_token %}
               {% for field in form %}
                   <div class="form-area">

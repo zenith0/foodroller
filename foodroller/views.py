@@ -1,3 +1,5 @@
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from foodroller.forms import DishForm
 from foodroller.models import Dish
@@ -8,6 +10,7 @@ def index(request):
 
 
 def add(request):
+
     if request.method == 'POST':
         form = DishForm(request.POST, request.FILES)
 
@@ -18,7 +21,8 @@ def add(request):
 
             # Now call the index() view.
             # The user will be shown the homepage.
-            return index(request)
+            url = reverse("index")
+            return HttpResponseRedirect(url)
         else:
             # The supplied form contained errors - just print them to the terminal.
             print(form.errors)
@@ -32,11 +36,16 @@ def add(request):
 def edit(request, dish_slug):
     if request.method == 'POST':
         print ('##########POST')
-#        if 'delete' in request.POST:
-#            print ('###########DELETE')
+        if 'delete' in request.POST:
+            print ('###########DELETE')
+            dish = Dish.objects.get(slug=dish_slug)
+            dish.delete()
 
-#        if request.method == 'POST' and 'edit' in request.POST:
-#            print ('###########EDIT')
+        if 'save' in request.POST:
+            print ('###########SAVE')
+
+        url = reverse("index")
+        return HttpResponseRedirect(url)
 
     else:
         print ('########GET')

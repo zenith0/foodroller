@@ -13,7 +13,8 @@
           <h2 class="section-heading centered">EDIT&nbsp;FOOD</h2>
         </div>
         <div class="w-form form-wrapper squeezed">
-          <form id="email-form" name="email-form" data-name="Email Form">
+          <form id="edit-form" name="edit-form" data-name="Edit Form" method="post" action="/edit/{{ dish.slug }}/" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="w-row">
               <div class="w-col w-col-6 col-0">
                 <input class="w-input form-field" id="name-7" type="text" name="name-7" data-name="Name 7" value={{ dish.title }}>
@@ -40,10 +41,10 @@
             </div>
             <div class="w-row">
               <div class="w-col w-col-6 w-clearfix">
-                <input class="w-button button full-width" type="submit" value="SAVE" data-wait="Please wait...">
+                <input class="w-button button full-width" type="submit" name="save" value="SAVE" data-wait="Please wait...">
               </div>
               <div class="w-col w-col-6 w-clearfix">
-                <input class="w-button button full-width" type="submit" value="DELETE" data-wait="Please wait...">
+                <input class="w-button button full-width" id="confirm" type="submit" name="delete" value="DELETE" data-wait="Please wait...">
               </div>
             </div>
           </form>
