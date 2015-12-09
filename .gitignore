@@ -1,0 +1,6 @@
+.idea
+db.*
+bin
+include 
+lib
+__pycache__
