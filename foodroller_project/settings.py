@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'foodroller',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -68,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'foodroller.wsgi.application'
+WSGI_APPLICATION = 'foodroller_project.wsgi.application'
 
 
 # Database
