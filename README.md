@@ -15,5 +15,9 @@ $ . bin/activate
 $ pip install -r requirements.txt
 * Sync DB:
 $ python manage.py migrate
+* Create Superuser:
+$ python manage.py createsuperuser
 * Start:
 $ python manage.py runserver
+
+You can reach foodroller in your browser localhost:8000 and the admin interface @ localhost:8000/admin
