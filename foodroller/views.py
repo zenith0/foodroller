@@ -11,3 +11,6 @@ def categories(request):
 
 def roll(request):
     return render_to_response('roll.html')
+
+def food(request):
+    return render_to_response('food.html')

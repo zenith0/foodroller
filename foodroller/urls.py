@@ -9,5 +9,7 @@ urlpatterns = [
     url(r'^$', views.index, name='catalog'),
     url(r'^categories/$', views.categories, name='catalog'),
     url(r'^roll/$', views.roll, name='catalog'),
+    url(r'^food/$', views.food, name='food'),
+
 
 ]
