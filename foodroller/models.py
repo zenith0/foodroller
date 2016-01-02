@@ -13,10 +13,13 @@ class Category(models.Model):
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
 
+    def get_food(self):
+        return self.food
+
 
 class Food(models.Model):
     name = models.CharField(unique=True, blank=False, max_length=50)
-    category = models.ManyToManyField('Category')
+    categories = models.ManyToManyField('Category', related_name='food')
     recipe = models.TextField(blank=True, null=True)
     duration = models.TimeField(null=True, blank=True)
     last_cooked = models.DateField(null=True, blank=True)
