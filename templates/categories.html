@@ -5,88 +5,37 @@
   <div class="w-section tabs-section">
     <div data-duration-in="500" data-duration-out="100" data-easing="ease-in" class="w-tabs">
       <div class="w-tab-menu category-menu">
-        <a data-w-tab="Tab 1" data-ix="underline-when-clicked" class="w-tab-link w--current w-inline-block category-tab">
-          <div class="tab-text">Starters</div>
-        </a>
-        <a data-w-tab="Tab 2" class="w-tab-link w-inline-block category-tab">
-          <div class="tab-text">Soups</div>
-        </a>
-        <a data-w-tab="Tab 3" class="w-tab-link w-inline-block category-tab">
-          <div class="tab-text">Salads</div>
-        </a>
-        <a data-w-tab="Tab 4" class="w-tab-link w-inline-block category-tab">
-          <div class="tab-text">Fleisch</div>
-        </a>
-        <a data-w-tab="Tab 5" class="w-tab-link w-inline-block category-tab">
-          <div class="tab-text">Vegetarisch</div>
-        </a>
-        <a data-w-tab="Tab 6" class="w-tab-link w-inline-block category-tab">
-          <div class="tab-text">Desert</div>
-        </a>
+        {% for category, food in categories.items %}
+          <a data-w-tab="{{ category.name }}" data-ix="underline-when-clicked" class="w-tab-link w--current w-inline-block category-tab">
+            <div class="tab-text">{{ category.name }}</div>
+          </a>
+        {% endfor %}
       </div>
       <div class="w-tab-content">
-        <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
-          <div class="food-div-shownhide">
-            <div class="w-row food-row">
-              <div class="w-col w-col-4">
-                <div class="food-div"><img width="400" src="{% static 'images/mains.jpg' %}" class="food-img-2">
-                  <h4 class="heading-center">Schweinebraten</h4>
-                </div>
-              </div>
-              <div class="w-col w-col-4">
-                <div data-ix="new-interaction" class="food-div"><a href="/food"> <img width="400" src="{% static 'images/mains.jpg' %}" class="food-img-2"></a>
-                  <h4 class="heading-center">Freitag,&nbsp;13.11.</h4>
-                </div>
-              </div>
-              <div class="w-col w-col-4">
-                <div class="food-div"><img width="400" src="{% static 'images/mains.jpg' %}" class="food-img-2">
-                  <h4 class="heading-center">Freitag,&nbsp;13.11.</h4>
-                </div>
-              </div>
-            </div>
-            <div class="w-row food-row">
-              <div class="w-col w-col-4">
-                <div class="food-div"><img width="400" src="{% static 'images/mains.jpg' %}" class="food-img-2">
-                  <h4 class="heading-center">Schweinebraten</h4>
-                </div>
-              </div>
-              <div class="w-col w-col-4">
-                <div class="food-div"><img width="400" src="{% static 'images/mains.jpg' %}" class="food-img-2">
-                  <h4 class="heading-center">Freitag,&nbsp;13.11.</h4>
-                </div>
-              </div>
-              <div class="w-col w-col-4">
-                <div class="food-div"><img width="400" src="{% static 'images/mains.jpg' %}" class="food-img-2">
-                  <h4 class="heading-center">Freitag,&nbsp;13.11.</h4>
-                </div>
-              </div>
-            </div>
-            <div class="w-row food-row">
-              <div class="w-col w-col-4">
-                <div class="food-div"><img width="400" src="{% static 'images/mains.jpg' %}" class="food-img-2">
-                  <h4 class="heading-center">Schweinebraten</h4>
-                </div>
-              </div>
-              <div class="w-col w-col-4">
-                <div class="food-div"><img width="400" src="{% static 'images/mains.jpg' %}" class="food-img-2">
-                  <h4 class="heading-center">Freitag,&nbsp;13.11.</h4>
-                </div>
-              </div>
-              <div class="w-col w-col-4">
-                <div class="food-div"><img width="400" src="{% static 'images/mains.jpg' %}" class="food-img-2">
-                  <h4 class="heading-center">Freitag,&nbsp;13.11.</h4>
-                </div>
+        {% for category, food in categories.items %}
+          <div data-w-tab="{{ category.name }}" class="w-tab-pane w--tab-active">
+            <div class="food-div-shownhide">
+              <div class="w-row food-row">
+                {% for f in food %}
+                  <div class="w-col w-col-4">
+                    {% if f.img %}
+                    <div class="food-div"><img width="400" src={{ f.img.url }} class="food-img-2">
+                      <h4 class="heading-center">{{ f.name }}</h4>
+                    </div>
+                    {% else %}
+                    <div class="food-div"><img width="400" src="{% static 'images/mains.jpg' %}" class="food-img-2">
+                      <h4 class="heading-center">{{ f.name }}</h4>
+                    </div>
+                  {% endif %}
+                  </div>
+                {% endfor %}
               </div>
             </div>
           </div>
-        </div>
-        <div data-w-tab="Tab 2" class="w-tab-pane"></div>
-        <div data-w-tab="Tab 3" class="w-tab-pane"></div>
-        <div data-w-tab="Tab 4" class="w-tab-pane"></div>
-        <div data-w-tab="Tab 5" class="w-tab-pane"></div>
-        <div data-w-tab="Tab 6" class="w-tab-pane"></div>
+        {% endfor %}
       </div>
     </div>
+  </div>
   </div>
 
 {% endblock %}

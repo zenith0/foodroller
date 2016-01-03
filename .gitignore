@@ -4,3 +4,7 @@ bin
 include 
 lib
 __pycache__
+media
+.coverage
+pip-selfcheck.json
+
