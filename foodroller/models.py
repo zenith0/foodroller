@@ -22,6 +22,7 @@ class Category(models.Model):
 
 class Food(models.Model):
     name = models.CharField(unique=True, blank=False, max_length=50)
+    slug = models.SlugField(unique=True, blank=False, null=False)
     categories = models.ManyToManyField('Category', related_name='food')
     recipe = models.TextField(blank=True, null=True)
     duration = models.TimeField(null=True, blank=True)
@@ -34,6 +35,9 @@ class Food(models.Model):
     class Meta:
         verbose_name = 'Food'
         verbose_name_plural = 'Foods'
+
+    def get_ingredients(self):
+        return Ingredient.objects.filter(food=self)
 
     #def save(self, *args, **kwargs):
     #    if self.img:
@@ -49,7 +53,7 @@ class Food(models.Model):
 class Ingredient(models.Model):
     name = models.CharField(blank=False, max_length=50)
     amount = models.CharField(null=True, blank=True, max_length=10)
-    food = models.ForeignKey(Food, null=True, blank=True)
+    food = models.ForeignKey(Food, null=True, blank=True, related_name='ingredient')
 
     def __str__(self):
         return self.name

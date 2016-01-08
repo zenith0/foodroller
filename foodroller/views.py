@@ -1,6 +1,6 @@
 from collections import OrderedDict
 from django.shortcuts import render, render_to_response
-from foodroller.models import Category
+from foodroller.models import Category, Food
 from foodroller_project import settings
 
 
@@ -26,5 +26,8 @@ def roll(request):
     return render_to_response('roll.html')
 
 
-def food(request):
-    return render_to_response('food.html')
+def food(request, food_slug):
+    food_dict = {}
+    food = Food.objects.get(slug=food_slug)
+    food_dict['food'] = food
+    return render(request, 'food.html', food_dict)

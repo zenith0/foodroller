@@ -9,6 +9,7 @@ class IngredientsInline(admin.TabularInline):
 
 
 class FoodAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('name',)}
     inlines = [IngredientsInline, ]
     exclude = ['last_cooked',]
 
