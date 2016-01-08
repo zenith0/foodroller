@@ -117,3 +117,5 @@ THUMBNAIL_ALIASES = {
         'thumb': {'size': (400, 400), 'crop': True},
     },
 }
+
+ADMIN_SITE_HEADER = "Foodroller Administration"

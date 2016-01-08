@@ -13,8 +13,6 @@ urlpatterns = [
     url(r'^categories/$', views.categories, name='catalog'),
     url(r'^roll/$', views.roll, name='catalog'),
     url(r'^food/$', views.food, name='food'),
-
-
 ]
-
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+admin.site.site_header = settings.ADMIN_SITE_HEADER
