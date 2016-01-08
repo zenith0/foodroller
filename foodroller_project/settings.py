@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'easy_thumbnails',
     'foodroller',
 )
 
@@ -111,4 +112,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
-# TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+THUMBNAIL_ALIASES = {
+    '': {
+        'thumb': {'size': (400, 400), 'crop': True},
+    },
+}

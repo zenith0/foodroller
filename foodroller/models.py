@@ -27,7 +27,6 @@ class Food(models.Model):
     duration = models.TimeField(null=True, blank=True)
     last_cooked = models.DateField(null=True, blank=True)
     img = models.ImageField(upload_to="img", null=True)
-    thumb = models.ImageField(upload_to="img", null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -36,12 +35,15 @@ class Food(models.Model):
         verbose_name = 'Food'
         verbose_name_plural = 'Foods'
 
-    # def save(self, *args, **kwargs):
-    #     if self.img:
-    #         im = Image.open(StringIO.StringIO(self.img.read()))
-    #         thumb = im.resize((400, 400), Image.ANTIALIAS)
-    #         self.thumb = SimpleUploadedFile(self.img.name + '_thumb', thumb)
-    #     super(Model, self).save(*args, **kwargs)
+    #def save(self, *args, **kwargs):
+    #    if self.img:
+    #        super(Food, self).save(*args, **kwargs)
+    #        image = Image.open(self.img)
+    #        size = (400, 400)
+    #        path = self.img.path
+    #        self.img = image.resize(size, Image.ANTIALIAS)
+    #        self.img.save(path)
+    #    super(Food, self).save(*args, **kwargs)
 
 
 class Ingredient(models.Model):
