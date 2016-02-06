@@ -1,186 +1,275 @@
 {% extends 'base.html' %}
 
 {% block body %}
+  <body class="roll-body">
+  <div class="modal-wrapper">
+    <div class="select-days-wrapper">
+      <h1 class="h3-roll">Zeitraum wählen</h1>
+      <div class="w-form">
+        <form id="email-form-2" name="email-form-2" data-name="Email Form 2" class="days-form">
+          <label for="field-42" class="days-title">Tage:</label>
+          <select id="field-42" name="field-42" class="w-select days-sel">
+            <option value="">Select one...</option>
+            <option value="First">First Choice</option>
+            <option value="Second">Second Choice</option>
+            <option value="Third">Third Choice</option>
+          </select>
+          <label class="days-title">Startdatum:</label>
+          <div class="w-embed date-field">
+            <input class="w-input" type="date" name="date">
+          </div>
+          <input type="submit" id="submit-modal1" value="OK" data-wait="Please wait..." data-ix="close-modal" class="w-button accept-btn">
+        </form>
+      </div>
+    </div>
+  </div>
+  <div data-ix="modal-interaction" class="modal-wrapper2">
+    <div class="select-days-wrapper">
+      <h1 class="h3-roll">Zeitraum wählen</h1>
+      <div class="zusammenfassung">
+        <div class="w-row">
+          <div class="w-col w-col-6">
+            <h4 class="home-h5">Essensplan</h4>
+            <ul>
+              <li class="zusammenfassung-essen">23.11. Schweinebraten</li>
+              <li class="zusammenfassung-essen">24.11. Schweinebraten</li>
+              <li class="zusammenfassung-essen">25.11. Schweinebraten</li>
+              <li class="zusammenfassung-essen">26.11. Schweinebraten</li>
+              <li class="zusammenfassung-essen">27.11. Schweinebraten</li>
+              <li class="zusammenfassung-essen">28.11. Schweinebraten</li>
+              <li class="zusammenfassung-essen">29.11. Schweinebraten</li>
+            </ul>
+          </div>
+          <div class="w-col w-col-6">
+            <h4>Einkaufsliste</h4>
+            <ul>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+              <li>Karotten 500g</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="w-row">
+        <div class="w-col w-col-6"><a href="#" data-ix="close-modal2" class="w-button accept-btn">Abbrechen</a>
+        </div>
+        <div class="w-col w-col-6"><a href="#" data-ix="close-modal2" class="w-button accept-btn">Ok (Email senden)</a>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="w-section config-section">
-    <div class="w-form config-form">
-      <form id="email-form" name="email-form" data-name="Email Form">
-        <div class="w-row settings-row">
-          <div class="w-col w-col-6">
-            <div class="w-embed date-form">
-              <label for="date">Start from:</label>
-              <input class="w-input" type="date" max="2016-12-31" min="2015-09-22" name="date">
-            </div>
-          </div>
-          <div class="w-col w-col-6">
-            <label for="field-25">Select the number of days</label>
-            <select id="field-25" name="field-25" required="required" class="w-select days">
-              <option value="">6 days</option>
-              <option value="First">3 days</option>
-              <option value="Second">4 days</option>
-              <option value="Third">5 days</option>
+    <h1 class="rool-heading">23.11. - 30.11.</h1><a href="#" data-ix="modal-interaction" class="w-button change-date">Datum ändern</a>
+    <div class="w-row day-row">
+      <div class="w-col w-col-3 roll-col">
+        <div class="w-clearfix day-roll">
+          <div class="day-form">
+            <h3 class="h3-roll">Monday</h3>
+            <select id="field" name="field" required="required" class="w-select">
+              <option value="">Category</option>
+              <option value="First">Soup</option>
+              <option value="Second">Salad</option>
+              <option value="Third">Vegetarian</option>
+              <option value="">Meat</option>
+              <option value="">None</option>
             </select>
-          </div>
+            <select id="field-2" name="field-2" data-name="Field 2" class="w-select">
+              <option value="">Cooking Time</option>
+              <option value="First">&lt; 30 min</option>
+              <option value="Second">&lt; 1 hr</option>
+              <option value="Third">&lt; 2 hr</option>
+            </select>
+          </div><a href="#" class="w-button go-btn">ROLL</a><a href="#" class="w-button man-btn">Select</a>
         </div>
-        <div class="w-row day-row">
-          <div class="w-col w-col-2 w-col-medium-4 roll-col">
-            <div class="w-clearfix day-roll">
-              <div class="day-form">
-                <h3>Monday</h3>
-                <select id="field" name="field" required="required" class="w-select">
-                  <option value="">Category</option>
-                  <option value="First">Soup</option>
-                  <option value="Second">Salad</option>
-                  <option value="Third">Vegetarian</option>
-                  <option value="">Meat</option>
-                  <option value="">None</option>
-                </select>
-                <select id="field-2" name="field-2" data-name="Field 2" class="w-select">
-                  <option value="">Cooking Time</option>
-                  <option value="First">&lt; 30 min</option>
-                  <option value="Second">&lt; 1 hr</option>
-                  <option value="Third">&lt; 2 hr</option>
-                </select>
-              </div><a href="#" class="w-button go-btn">ROLL</a><a href="#" class="w-button man-btn">Select</a>
-            </div>
-            <div class="day-res"><img width="150" src="images/mains.jpg" class="res-img">
-            </div>
-            <h4>Braten</h4>
-            <h5>1 Stunde 30 Minuten</h5>
-          </div>
-          <div class="w-col w-col-2 w-col-medium-4 roll-col">
-            <div class="w-clearfix day-roll">
-              <div class="day-form">
-                <h3>Tuesday</h3>
-                <select id="field-26" name="field-26" required="required" data-name="Field 26" class="w-select">
-                  <option value="">Category</option>
-                  <option value="First">Soup</option>
-                  <option value="Second">Salad</option>
-                  <option value="Third">Vegetarian</option>
-                  <option value="">Meat</option>
-                  <option value="">None</option>
-                </select>
-                <select id="field-27" name="field-27" data-name="Field 27" class="w-select">
-                  <option value="">Cooking Time</option>
-                  <option value="First">&lt; 30 min</option>
-                  <option value="Second">&lt; 1 hr</option>
-                  <option value="Third">&lt; 2 hr</option>
-                </select>
-              </div><a href="#" class="w-button go-btn">ROLL</a><a href="#" class="w-button man-btn">Select</a>
-            </div>
-            <div class="day-res"><img width="150" src="images/mains.jpg" class="res-img">
-            </div>
-            <h4>Braten</h4>
-            <h5>1 Stunde 30 Minuten</h5>
-          </div>
-          <div class="w-col w-col-2 w-col-medium-4 roll-col">
-            <div class="w-clearfix day-roll">
-              <div class="day-form">
-                <h3>Wednesday</h3>
-                <select id="field-28" name="field-28" required="required" data-name="Field 28" class="w-select">
-                  <option value="">Category</option>
-                  <option value="First">Soup</option>
-                  <option value="Second">Salad</option>
-                  <option value="Third">Vegetarian</option>
-                  <option value="">Meat</option>
-                  <option value="">None</option>
-                </select>
-                <select id="field-29" name="field-29" data-name="Field 29" class="w-select">
-                  <option value="">Cooking Time</option>
-                  <option value="First">&lt; 30 min</option>
-                  <option value="Second">&lt; 1 hr</option>
-                  <option value="Third">&lt; 2 hr</option>
-                </select>
-              </div><a href="#" class="w-button go-btn">ROLL</a><a href="#" class="w-button man-btn">Select</a>
-            </div>
-            <div class="day-res"><img width="150" src="images/mains.jpg" class="res-img">
-            </div>
-            <h4>Braten</h4>
-            <h5>1 Stunde 30 Minuten</h5>
-          </div>
-          <div class="w-col w-col-2 w-col-medium-4 roll-col">
-            <div class="w-clearfix day-roll">
-              <div class="day-form">
-                <h3>Thursday</h3>
-                <select id="field-30" name="field-30" required="required" data-name="Field 30" class="w-select">
-                  <option value="">Category</option>
-                  <option value="First">Soup</option>
-                  <option value="Second">Salad</option>
-                  <option value="Third">Vegetarian</option>
-                  <option value="">Meat</option>
-                  <option value="">None</option>
-                </select>
-                <select id="field-31" name="field-31" data-name="Field 31" class="w-select">
-                  <option value="">Cooking Time</option>
-                  <option value="First">&lt; 30 min</option>
-                  <option value="Second">&lt; 1 hr</option>
-                  <option value="Third">&lt; 2 hr</option>
-                </select>
-              </div><a href="#" class="w-button go-btn">ROLL</a><a href="#" class="w-button man-btn">Select</a>
-            </div>
-            <div class="day-res"><img width="150" src="images/mains.jpg" class="res-img">
-            </div>
-            <h4>Braten</h4>
-            <h5>1 Stunde 30 Minuten</h5>
-          </div>
-          <div class="w-col w-col-2 w-col-medium-4 roll-col">
-            <div class="w-clearfix day-roll">
-              <div class="day-form">
-                <h3>Friday</h3>
-                <select id="field-32" name="field-32" required="required" data-name="Field 32" class="w-select">
-                  <option value="">Category</option>
-                  <option value="First">Soup</option>
-                  <option value="Second">Salad</option>
-                  <option value="Third">Vegetarian</option>
-                  <option value="">Meat</option>
-                  <option value="">None</option>
-                </select>
-                <select id="field-33" name="field-33" data-name="Field 33" class="w-select">
-                  <option value="">Cooking Time</option>
-                  <option value="First">&lt; 30 min</option>
-                  <option value="Second">&lt; 1 hr</option>
-                  <option value="Third">&lt; 2 hr</option>
-                </select>
-              </div><a href="#" class="w-button go-btn">ROLL</a><a href="#" class="w-button man-btn">Select</a>
-            </div>
-            <div class="day-res"><img width="150" src="images/mains.jpg" class="res-img">
-            </div>
-            <h4>Braten</h4>
-            <h5>1 Stunde 30 Minuten</h5>
-          </div>
-          <div class="w-col w-col-2 w-col-medium-4 roll-col">
-            <div class="w-clearfix day-roll">
-              <div class="day-form">
-                <h3>Saturday</h3>
-                <select id="field-34" name="field-34" required="required" data-name="Field 34" class="w-select">
-                  <option value="">Category</option>
-                  <option value="First">Soup</option>
-                  <option value="Second">Salad</option>
-                  <option value="Third">Vegetarian</option>
-                  <option value="">Meat</option>
-                  <option value="">None</option>
-                </select>
-                <select id="field-35" name="field-35" data-name="Field 35" class="w-select">
-                  <option value="">Cooking Time</option>
-                  <option value="First">&lt; 30 min</option>
-                  <option value="Second">&lt; 1 hr</option>
-                  <option value="Third">&lt; 2 hr</option>
-                </select>
-              </div><a href="#" class="w-button go-btn">ROLL</a><a href="#" class="w-button man-btn">Select</a>
-            </div>
-            <div class="day-res"><img width="150" src="images/mains.jpg" class="res-img">
-            </div>
-            <h4>Braten</h4>
-            <h5>1 Stunde 30 Minuten</h5>
-          </div>
+        <div class="day-res"><img width="150" src="images/mains.jpg" class="res-img">
         </div>
-      </form>
-      <div class="w-form-done">
-        <p>Thank you! Your submission has been received!</p>
+        <h4 class="title-roll">Braten</h4>
+        <h5 class="dur-roll">1 Stunde 30 Minuten</h5>
       </div>
-      <div class="w-form-fail">
-        <p>Oops! Something went wrong while submitting the form</p>
+      <div class="w-col w-col-3 roll-col">
+        <div class="w-clearfix day-roll">
+          <div class="day-form">
+            <h3 class="h3-roll">Tuesday</h3>
+            <select id="field-26" name="field-26" required="required" data-name="Field 26" class="w-select">
+              <option value="">Category</option>
+              <option value="First">Soup</option>
+              <option value="Second">Salad</option>
+              <option value="Third">Vegetarian</option>
+              <option value="">Meat</option>
+              <option value="">None</option>
+            </select>
+            <select id="field-27" name="field-27" data-name="Field 27" class="w-select">
+              <option value="">Cooking Time</option>
+              <option value="First">&lt; 30 min</option>
+              <option value="Second">&lt; 1 hr</option>
+              <option value="Third">&lt; 2 hr</option>
+            </select>
+          </div><a href="#" class="w-button go-btn">ROLL</a><a href="#" class="w-button man-btn">Select</a>
+        </div>
+        <div class="day-res"><img width="150" src="images/mains.jpg" class="res-img">
+        </div>
+        <h4>Ofengemüse mit Schafkäse</h4>
+        <h5>1 Stunde 30 Minuten</h5>
       </div>
-    </div><a href="#" class="w-button accept-btn">Accept</a>
+      <div class="w-col w-col-3 roll-col">
+        <div class="w-clearfix day-roll">
+          <div class="day-form">
+            <h3 class="h3-roll">Wednesday</h3>
+            <select id="field-28" name="field-28" required="required" data-name="Field 28" class="w-select">
+              <option value="">Category</option>
+              <option value="First">Soup</option>
+              <option value="Second">Salad</option>
+              <option value="Third">Vegetarian</option>
+              <option value="">Meat</option>
+              <option value="">None</option>
+            </select>
+            <select id="field-29" name="field-29" data-name="Field 29" class="w-select">
+              <option value="">Cooking Time</option>
+              <option value="First">&lt; 30 min</option>
+              <option value="Second">&lt; 1 hr</option>
+              <option value="Third">&lt; 2 hr</option>
+            </select>
+          </div><a href="#" class="w-button go-btn">ROLL</a><a href="#" class="w-button man-btn">Select</a>
+        </div>
+        <div class="day-res"><img width="150" src="images/mains.jpg" class="res-img">
+        </div>
+        <h4>Braten</h4>
+        <h5>1 Stunde 30 Minuten</h5>
+      </div>
+      <div class="w-col w-col-3 roll-col">
+        <div class="w-clearfix day-roll">
+          <div class="day-form">
+            <h3 class="h3-roll">Thursday</h3>
+            <select id="field-30" name="field-30" required="required" data-name="Field 30" class="w-select">
+              <option value="">Category</option>
+              <option value="First">Soup</option>
+              <option value="Second">Salad</option>
+              <option value="Third">Vegetarian</option>
+              <option value="">Meat</option>
+              <option value="">None</option>
+            </select>
+            <select id="field-31" name="field-31" data-name="Field 31" class="w-select">
+              <option value="">Cooking Time</option>
+              <option value="First">&lt; 30 min</option>
+              <option value="Second">&lt; 1 hr</option>
+              <option value="Third">&lt; 2 hr</option>
+            </select>
+          </div><a href="#" class="w-button go-btn">ROLL</a><a href="#" class="w-button man-btn">Select</a>
+        </div>
+        <div class="day-res"><img width="150" src="images/mains.jpg" class="res-img">
+        </div>
+        <h4>Braten</h4>
+        <h5>1 Stunde 30 Minuten</h5>
+      </div>
+    </div>
+    <div class="w-row day-row">
+      <div class="w-col w-col-3 roll-col">
+        <div class="w-clearfix day-roll">
+          <div class="day-form">
+            <h3 class="h3-roll">Monday</h3>
+            <select id="field-36" name="field-36" required="required" data-name="Field 36" class="w-select">
+              <option value="">Category</option>
+              <option value="First">Soup</option>
+              <option value="Second">Salad</option>
+              <option value="Third">Vegetarian</option>
+              <option value="">Meat</option>
+              <option value="">None</option>
+            </select>
+            <select id="field-37" name="field-37" data-name="Field 37" class="w-select">
+              <option value="">Cooking Time</option>
+              <option value="First">&lt; 30 min</option>
+              <option value="Second">&lt; 1 hr</option>
+              <option value="Third">&lt; 2 hr</option>
+            </select>
+          </div><a href="#" class="w-button go-btn">ROLL</a><a href="#" class="w-button man-btn">Select</a>
+        </div>
+        <div class="day-res"><img width="150" src="images/mains.jpg" class="res-img">
+        </div>
+        <h4>Braten</h4>
+        <h5>1 Stunde 30 Minuten</h5>
+      </div>
+      <div class="w-col w-col-3 roll-col">
+        <div class="w-clearfix day-roll">
+          <div class="day-form">
+            <h3 class="h3-roll">Tuesday</h3>
+            <select id="field-38" name="field-38" required="required" data-name="Field 38" class="w-select">
+              <option value="">Category</option>
+              <option value="First">Soup</option>
+              <option value="Second">Salad</option>
+              <option value="Third">Vegetarian</option>
+              <option value="">Meat</option>
+              <option value="">None</option>
+            </select>
+            <select id="field-39" name="field-39" data-name="Field 39" class="w-select">
+              <option value="">Cooking Time</option>
+              <option value="First">&lt; 30 min</option>
+              <option value="Second">&lt; 1 hr</option>
+              <option value="Third">&lt; 2 hr</option>
+            </select>
+          </div><a href="#" class="w-button go-btn">ROLL</a><a href="#" class="w-button man-btn">Select</a>
+        </div>
+        <div class="day-res"><img width="150" src="images/mains.jpg" class="res-img">
+        </div>
+        <h4>Braten</h4>
+        <h5>1 Stunde 30 Minuten</h5>
+      </div>
+      <div class="w-col w-col-3 roll-col">
+        <div class="w-clearfix day-roll">
+          <div class="day-form">
+            <h3 class="h3-roll">Wednesday</h3>
+            <select id="field-40" name="field-40" required="required" data-name="Field 40" class="w-select">
+              <option value="">Category</option>
+              <option value="First">Soup</option>
+              <option value="Second">Salad</option>
+              <option value="Third">Vegetarian</option>
+              <option value="">Meat</option>
+              <option value="">None</option>
+            </select>
+            <select id="field-41" name="field-41" data-name="Field 41" class="w-select">
+              <option value="">Cooking Time</option>
+              <option value="First">&lt; 30 min</option>
+              <option value="Second">&lt; 1 hr</option>
+              <option value="Third">&lt; 2 hr</option>
+            </select>
+          </div><a href="#" class="w-button go-btn">ROLL</a><a href="#" class="w-button man-btn">Select</a>
+        </div>
+        <div class="day-res"><img width="150" src="images/mains.jpg" class="res-img">
+        </div>
+        <h4>Braten</h4>
+        <h5>1 Stunde 30 Minuten</h5>
+      </div>
+      <div class="w-col w-col-3"></div>
+    </div><a href="#" data-ix="open-modal2" class="w-button accept-btn">Accept</a>
   </div>
 
+  <script>
+  $("#submit-modal1").click(function() {
+    $("#modal-wrapper").hide();
+  });
+  </script>
+</body>
 {% endblock %}

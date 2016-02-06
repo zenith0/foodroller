@@ -1,11 +1,11 @@
 body {
   height: 100%;
   padding-left: 0px;
-  border-color: white;
+  border-color: #fff;
   border-radius: 30px;
   background-color: transparent;
   font-family: Oswald, sans-serif;
-  color: rgba(0, 0, 0, 0.75);
+  color: rgba(0, 0, 0, .75);
   font-size: 16px;
   line-height: 20px;
 }
@@ -14,7 +14,7 @@ h1 {
   margin-top: 411px;
   margin-bottom: 63px;
   font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
-  color: black;
+  color: #000;
   font-size: 60px;
   line-height: 44px;
   font-weight: 700;
@@ -27,7 +27,7 @@ h2 {
   margin-bottom: 84px;
   margin-left: 154px;
   font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
-  color: black;
+  color: #000;
   font-size: 70px;
   line-height: 36px;
   font-weight: 700;
@@ -53,7 +53,7 @@ h4 {
   margin-bottom: 0px;
   padding-left: 0px;
   font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
-  color: black;
+  color: #000;
   font-size: 20px;
   line-height: 24px;
   font-weight: 700;
@@ -65,7 +65,7 @@ h5 {
   margin-top: 0px;
   margin-bottom: 10px;
   font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
-  color: rgba(0, 0, 0, 0.75);
+  color: rgba(0, 0, 0, .75);
   font-size: 14px;
   line-height: 20px;
   font-weight: 700;
@@ -96,7 +96,7 @@ p {
   background-color: #cf404d;
   -webkit-transition: background-color 300ms ease;
   transition: background-color 300ms ease;
-  color: white;
+  color: #fff;
   font-size: 16px;
   line-height: 21px;
   text-align: center;
@@ -104,7 +104,7 @@ p {
 }
 
 .button:hover {
-  background-color: black;
+  background-color: #000;
 }
 
 .button.w--current {
@@ -140,7 +140,7 @@ p {
 .section {
   position: relative;
   padding: 63px 40px;
-  background-color: white;
+  background-color: #fff;
 }
 
 .section.section-gray {
@@ -152,7 +152,7 @@ p {
 .call-to-action-section {
   padding: 44px 40px;
   background-color: #cf404d;
-  color: white;
+  color: #fff;
 }
 
 .call-to-action-heading {
@@ -168,8 +168,8 @@ p {
 .hero-heading {
   margin-top: -261px;
   margin-bottom: 19px;
-  border-color: white;
-  color: white;
+  border-color: #fff;
+  color: #fff;
   font-size: 50px;
   font-weight: 400;
   letter-spacing: 3px;
@@ -178,7 +178,7 @@ p {
 
 .hero-subheading {
   margin-bottom: 25px;
-  color: white;
+  color: #fff;
 }
 
 .hollow-button {
@@ -196,34 +196,34 @@ p {
 }
 
 .hollow-button:hover {
-  border-color: black;
-  color: black;
+  border-color: #000;
+  color: #000;
 }
 
 .hollow-button.white {
-  border-color: white;
-  color: white;
+  border-color: #fff;
+  color: #fff;
 }
 
 .hollow-button.white:hover {
   border-color: #2d3e4f;
   background-color: #2d3e4f;
-  color: white;
+  color: #fff;
 }
 
 .hollow-button.red {
   margin-top: 58px;
   margin-left: 0px;
   padding: 20px 50px;
-  border-color: white;
+  border-color: #fff;
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.33);
+  background-color: rgba(0, 0, 0, .33);
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
   -webkit-transition: background-color 300ms ease, border 300ms ease, color 300ms ease;
   transition: background-color 300ms ease, border 300ms ease, color 300ms ease;
-  color: white;
+  color: #fff;
   font-size: 24px;
 }
 
@@ -245,7 +245,7 @@ p {
 
 .section-subheading.center {
   font-family: 'Droid Sans', sans-serif;
-  color: rgba(115, 115, 115, 0.74);
+  color: hsla(0, 0%, 45%, .74);
   font-size: 19px;
   line-height: 30px;
   text-align: center;
@@ -261,18 +261,17 @@ p {
   margin-right: 1px;
   margin-bottom: 18px;
   padding-bottom: 0px;
-  border: 0px solid black;
+  border: 0px solid #000;
   border-radius: 3px;
-  box-shadow: rgba(64, 64, 71, 0.29) 0px 0px 0px 1px;
+  box-shadow: 0 0 0 1px rgba(64, 64, 71, .3);
 }
 
 .form-field:focus {
-  box-shadow: #2e80b6 0px 0px 0px 1px;
+  box-shadow: 0 0 0 1px #2e80b6;
 }
 
 .form-field.text-area {
-  overflow-x: auto;
-  overflow-y: auto;
+  overflow: auto;
   min-height: 110px;
   margin-top: 20px;
 }
@@ -280,7 +279,7 @@ p {
 .form-wrapper.squeezed {
   padding-right: 19%;
   padding-left: 19%;
-  background-color: rgba(125, 125, 125, 0);
+  background-color: hsla(0, 0%, 49%, 0);
 }
 
 .social-icon-link {
@@ -343,7 +342,7 @@ p {
   bottom: 0px;
   width: 329px;
   height: 100%;
-  background-color: black;
+  background-color: #000;
 }
 
 .nav-link-old {
@@ -351,7 +350,7 @@ p {
   display: block;
   padding: 0px;
   float: none;
-  color: white;
+  color: #fff;
   font-size: 15px;
   text-align: center;
   text-transform: uppercase;
@@ -373,7 +372,7 @@ p {
   padding-right: 0px;
   float: none;
   clear: none;
-  background-color: rgba(0, 0, 0, 0.33);
+  background-color: rgba(0, 0, 0, .33);
 }
 
 .logo-link {
@@ -407,8 +406,8 @@ p {
   padding-bottom: 462px;
   float: none;
   clear: none;
-  background-image: url('../images/original_001.jpg'), -webkit-linear-gradient(rgba(0, 0, 0, 0.49), rgba(0, 0, 0, 0.49)), url('../images/2e9b0cb2.jpg');
-  background-image: url('../images/original_001.jpg'), linear-gradient(rgba(0, 0, 0, 0.49), rgba(0, 0, 0, 0.49)), url('../images/2e9b0cb2.jpg');
+  background-image: url('../images/original_001.jpg'), -webkit-linear-gradient(270deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('../images/2e9b0cb2.jpg');
+  background-image: url('../images/original_001.jpg'), linear-gradient(180deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('../images/2e9b0cb2.jpg');
   background-position: 0% 0%, 0% 0%, 50% 50%;
   background-size: auto, auto, cover;
   background-repeat: repeat, repeat, no-repeat;
@@ -439,9 +438,9 @@ p {
 .image {
   position: relative;
   padding-bottom: 0px;
-  border: 0px solid black;
+  border: 0px solid #000;
   border-radius: 3px;
-  box-shadow: rgba(64, 64, 71, 0.29) 0px 0px 6px 0px;
+  box-shadow: 0 0 6px 0 rgba(64, 64, 71, .3);
 }
 
 .slides {
@@ -464,7 +463,7 @@ p {
 .navbar_old {
   position: fixed;
   display: block;
-  background-color: black;
+  background-color: #000;
 }
 
 .logo {
@@ -484,7 +483,7 @@ p {
   -webkit-transition: background-color 200ms linear;
   transition: background-color 200ms linear;
   font-family: Oswald, sans-serif;
-  color: black;
+  color: #000;
   font-size: 16px;
   text-transform: uppercase;
   list-style-type: disc;
@@ -514,11 +513,10 @@ p {
   left: 0px;
   top: 0px;
   right: 0px;
-  overflow-x: visible;
-  overflow-y: visible;
+  overflow: visible;
   padding-top: 0px;
   padding-bottom: 0px;
-  background-color: rgba(255, 255, 255, 0.54);
+  background-color: hsla(0, 0%, 100%, .54);
 }
 
 .hero-section {
@@ -547,7 +545,7 @@ p {
 }
 
 .nav-link:hover {
-  color: rgba(167, 8, 8, 0.94);
+  color: rgba(167, 8, 8, .94);
 }
 
 .roll-now {
@@ -560,24 +558,24 @@ p {
   float: none;
   border: 2px solid transparent;
   border-radius: 20px;
-  background-color: rgba(0, 0, 0, 0.54);
+  background-color: rgba(0, 0, 0, .54);
   -webkit-transition: opacity 200ms ease, all 500ms ease;
   transition: opacity 200ms ease, all 500ms ease;
   font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
-  color: white;
+  color: #fff;
   font-size: 30px;
   text-align: center;
 }
 
 .roll-now:hover {
-  background-color: rgba(0, 0, 0, 0.64);
-  color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(0, 0, 0, .64);
+  color: hsla(0, 0%, 100%, .75);
 }
 
 .main-section {
   padding-top: 0px;
   padding-bottom: 70px;
-  background-color: white;
+  background-color: #fff;
   text-align: center;
 }
 
@@ -639,8 +637,8 @@ p {
 .navmenu {
   display: block;
   margin-top: 0px;
-  background-color: white;
-  color: black;
+  background-color: #fff;
+  color: #000;
 }
 
 .food-section {
@@ -652,8 +650,8 @@ p {
 }
 
 .food-row {
-  margin: 0px 154px 50px;
-  border-top: 1px solid white;
+  margin: 0px 0px 50px;
+  border-top: 1px none #fff;
   text-align: center;
 }
 
@@ -675,8 +673,8 @@ p {
 }
 
 .food-tab.w--current {
-  border: 3px solid black;
-  background-color: white;
+  border: 3px solid #000;
+  background-color: #fff;
   font-family: Oswald, sans-serif;
   font-size: 30px;
   text-transform: uppercase;
@@ -692,10 +690,11 @@ p {
 }
 
 .menu-button.w--open {
-  background-color: rgba(255, 255, 255, 0);
+  background-color: hsla(0, 0%, 100%, 0);
 }
 
 .food-div {
+  display: inline-block;
   text-align: center;
 }
 
@@ -715,7 +714,7 @@ p {
   height: 400px;
   margin-bottom: 0px;
   padding-top: 83px;
-  background-color: black;
+  background-color: #000;
   text-align: center;
 }
 
@@ -750,7 +749,7 @@ p {
   margin-top: 104px;
   padding-top: 0px;
   border-style: none;
-  background-color: white;
+  background-color: #fff;
   background-image: url('../images/547a77ef3e9ac2216ec5c6e0_arrow-down.png');
   background-position: 50% 301%;
   background-size: contain;
@@ -829,11 +828,11 @@ p {
   display: block;
   margin-top: 0px;
   padding-top: 0px;
-  background-color: white;
+  background-color: #fff;
 }
 
 .navitem {
-  color: white;
+  color: #fff;
 }
 
 .navigation-cont {
@@ -846,6 +845,7 @@ p {
 .brand {
   margin-top: 10px;
   margin-bottom: 10px;
+  font-size: 16px;
 }
 
 .heading-center {
@@ -862,7 +862,7 @@ p {
 }
 
 .heading-1-white {
-  color: white;
+  color: #fff;
 }
 
 .categories {
@@ -878,7 +878,7 @@ p {
 
 .category-tab {
   display: inline-block;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #000;
   background-color: transparent;
   font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
   font-size: 20px;
@@ -886,14 +886,14 @@ p {
 
 .category-tab:hover {
   border-bottom-width: 3px;
-  border-bottom-color: black;
+  border-bottom-color: #000;
 }
 
 .category-tab.w--current {
   display: inline-block;
   border-style: none none solid;
   border-width: 1px 1px 3px;
-  border-color: black;
+  border-color: #000;
   border-radius: 0px;
   background-color: transparent;
   font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
@@ -904,17 +904,17 @@ p {
 }
 
 .category-tab.w--current:hover {
-  border-top: 3px none black;
-  border-bottom: 1px solid black;
-  color: rgba(0, 0, 0, 0.75);
+  border-top: 3px none #000;
+  border-bottom: 1px solid #000;
+  color: rgba(0, 0, 0, .75);
 }
 
 .category-tab.w--current:active {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #000;
 }
 
 .category-tab.w--current:focus {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #000;
 }
 
 .category-menu {
@@ -923,6 +923,7 @@ p {
 }
 
 .tab-text {
+  font-size: 28px;
   font-weight: 700;
 }
 
@@ -941,11 +942,13 @@ p {
 }
 
 .config-section {
-  margin-top: 0px;
+  position: static;
+  overflow: auto;
+  margin-top: -199px;
   margin-bottom: 80px;
   padding-top: 0px;
   padding-bottom: 0px;
-  border-bottom: 1px none black;
+  border-bottom: 1px none #000;
   text-align: center;
 }
 
@@ -956,27 +959,32 @@ p {
 }
 
 .days-div {
-  border: 1px solid black;
+  border: 1px solid #000;
 }
 
 .config-form {
-  margin-top: 350px;
+  position: static;
+  margin-top: 100px;
   margin-right: 50px;
   margin-left: 50px;
-  border: 1px none black;
+  border: 1px none #000;
   font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
-  text-align: justify;
+  text-align: center;
 }
 
 .day-form {
   margin-right: 0px;
   float: none;
-  border: 1px none black;
+  border: 1px none #000;
+  font-size: 16px;
 }
 
 .date-form {
   width: 300px;
   font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+  color: #000;
+  font-size: 22px;
+  font-style: normal;
 }
 
 .form-btn {
@@ -990,7 +998,7 @@ p {
   margin-left: 54px;
   border-color: transparent;
   border-radius: 15px;
-  background-color: rgba(0, 0, 0, 0.74);
+  background-color: rgba(0, 0, 0, .74);
   -webkit-transition: opacity 500ms ease;
   transition: opacity 500ms ease;
   font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
@@ -999,7 +1007,7 @@ p {
 }
 
 .form-btn:hover {
-  background-color: rgba(0, 0, 0, 0.14);
+  background-color: rgba(0, 0, 0, .14);
 }
 
 .accept-img {
@@ -1019,8 +1027,20 @@ p {
   width: 200px;
   margin-bottom: 0px;
   padding-bottom: 0px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #000;
   text-align: center;
+}
+
+.day-row {
+  position: static;
+  display: block;
+  overflow: visible;
+  max-width: 1000px;
+  margin-right: auto;
+  margin-bottom: 40px;
+  margin-left: auto;
+  padding-right: 0px;
+  padding-left: 0px;
 }
 
 .go-btn {
@@ -1033,7 +1053,7 @@ p {
   padding-left: 0px;
   float: left;
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.72);
+  background-color: rgba(0, 0, 0, .72);
   -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
   font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
@@ -1043,7 +1063,7 @@ p {
 }
 
 .go-btn:hover {
-  background-color: #3898ec;
+  background-color: rgba(77, 49, 37, .8);
 }
 
 .days {
@@ -1056,9 +1076,9 @@ p {
   width: 800px;
   margin-right: auto;
   margin-bottom: 20px;
-  margin-left: 0px;
-  border-bottom: 1px none black;
-  text-align: left;
+  margin-left: 100px;
+  border-bottom: 1px none #000;
+  text-align: center;
 }
 
 .day-res {
@@ -1078,7 +1098,11 @@ p {
 }
 
 .roll-col {
-  border: 1px none black;
+  position: static;
+  display: block;
+  overflow: visible;
+  padding-right: 10px;
+  border: 1px none #000;
 }
 
 .man-btn {
@@ -1088,6 +1112,7 @@ p {
   padding-left: 0px;
   float: right;
   border-radius: 10px;
+  background-color: rgba(77, 49, 37, .8);
   -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
   font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
@@ -1096,24 +1121,36 @@ p {
 }
 
 .man-btn:hover {
-  background-color: rgba(0, 0, 0, 0.72);
+  background-color: rgba(0, 0, 0, .72);
 }
 
 .accept-btn {
-  width: 400px;
+  display: block;
+  width: 175px;
   height: 40px;
-  margin-top: 50px;
+  margin: 10px auto 30px;
+  padding-right: 15px;
+  padding-left: 15px;
   float: none;
   clear: none;
   border-radius: 20px;
+  background-color: rgba(77, 49, 37, .8);
   -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
-  font-size: 20px;
+  font-size: 16px;
+  text-align: center;
   text-transform: uppercase;
 }
 
 .accept-btn:hover {
-  background-color: #5b5b5c;
+  background-color: rgba(0, 0, 0, .7);
+}
+
+.accept-btn.kalender-btn {
+  display: block;
+  margin: 0px auto;
+  padding-right: 0px;
+  padding-left: 0px;
 }
 
 .food-h4-r {
@@ -1127,8 +1164,167 @@ p {
 }
 
 .home-h5 {
-  width: 600px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
   text-align: center;
+}
+
+.roll-body {
+  background-image: url('../images/12632976_1265460030137698_1553243344_o.jpg');
+  background-position: 0px 0px;
+  background-size: cover;
+}
+
+.field-label {
+  color: #000;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.day-row-2 {
+  width: 666px;
+  margin-left: 325px;
+}
+
+.h3-roll {
+  margin-bottom: 30px;
+  color: #000;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.title-roll {
+  text-align: center;
+}
+
+.dur-roll {
+  color: #000;
+}
+
+.tabs-content {
+  margin-top: 0px;
+  padding-top: 63px;
+}
+
+.choose-days {
+  position: fixed;
+  z-index: 9000;
+  width: 600px;
+  height: 600px;
+}
+
+.modal-wrapper {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  display: none;
+  height: 100%;
+  margin-top: 62px;
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.select-days-wrapper {
+  position: static;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  display: block;
+  overflow: visible;
+  width: 450px;
+  margin: -230px auto 100px;
+  padding: 0px;
+  background-color: #fff;
+  text-align: left;
+}
+
+.days-heading {
+  margin-top: 300px;
+  margin-bottom: 20px;
+  padding-top: 0px;
+  font-size: 40px;
+}
+
+.days-title {
+  display: none;
+  margin-top: 1px;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  padding-top: 0px;
+  padding-bottom: 6px;
+}
+
+.days-sel {
+  display: block;
+  width: 150px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 0px;
+  padding-right: 0px;
+}
+
+.date-field {
+  display: block;
+  width: 150px;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.days-form {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.days-submit {
+  margin-bottom: 10px;
+}
+
+.rool-heading {
+  margin-top: 100px;
+  margin-bottom: 20px;
+  padding-top: 300px;
+  padding-bottom: 0px;
+}
+
+.calendar {
+  position: static;
+  float: none;
+  clear: none;
+}
+
+.modal-wrapper2 {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  display: none;
+  overflow: auto;
+  height: 100%;
+  margin-right: auto;
+  margin-bottom: 50px;
+  margin-left: auto;
+  background-color: rgba(0, 0, 0, .71);
+  color: #000;
+}
+
+.zusammenfassung-essen {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+.change-date {
+  border-radius: 20px;
+  background-color: rgba(77, 49, 37, .8);
+}
+
+.change-date:hover {
+  background-color: rgba(0, 0, 0, .72);
 }
 
 html.w-mod-js *[data-ix="fade-in-bottom-page-loads"] {
@@ -1168,16 +1364,16 @@ html.w-mod-js *[data-ix="fade-in-bottom-scroll-in"] {
 
 html.w-mod-js *[data-ix="bounce-in-scroll-in"] {
   opacity: 0;
-  -webkit-transform: scale(0.6);
-  -ms-transform: scale(0.6);
-  transform: scale(0.6);
+  -webkit-transform: scale(0.6, 0.6);
+  -ms-transform: scale(0.6, 0.6);
+  transform: scale(0.6, 0.6);
 }
 
 html.w-mod-js *[data-ix="scale-on-scroll"] {
   opacity: 0;
-  -webkit-transform: scale(0.01);
-  -ms-transform: scale(0.01);
-  transform: scale(0.01);
+  -webkit-transform: scale(0.01, 0.01);
+  -ms-transform: scale(0.01, 0.01);
+  transform: scale(0.01, 0.01);
 }
 
 @media (max-width: 991px) {
@@ -1190,7 +1386,7 @@ html.w-mod-js *[data-ix="scale-on-scroll"] {
     text-align: center;
   }
   .hamburger-button {
-    color: white;
+    color: #fff;
   }
   .hamburger-button.w--open {
     background-color: #cf404d;
@@ -1233,13 +1429,13 @@ html.w-mod-js *[data-ix="scale-on-scroll"] {
     height: 500px;
   }
   .nav-link {
-    color: rgba(255, 255, 255, 0.75);
+    color: hsla(0, 0%, 100%, .75);
   }
   .main-section {
     margin-right: 28px;
   }
   .navmenu {
-    background-color: black;
+    background-color: #000;
   }
   .food-row {
     margin-right: 0px;
@@ -1254,8 +1450,7 @@ html.w-mod-js *[data-ix="scale-on-scroll"] {
   .day-row {
     position: static;
     display: block;
-    overflow-x: visible;
-    overflow-y: visible;
+    overflow: visible;
     margin-right: 0px;
     margin-bottom: 0px;
     padding-bottom: 0px;
