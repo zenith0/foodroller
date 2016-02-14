@@ -61,3 +61,16 @@ class Ingredient(models.Model):
     class Meta:
         verbose_name = 'Ingredient'
         verbose_name_plural = 'Ingredients'
+
+class Planitem(models.Model):
+    food = models.ForeignKey('Food')
+    date = models.DateField()
+
+class Foodplan(models.Model):
+    start_date = models.DateField()
+    end_date = models.DateField()
+    food_list = models.ManyToManyField('Planitem')
+
+    def add_food(self, food, date):
+        plan_item = Planitem(food=food, date=date)
+        self.food_list.add(plan_item)

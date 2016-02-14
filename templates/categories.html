@@ -32,6 +32,10 @@
                   {% endif %}
                   </a>
                   </div>
+                  {% if forloop.counter|divisibleby:3 %}
+                    </div>
+                    <div class="w-row food-row">
+                  {% endif %}
                 {% endfor %}
               </div>
             </div>
