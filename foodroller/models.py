@@ -1,7 +1,9 @@
 from PIL import Image
+import datetime
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import models
 from django.db.models import Model
+from foodroller.utils import weekday_from_date
 
 __author__ = 'stefan'
 
@@ -62,15 +64,18 @@ class Ingredient(models.Model):
         verbose_name = 'Ingredient'
         verbose_name_plural = 'Ingredients'
 
-class Planitem(models.Model):
+class Day(models.Model):
     food = models.ForeignKey('Food')
-    date = models.DateField()
+    date = models.DateTimeField()
+    #day = weekday_from_date(datetime.datetime(date.year, date.month, date.day))
+
 
 class Foodplan(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
-    food_list = models.ManyToManyField('Planitem')
+    food_list = models.ManyToManyField('Day')
 
     def add_food(self, food, date):
-        plan_item = Planitem(food=food, date=date)
+        plan_item = Day(food=food, date=date)
+        self.end_date = date
         self.food_list.add(plan_item)
