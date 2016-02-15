@@ -943,11 +943,13 @@ p {
 
 .config-section {
   position: static;
-  overflow: auto;
-  margin-top: -199px;
-  margin-bottom: 80px;
+  overflow: hidden;
+  /*margin-top: -199px;*/
+  /*margin-bottom: 80px;*/
+  margin: auto;
   padding-top: 0px;
   padding-bottom: 0px;
+  width: 70.3333%;
   border-bottom: 1px none #000;
   text-align: center;
 }
@@ -973,10 +975,10 @@ p {
 }
 
 .day-form {
-  margin-right: 0px;
-  float: none;
-  border: 1px none #000;
-  font-size: 16px;
+  /*margin-right: 0px;*/
+  /*float: none;*/
+  /*border: 1px none #000;*/
+  /*font-size: 16px;*/
 }
 
 .date-form {
@@ -1082,8 +1084,7 @@ p {
 }
 
 .day-res {
-  width: 200px;
-  margin-top: 25px;
+  margin-top: 80px;
   text-align: center;
 }
 
@@ -1174,6 +1175,7 @@ p {
   background-image: url('../images/12632976_1265460030137698_1553243344_o.jpg');
   background-position: 0px 0px;
   background-size: cover;
+  text-align: center;
 }
 
 .field-label {
@@ -1563,9 +1565,7 @@ html.w-mod-js *[data-ix="scale-on-scroll"] {
     margin-right: 200px;
     text-align: left;
   }
-  .config-section {
-    text-align: center;
-  }
+
   .config-form {
     margin-left: 0px;
     text-align: left;
@@ -1573,5 +1573,17 @@ html.w-mod-js *[data-ix="scale-on-scroll"] {
   .accept-btn {
     width: 200px;
   }
+
+  .col-centered .col-md-4 {
+    text-align: center;
+    max-width: 100px;
+  }
+
+
+.ui-autocomplete {
+      position:absolute;
+    cursor:default;
+    z-index:1001 !important
+}
 }
 

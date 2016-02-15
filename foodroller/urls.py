@@ -13,7 +13,7 @@ urlpatterns = [
     url(r'^categories/$', views.categories, name='catalog'),
     url(r'^roll/$', views.roll, name='roll'),
     url(r'^food/(?P<food_slug>[\w\-]+)/$', views.food, name='food'),
-    url(r'^date-config/$', views.config_date, name='config_date'),
+    url(r'^search/$', views.search, name='search'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 admin.site.site_header = settings.ADMIN_SITE_HEADER
