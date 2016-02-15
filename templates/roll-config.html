@@ -45,14 +45,6 @@
 
 </div>
 
-{#<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">#}
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.0/bootstrap3-typeahead.js"></script>
-
-<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.0/bootstrap3-typeahead.js"></script>
 <script>
 
     $(document).ready(function(){
@@ -63,7 +55,7 @@
             $("#accept-modal").modal('show');
         });
         $("#man-btn").click(function(){
-            $("#search-modal").modal('show');
+            $("#search-modal").modal();
         })
 
     });
@@ -73,4 +65,5 @@
         source: "/search"
     });
   });
+  $( "#txtSearch" ).autocomplete( "option", "appendTo", ".eventInsForm" );
 </script>
