@@ -2,134 +2,133 @@
 
 {% block body %}
 
-    <body class="roll-body">
+  <body class="roll-body">
 
-    <!-- Configure days modal -->
-    <div class="modal fade" id="change-date-modal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="h3-roll">Zeitraum wählen</h1>
-                </div>
-                <div class="modal-body">
-
-                    <form id="email-form-2" name="email-form-2" data-name="Email Form 2" class="days-form">
-                        <label for="day-field" class="days-title">Tage:</label>
-                        <select id="day-field" name="days" class="w-select days-sel" required>
-                            <option value=3>3 Tage</option>
-                            <option value=4>4 Tage</option>
-                            <option value=5>5 Tage</option>
-                            <option value=6>6 Tage</option>
-                            <option value=7>7 Tage</option>
-                        </select>
-                        <label class="days-title">Startdatum:</label>
-                        <div class="w-embed date-field">
-                            <input class="w-input" type="date" name="date" id="date" required>
-                        </div>
-                        <div class="modal-footer">
-
-                            <input type="submit" id="submit-modal1" value="OK" data-wait="Please wait..." class="btn btn-default">
-                        </div>
-                    </form>
-                </div>
-            </div><!-- modal-content -->
-        </div><!-- modal-dialog -->
-    </div>
-
-    <!-- Summary modal -->
-    <div class="modal fade" id="accept-modal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="h3-roll">Zeitraum wählen</h1>
-                </div>
-                <div class="modal-body">
-                    <div class="w-row">
-                        <div class="w-col w-col-6">
-                            <h4 class="home-h5">Essensplan</h4>
-                            <ul>
-                                <li class="zusammenfassung-essen">23.11. Schweinebraten</li>
-                                <li class="zusammenfassung-essen">24.11. Schweinebraten</li>
-                                <li class="zusammenfassung-essen">25.11. Schweinebraten</li>
-                                <li class="zusammenfassung-essen">26.11. Schweinebraten</li>
-                                <li class="zusammenfassung-essen">27.11. Schweinebraten</li>
-                                <li class="zusammenfassung-essen">28.11. Schweinebraten</li>
-                                <li class="zusammenfassung-essen">29.11. Schweinebraten</li>
-                            </ul>
-                        </div>
-                        <div class="w-col w-col-6">
-                            <h4>Einkaufsliste</h4>
-                            <ul>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                                <li>Karotten 500g</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="w-row">
-                        <div class="w-col w-col-6"><a href="#" data-dismiss="modal" class="w-button accept-btn">Abbrechen</a>
-                        </div>
-                        <div class="w-col w-col-6"><a href="#" data-dismiss="modal" class="w-button accept-btn">Ok</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+  <!-- Configure days modal -->
+  <div class="modal fade" id="change-date-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="h3-roll">Zeitraum wählen</h1>
         </div>
-    </div>
-    <!-- End modal -->
+        <div class="modal-body">
 
-
-
-    <!-- Configure days modal -->
-    <div class="modal fade" id="search-modal" role="search">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="h3-roll">Gericht suchen</h1>
-                </div>
-                <div class="modal-body">
-
-                    <input type="text" name="search" id="txtSearch" onkeyup="searchOpen()" autocomplete="on" />
-                </div>
-                <div class="modal-footer">
-
-                    <input type="submit" id="submit-food" value="OK" data-wait="Please wait..." data-dismiss="modal" class="btn btn-default">
-                </div>
+          <form id="email-form-2" name="email-form-2" data-name="Email Form 2" class="days-form">
+            <label for="day-field" class="days-title">Tage:</label>
+            <select id="day-field" name="days" class="w-select days-sel" required>
+              <option value=3>3 Tage</option>
+              <option value=4>4 Tage</option>
+              <option value=5>5 Tage</option>
+              <option value=6>6 Tage</option>
+              <option value=7>7 Tage</option>
+            </select>
+            <label class="days-title">Startdatum:</label>
+            <div class="w-embed date-field">
+              <input class="w-input" type="date" name="date" id="date" required>
             </div>
-        </div><!-- modal-content -->
+            <div class="modal-footer">
+
+              <input type="submit" id="submit-modal1" value="OK" data-wait="Please wait..." class="btn btn-default">
+            </div>
+          </form>
+        </div>
+      </div><!-- modal-content -->
     </div><!-- modal-dialog -->
+  </div>
+
+  <!-- Summary modal -->
+  <div class="modal fade" id="accept-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="h3-roll">Zeitraum wählen</h1>
+        </div>
+        <div class="modal-body">
+          <div class="w-row">
+            <div class="w-col w-col-6">
+              <h4 class="home-h5">Essensplan</h4>
+              <ul>
+                <li class="zusammenfassung-essen">23.11. Schweinebraten</li>
+                <li class="zusammenfassung-essen">24.11. Schweinebraten</li>
+                <li class="zusammenfassung-essen">25.11. Schweinebraten</li>
+                <li class="zusammenfassung-essen">26.11. Schweinebraten</li>
+                <li class="zusammenfassung-essen">27.11. Schweinebraten</li>
+                <li class="zusammenfassung-essen">28.11. Schweinebraten</li>
+                <li class="zusammenfassung-essen">29.11. Schweinebraten</li>
+              </ul>
+            </div>
+            <div class="w-col w-col-6">
+              <h4>Einkaufsliste</h4>
+              <ul>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+                <li>Karotten 500g</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="w-row">
+            <div class="w-col w-col-6"><a href="#" data-dismiss="modal" class="w-button accept-btn">Abbrechen</a>
+            </div>
+            <div class="w-col w-col-6"><a href="#" data-dismiss="modal" class="w-button accept-btn">Ok</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
+  <!-- End modal -->
 
 
 
-    <div id="config">{% include 'roll-config.html' with start=start end=end days=days categories=categories %}</div>
-    </body>
+  <!-- Configure days modal -->
+  <div class="modal fade" id="search-modal" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="h3-roll">Gericht suchen</h1>
+        </div>
+        <div class="modal-body">
+          <div class="ui-widget">
+            <input type="text" name="textSearch" id="txtSearch" />
+                </div>        
+        </div>
+        <div class="modal-footer">
+          <input type="submit" id="submit-food" value="OK" data-wait="Please wait..." data-dismiss="modal" class="btn btn-default">
+        </div>
+      </div>
+    </div><!-- modal-content -->
+  </div><!-- modal-dialog -->
+
+
+
+  <div id="config">{% include 'roll-config.html' with start=start end=end days=days categories=categories %}</div>
+  </body>
 {% endblock %}
 

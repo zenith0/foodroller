@@ -4367,7 +4367,6 @@ Webflow.require('ix').init([
   {"slug":"underline-when-clicked","name":"underline when clicked","value":{"style":{},"triggers":[{"type":"tabs","stepsA":[],"stepsB":[]}]}},
   {"slug":"close-modal","name":"close modal","value":{"style":{},"triggers":[{"type":"click","selector":".modal-wrapper","stepsA":[{"display":"none"}],"stepsB":[]}]}},
   {"slug":"modal-interaction","name":"Modal Interaction","value":{"style":{},"triggers":[{"type":"click","selector":".modal-wrapper","stepsA":[{"display":"block"}],"stepsB":[]}]}},
-  {"slug":"new-interaction-2","name":"New Interaction 2","value":{"style":{},"triggers":[]}},
   {"slug":"close-modal2","name":"close modal2","value":{"style":{},"triggers":[{"type":"click","selector":".modal-wrapper2","stepsA":[{"display":"none"}],"stepsB":[]}]}},
   {"slug":"open-modal2","name":"open modal2","value":{"style":{},"triggers":[{"type":"click","selector":".modal-wrapper2","stepsA":[{"display":"block"}],"stepsB":[]}]}}
 ]);

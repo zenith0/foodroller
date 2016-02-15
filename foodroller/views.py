@@ -62,9 +62,12 @@ def food(request, food_slug):
 
 
 def search(request):
-    search_qs = Food.objects.filter(name__icontains=request.GET['search'])
+    search_qs = Food.objects.filter(name__icontains=request.GET['term'])
     results = []
     for r in search_qs:
         results.append(r.name)
-    resp = request.GET['callback'] + '(' + json.dumps(results) + ');'
+    # resp = request.GET['callback'] + '(' + json.dumps(results) + ');'
+    resp = json.dumps(results)
+
+    print (resp)
     return HttpResponse(resp, content_type='application/json')

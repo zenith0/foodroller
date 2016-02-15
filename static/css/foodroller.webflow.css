@@ -1525,40 +1525,49 @@ html.w-mod-js *[data-ix="scale-on-scroll"] {
   h2 {
     margin-left: 0px;
   }
+
   .form-wrapper.squeezed {
     padding-right: 2%;
     padding-left: 2%;
   }
+
   .hero-title-wrapper {
     top: 28%;
   }
+
   .banner {
     height: 450px;
   }
+
   .hero-section {
     background-position: 50% 50%;
     background-size: cover;
     background-attachment: scroll;
   }
+
   .food-row {
     margin-right: 0px;
     margin-left: 0px;
   }
+
   .tabs-section {
     display: inline-block;
     padding-right: 0px;
     padding-left: 0px;
   }
+
   .category-tab {
     display: inline;
     padding-right: 0px;
     padding-left: 0px;
   }
+
   .category-tab.w--current {
     display: inline;
     padding-right: 0px;
     padding-left: 0px;
   }
+
   .category-menu {
     position: relative;
     display: block;
@@ -1570,6 +1579,7 @@ html.w-mod-js *[data-ix="scale-on-scroll"] {
     margin-left: 0px;
     text-align: left;
   }
+
   .accept-btn {
     width: 200px;
   }
@@ -1579,11 +1589,8 @@ html.w-mod-js *[data-ix="scale-on-scroll"] {
     max-width: 100px;
   }
 
+.ui-helper-hidden-accessible { display:none; }
 
-.ui-autocomplete {
-      position:absolute;
-    cursor:default;
-    z-index:1001 !important
-}
-}
+
+  }
 

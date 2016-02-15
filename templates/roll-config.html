@@ -45,9 +45,14 @@
 
 </div>
 
-<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+{#<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">#}
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.0/bootstrap3-typeahead.js"></script>
+
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.0/bootstrap3-typeahead.js"></script>
 <script>
 
     $(document).ready(function(){
@@ -63,24 +68,9 @@
 
     });
 
-    function searchOpen() {
-        var search = $('#txtSearch').val()
-        var data = {
-            search: search
-        };
-        $.ajax({
-            url: '/search',
-            data: data,
-            dataType: 'jsonp',
-            jsonp: 'callback',
-            jsonpCallback: 'searchResult'
-        });
-    }
-
-
-    function searchResult(data) {
-        $( "#txtSearch" ).autocomplete ({
-            source: data
-        });
-    }
+    $(function() {
+      $("#txtSearch").autocomplete({
+        source: "/search"
+    });
+  });
 </script>
