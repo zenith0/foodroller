@@ -4,7 +4,6 @@ from django.shortcuts import render, render_to_response
 from foodroller.models import Category, Food, Foodplan
 from foodroller_project import settings
 from foodroller.utils import weekday_from_date
-from foodroller.forms import SelectDate
 
 
 def category_food_dict():
