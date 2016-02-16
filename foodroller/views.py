@@ -41,10 +41,10 @@ def roll(request):
     foodplan = Foodplan.objects.all()
     end_date = starting_date + datetime.timedelta(days=days-1)
     days_in_row=[]
-    days_in_row.append(weekday_from_date(starting_date))
+    days_in_row.append({starting_date: weekday_from_date(starting_date)})
     for x in range(1, days):
         next_day = starting_date + datetime.timedelta(days=x)
-        days_in_row.append(weekday_from_date(next_day))
+        days_in_row.append({next_day: weekday_from_date(next_day)})
     categories = Category.objects.all()
 
     return render(request, 'roll.html',
@@ -71,3 +71,10 @@ def search(request):
 
     print (resp)
     return HttpResponse(resp, content_type='application/json')
+
+
+def search_food(request):
+    name = request.GET['name']
+    food = Food.objects.get(name=name)
+    return render(request, 'food-snippet.html', {'food': food})
+

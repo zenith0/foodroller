@@ -2,7 +2,7 @@
 
 {% block body %}
 
-{#  <body class="roll-body">#}
+  <body class="roll-body">
 
   <!-- Configure days modal -->
   <div class="modal fade" id="change-date-modal">
@@ -115,13 +115,10 @@
           <h1 class="h3-roll">Gericht suchen</h1>
         </div>
         <div class="modal-body">
-          <form class="eventInsForm" action="#" method="post">
             <input type="text" name="textSearch" id="txtSearch" />
-
-</form>
         </div>
         <div class="modal-footer">
-          <input type="submit" id="submit-food" value="OK" data-wait="Please wait..." data-dismiss="modal" class="btn btn-default">
+          <input type="submit" id="submit-food" value="OK" data-wait="Please wait..." data-dismiss="modal" class="btn btn-default" onclick="getFood()">
         </div>
       </div>
     </div><!-- modal-content -->
@@ -130,6 +127,8 @@
 
 
   <div id="config">{% include 'roll-config.html' with start=start end=end days=days categories=categories %}</div>
+
+
   </body>
 {% endblock %}
 

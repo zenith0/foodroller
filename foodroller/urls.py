@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^roll/$', views.roll, name='roll'),
     url(r'^food/(?P<food_slug>[\w\-]+)/$', views.food, name='food'),
     url(r'^search/$', views.search, name='search'),
+    url(r'^search-food/$', views.search_food, name='search'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 admin.site.site_header = settings.ADMIN_SITE_HEADER
