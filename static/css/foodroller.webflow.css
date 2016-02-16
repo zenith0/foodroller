@@ -1102,11 +1102,6 @@ p {
   border-radius: 15px;
 }
 
-.res-img:hover {
-  -webkit-transform: scale(1.02);
-  -ms-transform: scale(1.02);
-  transform: scale(1.02);
-}
 
 .roll-col {
   position: static;
@@ -1185,7 +1180,7 @@ p {
   background-image: url('../images/12632976_1265460030137698_1553243344_o.jpg');
   background-position: 0px 0px;
   background-size: cover;
-  /*text-align: center;*/
+  text-align: center;
 }
 
 .field-label {

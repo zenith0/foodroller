@@ -3,7 +3,7 @@
 {% load thumbnail %}
 
 {% block body %}
-  <body class="roll-body">
+{#  <body class="roll-body">#}
   <div class="w-section tabs-section">
     <div data-duration-in="500" data-duration-out="100" data-easing="ease-in" class="w-tabs">
       <div class="w-tab-menu category-menu">
@@ -17,17 +17,17 @@
         {% for category, food in categories.items %}
           <div data-w-tab="{{ category.name }}" class="w-tab-pane w--tab-active">
             <div class="food-div-shownhide">
-              <div class="w-row food-row">
+              <div class="row">
                 {% for f in food %}
-                  <div class="w-col w-col-4">
+                  <div class="col-md-4">
                   <a href="/food/{{ f.slug  }}">
                     {% if f.img %}
                     <div class="food-div"><img src="{{ f.img|thumbnail_url:'thumb' }}" class="food-img-2">
-                      <h4 class="heading-center">{{ f.name }}</h4>
+                      <h3>{{ f.name }}</h3>
                     </div>
                     {% else %}
-                    <div class="food-div"><img width="400" src="{% static 'images/mains.jpg' %}" class="food-img-2">
-                      <h4 class="heading-center">{{ f.name }}</h4>
+                    <div class="food-div"><img width="100%" src="{% static 'images/mains.jpg' %}" class="food-img-2">
+                      <h3>{{ f.name }}</h3>
                     </div>
                   {% endif %}
                   </a>
