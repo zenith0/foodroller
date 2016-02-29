@@ -2,7 +2,7 @@
   {#  <h1 class="rool-heading">{{ start|date:"SHORT_DATE_FORMAT" }} - {{ end|date:"SHORT_DATE_FORMAT" }}</h1>#}
   <div class="page-header">
     <h1>{{ start|date:"SHORT_DATE_FORMAT" }} - {{ end|date:"SHORT_DATE_FORMAT" }}</h1>
-    <button type="button" class="w-button change-date" id="change-date-btn">Datum ändern</button>
+    <button type="button" class="w-button change-date" id="change-date-btn" onclick="openDateModal()">Datum ändern</button>
 
   </div>
   <div class="row">
@@ -25,7 +25,7 @@
           <option value=4>&gt; 2 hr</option>
         </select>
         <button class="w-button go-btn" id="{{ value }}">ROLL</button>
-        <button class="w-button man-btn" id="{{ value }}">Select</button>
+        <button class="w-button man-btn" id="{{ value }}" onclick="openSearchModal($(this).attr('id'))">Select</button>
 
         <div class="day-res" id="day-res-{{ value }}">
           {% include 'food-snippet.html' with food=food %}
@@ -39,39 +39,6 @@
     {% endfor %}
     </div>
 
-  <button type="button" class="w-button accept-btn" id="accept-btn">Akzeptieren</button>
+  <button type="button" class="w-button accept-btn" id="accept-btn" onclick="openSummaryModal()">Akzeptieren</button>
 
 </div>
-
-<script>
-  var man_day;
-
-  $(document).ready(function() {
-    $("#change-date-btn").click(function () {
-      $("#change-date-modal").modal('show');
-    });
-    $("#accept-btn").click(function () {
-      $("#accept-modal").modal('show');
-    });
-    $(".man-btn").click(function (event) {
-      man_day = $(this).attr('id');
-      $("#search-modal").modal();
-    });
-  });
-
-
-  $(function() {
-    $("#txtSearch").autocomplete({
-      source: "/search"
-    });
-  });
-
-  function getFood() {
-    var name=$("#txtSearch").val();
-    $.get("/search-food/", {name: name}, function(data){
-      var divId = "#day-res-".concat(man_day);
-      $(divId).html(data);
-    });
-  }
-
-</script>

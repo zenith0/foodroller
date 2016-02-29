@@ -17,21 +17,24 @@
         {% for category, food in categories.items %}
           <div data-w-tab="{{ category.name }}" class="w-tab-pane w--tab-active">
             <div class="food-div-shownhide">
-              <div class="row">
+              <div class="row food-row">
                 {% for f in food %}
-                  <div class="col-md-4">
+                  <div class="col-md-4 col-centered">
+                      <div class="food-div">
+
                   <a href="/food/{{ f.slug  }}">
-                    {% if f.img %}
-                    <div class="food-div"><img src="{{ f.img|thumbnail_url:'thumb' }}" class="food-img-2">
-                      <h3>{{ f.name }}</h3>
+                        {% if f.img %}
+                            <img src="{{ f.img|thumbnail_url:'thumb' }}" class="food-img-2">
+                        {% else %}
+                            <img width="100%" src="{% static 'images/mains.jpg' %}" class="food-img-2">
+                        {% endif %}
+                                          <h3 style="text-decoration: none!important;">{{ f.name }}</h3>
+
+                                    </a>
+
                     </div>
-                    {% else %}
-                    <div class="food-div"><img width="100%" src="{% static 'images/mains.jpg' %}" class="food-img-2">
-                      <h3>{{ f.name }}</h3>
-                    </div>
-                  {% endif %}
-                  </a>
-                  </div>
+                                    </div>
+
                   {% if forloop.counter|divisibleby:3 %}
                     </div>
                     <div class="w-row food-row">
