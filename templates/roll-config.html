@@ -1,7 +1,7 @@
 <div class="config-section">
   {#  <h1 class="rool-heading">{{ start|date:"SHORT_DATE_FORMAT" }} - {{ end|date:"SHORT_DATE_FORMAT" }}</h1>#}
   <div class="page-header">
-    <h1>{{ start|date:"SHORT_DATE_FORMAT" }} - {{ end|date:"SHORT_DATE_FORMAT" }}</h1>
+    <h1 class="heading-1-white">{{ start|date:"SHORT_DATE_FORMAT" }} - {{ end|date:"SHORT_DATE_FORMAT" }}</h1>
     <button type="button" class="w-button change-date" id="change-date-btn" onclick="openDateModal()">Datum ändern</button>
 
   </div>
@@ -38,8 +38,10 @@
         <div class="row">
       {% endif %}
     {% endfor %}
-    </div>
 
-  <button type="button" class="w-button accept-btn" id="accept-btn" onclick="openSummaryModal()">Akzeptieren</button>
+    </div>
+<div class="row">    <button type="button" class="w-button accept-btn" id="accept-btn" onclick="openSummaryModal()">Akzeptieren</button>
+</div>
+
 
 </div>
