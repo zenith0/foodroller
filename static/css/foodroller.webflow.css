@@ -883,8 +883,18 @@ p {
 
 .tabs-section {
   margin-top: 150px;
-  padding-right: 154px;
-  padding-left: 154px;
+  padding-right: 80px;
+  padding-left: 80px;
+  padding-bottom: 80px;
+}
+
+.tabs-section .w-tabs {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.w-tabs {
+  text-align: center;
+  padding-top: 80px;
 }
 
 .category-tab {
@@ -1545,6 +1555,11 @@ html.w-mod-js *[data-ix="scale-on-scroll"] {
     height: 450px;
   }
 
+  .tabs-section {
+    text-align: center;
+    padding: 0;
+  }
+
   .hero-section {
     background-position: 50% 50%;
     background-size: cover;
@@ -1558,27 +1573,20 @@ html.w-mod-js *[data-ix="scale-on-scroll"] {
 
   .tabs-section {
     display: inline-block;
-    padding-right: 0px;
-    padding-left: 0px;
   }
 
   .category-tab {
-    display: inline;
-    padding-right: 0px;
-    padding-left: 0px;
+
   }
 
   .category-tab.w--current {
-    display: inline;
-    padding-right: 0px;
-    padding-left: 0px;
+
   }
 
   .category-menu {
     position: relative;
     display: block;
-    margin-right: 200px;
-    text-align: left;
+    text-align: center;
   }
 
   .config-form {
