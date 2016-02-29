@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^$', views.index, name='catalog'),
     url(r'^categories/$', views.categories, name='catalog'),
     url(r'^roll/$', views.roll, name='roll'),
+    url(r'^roll-food/$', views.roll_food, name='roll_food'),
     url(r'^food/(?P<food_slug>[\w\-]+)/$', views.food, name='food'),
     url(r'^search/$', views.search, name='search'),
     url(r'^search-food/$', views.search_food, name='search'),

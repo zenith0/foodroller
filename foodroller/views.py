@@ -78,3 +78,38 @@ def search_food(request):
     food = Food.objects.get(name=name)
     return render(request, 'food-snippet.html', {'food': food})
 
+
+def roll_food(request):
+    day = request.GET['day']
+    time = request.GET['time']
+    cat = request.GET['cat']
+
+    category = Category.objects.get(name=cat)
+    food_list = category.get_food()
+
+    if time == "1":
+        cooking_time = datetime.datetime(0,0,0,0,31)
+        food_filtered = food_list.filter(cooking_time__lt=cooking_time).order_by('-last_cooked')
+    elif time == "2":
+        cooking_time = datetime.datetime(0,0,0,1,1)
+        food_filtered = food_list.filter(cooking_time__lt=cooking_time).order_by('-last_cooked')
+    elif time == "3":
+        cooking_time = datetime.datetime(0,0,0,2,1)
+        food_filtered = food_list.filter(cooking_time__lt=cooking_time).order_by('-last_cooked')
+    else:
+        cooking_time = datetime.datetime(0,0,0,2,0)
+        food_filtered = food_list.filter(cooking_time__gt=cooking_time).order_by('-last_cooked')
+
+    cached_food = request.session['food_cache']
+
+    for food in food_filtered:
+        if not cached_food.contains(food):
+            cached_food.append(food)
+            request.session['food_cache'] = cached_food
+            return food
+
+
+
+
+
+    return None
