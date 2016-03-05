@@ -34,7 +34,7 @@ function setFood(day, data) {
 /// Get food object from server, depending on the entered value in searchText textfield
 function getFood() {
     var name=$("#txtSearch").val();
-    $.get("/search-food/", {name: name}, function(data){
+    $.get("/search-food/", {name: name, day: man_day}, function(data){
         setFood(man_day, data);
     });
 }

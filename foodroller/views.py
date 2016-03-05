@@ -2,8 +2,12 @@ import datetime
 import json
 
 from collections import OrderedDict
+from django.core import serializers
+from django.core.exceptions import FieldDoesNotExist, ObjectDoesNotExist
+from django.forms import model_to_dict
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response
+from foodroller import utils
 from foodroller.models import Category, Food, Foodplan
 from foodroller_project import settings
 from foodroller.utils import weekday_from_date
@@ -28,6 +32,9 @@ def categories(request):
 
 
 def roll(request):
+    request.session['plan'] = []
+    request.session['already_rolled'] = []
+
     try:
         days = int(request.GET['days'])
     except:
@@ -48,10 +55,10 @@ def roll(request):
     categories = Category.objects.all()
 
     return render(request, 'roll.html',
-                              {'start': starting_date,
-                               'end': end_date,
-                               'days': days_in_row,
-                               'categories': categories})
+                  {'start': starting_date,
+                   'end': end_date,
+                   'days': days_in_row,
+                   'categories': categories})
 
 
 def food(request, food_slug):
@@ -69,47 +76,70 @@ def search(request):
     # resp = request.GET['callback'] + '(' + json.dumps(results) + ');'
     resp = json.dumps(results)
 
-    print (resp)
     return HttpResponse(resp, content_type='application/json')
 
 
 def search_food(request):
     name = request.GET['name']
+    day = request.GET['day']
     food = Food.objects.get(name=name)
+    dict_list = request.session['plan']
+    dict_list[:] = [d for d in dict_list if d['day'] != day]
+    dict_list.append({"day": day,
+                      "food": food.name})
+    request.session['plan'] = dict_list
     return render(request, 'food-snippet.html', {'food': food})
 
+def random_food(request, cat, time, day):
+    dict_list = []
+    cached_food = []
+    already_rolled = request.session['already_rolled']
+
+    category = Category.objects.get(name=cat)
+    food_list = category.get_food().order_by('-last_cooked')
+    # food_list = Food.objects.filter(categories=category).order_by('-last_cooked')
+    if time == "1":
+        cooking_time = datetime.timedelta(minutes=30)
+        food_filtered = food_list.filter(duration__lt=cooking_time)
+    elif time == "2":
+        cooking_time = datetime.timedelta(hours=1)
+        food_filtered = food_list.filter(duration__lt=cooking_time)
+    elif time == "3":
+        cooking_time = datetime.timedelta(hours=2, minutes=1)
+        food_filtered = food_list.filter(duration__lt=cooking_time)
+    elif time == "4":
+        cooking_time = datetime.timedelta(hours=2)
+        food_filtered = food_list.filter(duration__gt=cooking_time)
+    else:
+        food_filtered = food_list
+
+    try:
+        dict_list = request.session['plan']
+        for dict in dict_list:
+            cached_food.append(dict['food'])
+    except:
+        request.session['plan'] = []
+    food = None
+    for f in food_filtered:
+        if f.name not in already_rolled and f.name not in cached_food:
+            already_rolled.append(f.name)
+            dict_list[:] = [d for d in dict_list if d['day'] != day]
+
+            dict_list.append({"day": day,
+                              "food": f.name})
+            request.session['plan'] = dict_list
+            request.session['already_rolled'] = already_rolled
+            food = f
+            break
+        # in this case all available food have been rolled --> reset the cache and fill in the day cache items
+        elif len(already_rolled) == len(food_filtered):
+            already_rolled.clear()
+            already_rolled.extend(cached_food)
+    return food
 
 def roll_food(request):
     day = request.GET['day']
     time = request.GET['time']
     cat = request.GET['cat']
-
-    category = Category.objects.get(name=cat)
-    food_list = category.get_food()
-
-    if time == "1":
-        cooking_time = datetime.datetime(0,0,0,0,31)
-        food_filtered = food_list.filter(cooking_time__lt=cooking_time).order_by('-last_cooked')
-    elif time == "2":
-        cooking_time = datetime.datetime(0,0,0,1,1)
-        food_filtered = food_list.filter(cooking_time__lt=cooking_time).order_by('-last_cooked')
-    elif time == "3":
-        cooking_time = datetime.datetime(0,0,0,2,1)
-        food_filtered = food_list.filter(cooking_time__lt=cooking_time).order_by('-last_cooked')
-    else:
-        cooking_time = datetime.datetime(0,0,0,2,0)
-        food_filtered = food_list.filter(cooking_time__gt=cooking_time).order_by('-last_cooked')
-
-    cached_food = request.session['food_cache']
-
-    for food in food_filtered:
-        if not cached_food.contains(food):
-            cached_food.append(food)
-            request.session['food_cache'] = cached_food
-            return food
-
-
-
-
-
-    return None
+    food = random_food(request, cat, time, day)
+    return render(request, 'food-snippet.html', {'food': food})

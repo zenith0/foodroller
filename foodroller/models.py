@@ -27,7 +27,7 @@ class Food(models.Model):
     slug = models.SlugField(unique=True, blank=False, null=False)
     categories = models.ManyToManyField('Category', related_name='food')
     recipe = models.TextField(blank=True, null=True)
-    duration = models.TimeField(null=True, blank=True)
+    duration = models.DurationField(null=True, blank=True)
     last_cooked = models.DateField(null=True, blank=True)
     img = models.ImageField(upload_to="img", null=True)
 
