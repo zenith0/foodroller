@@ -11,29 +11,20 @@
         <div class="modal-header">
           <h1 class="h3">Zeitraum wählen</h1>
         </div>
-        <div class="modal-body">
+        <form class="days-form" action="/roll/" method="post">
+          <div class="modal-body">
+            {% csrf_token %}
+            {{ date_form }}
+          </div>
 
-          <form id="email-form-2" name="email-form-2" data-name="Email Form 2" class="days-form">
-            <label for="day-field" class="days-title">Tage:</label>
-            <select id="day-field" name="days" class="w-select days-sel" required>
-              <option value=3>3 Tage</option>
-              <option value=4>4 Tage</option>
-              <option value=5>5 Tage</option>
-              <option value=6>6 Tage</option>
-              <option value=7>7 Tage</option>
-            </select>
-            <label class="days-title">Startdatum:</label>
-            <div class="w-embed date-field">
-              <input class="w-input" type="date" name="date" id="date" required>
-            </div>
-            <div class="modal-footer">
-
-              <input type="submit" id="submit-modal1" value="OK" data-wait="Please wait..." class="btn btn-default">
-            </div>
-          </form>
-        </div>
-      </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
+          <div class="modal-footer">
+            <input type="submit" value="OK" data-wait="Please wait..." class="btn btn-default">
+          </div>
+        </form>
+      </div>
+      <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
   </div>
 
   <!-- Summary modal -->
@@ -106,24 +97,25 @@
   <!-- End modal -->
 
 
-
   <!-- Configure days modal -->
-  <div class="modal fade" id="search-modal" >
+  <div class="modal fade" id="search-modal">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="h3">Gericht suchen</h1>
         </div>
         <div class="modal-body">
-            <input type="text" name="textSearch" id="txtSearch" />
+          <input type="text" name="textSearch" id="txtSearch"/>
         </div>
         <div class="modal-footer">
-          <input type="submit" id="submit-food" value="OK" data-wait="Please wait..." data-dismiss="modal" class="btn btn-default" onclick="getFood()">
+          <input type="submit" id="submit-food" value="OK" data-wait="Please wait..." data-dismiss="modal"
+                 class="btn btn-default" onclick="getFood()">
         </div>
       </div>
-    </div><!-- modal-content -->
-  </div><!-- modal-dialog -->
-
+    </div>
+    <!-- modal-content -->
+  </div>
+  <!-- modal-dialog -->
 
 
   {% include 'roll-config.html' with start=start end=end days=days categories=categories %}

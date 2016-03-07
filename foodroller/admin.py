@@ -12,6 +12,7 @@ class FoodAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     inlines = [IngredientsInline, ]
     exclude = ['last_cooked',]
+    list_display = ('name', 'duration')
 
 
 admin.site.register(Category)

@@ -3,6 +3,7 @@ import datetime
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import models
 from django.db.models import Model
+from django.utils.text import slugify
 from foodroller.utils import weekday_from_date
 
 __author__ = 'stefan'
@@ -27,7 +28,7 @@ class Food(models.Model):
     slug = models.SlugField(unique=True, blank=False, null=False)
     categories = models.ManyToManyField('Category', related_name='food')
     recipe = models.TextField(blank=True, null=True)
-    duration = models.DurationField(null=True, blank=True)
+    duration = models.DurationField(null=True, blank=True, help_text="hh:mm:ss (01:30:00 = 1 hr 30 min)")
     last_cooked = models.DateField(null=True, blank=True)
     img = models.ImageField(upload_to="img", null=True)
 
@@ -40,16 +41,6 @@ class Food(models.Model):
 
     def get_ingredients(self):
         return Ingredient.objects.filter(food=self)
-
-    #def save(self, *args, **kwargs):
-    #    if self.img:
-    #        super(Food, self).save(*args, **kwargs)
-    #        image = Image.open(self.img)
-    #        size = (400, 400)
-    #        path = self.img.path
-    #        self.img = image.resize(size, Image.ANTIALIAS)
-    #        self.img.save(path)
-    #    super(Food, self).save(*args, **kwargs)
 
 
 class Ingredient(models.Model):

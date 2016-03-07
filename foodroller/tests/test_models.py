@@ -1,10 +1,7 @@
-import datetime
-from utils import weekday_from_date
+__author__ = 'stefanperndl'
 
-__author__ = 'stefan'
 from django.test import TestCase
 from foodroller.models import Category, Food, Ingredient
-
 
 class CategoryTestCase(TestCase):
     def setUp(self):
@@ -39,9 +36,3 @@ class CategoryTestCase(TestCase):
         self.assertEqual(in_list[0].amount, "1")
         self.assertEqual(in_list[1].name, "Zucker")
         self.assertEqual(in_list[1].amount, "1EL")
-
-class UtilsTestCase(TestCase):
-    def test_get_weekday(self):
-        my_date = datetime.datetime(2016, 2, 14)
-        week_day = weekday_from_date(my_date)
-        self.assertEqual(week_day, "Sunday")

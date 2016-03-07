@@ -4,6 +4,10 @@
 
 var man_day;
 
+$(document).ready(function() {
+    $('.datepicker').datepicker();
+});
+
 function openDateModal() {
     $("#change-date-modal").modal('show');
 }
