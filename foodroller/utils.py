@@ -31,7 +31,7 @@ def update_current_plan(request, food, day):
         dict_list = get_cached_food_plan(request)
         dict_list[:] = [d for d in dict_list if d['day'] != day]
         dict_list.append({"day": day,
-                          "food": food.name})
+                          "food": food})
         update_food_plan(request, dict_list)
 
 
@@ -44,7 +44,7 @@ def get_food_from_cached_plan(request):
     food_list = []
     for d in dict_list:
         food_list.append(d['food'])
-    return food_list
+    return list(set(food_list))
 
 
 def new_already_rolled(request):
@@ -110,7 +110,6 @@ def category_food_dict():
     cat_dict = {"categories": cat_dict}
     return cat_dict
 
-
 # Method to return random food
 def random_food(request, cat, time, day):
     # It is necessary to hold 2 caches:
@@ -129,7 +128,7 @@ def random_food(request, cat, time, day):
     for f in food_filtered:
         if f.name not in already_rolled and f.name not in cached_food:
             already_rolled.append(f.name)
-            update_current_plan(request, f, day)
+            update_current_plan(request, f.name, day)
             request.session['already_rolled'] = already_rolled
             food = f
             break

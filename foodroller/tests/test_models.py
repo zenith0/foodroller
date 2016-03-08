@@ -3,6 +3,7 @@ __author__ = 'stefanperndl'
 from django.test import TestCase
 from foodroller.models import Category, Food, Ingredient
 
+
 class CategoryTestCase(TestCase):
     def setUp(self):
         category = Category.objects.create(name="Soup")
@@ -19,6 +20,16 @@ class CategoryTestCase(TestCase):
         in2.food = food_2
         in1.save()
         in2.save()
+
+    def test_category_str(self):
+        category = Category.objects.get(name="Soup")
+        self.assertTrue(isinstance(category, Category))
+        self.assertEqual(category.__str__(), "Soup")
+
+    def test_category_verbose(self):
+        category = Category.objects.get(name="Soup")
+        self.assertEqual(category._meta.verbose_name, 'Category')
+        self.assertEqual(category._meta.verbose_name_plural, 'Categories')
 
     def test_get_food(self):
         category = Category.objects.get(name="Soup")

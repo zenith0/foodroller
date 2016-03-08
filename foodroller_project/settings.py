@@ -39,6 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'easy_thumbnails',
     'foodroller',
+    'django_nose',
+    'coverage',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -120,3 +122,13 @@ THUMBNAIL_ALIASES = {
 }
 
 ADMIN_SITE_HEADER = "Foodroller Administration"
+
+# Use nose to run all tests
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+# Tell nose to measure coverage on the 'foo' and 'bar' apps
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=foodroller',
+    '--cover-html',
+]
