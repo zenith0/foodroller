@@ -775,6 +775,14 @@ p {
   text-align: center;
 }
 
+.email-modal {
+  text-align: left;
+}
+
+.email-text {
+  /*margin-top: 10px;*/
+}
+
 .details-sections {
   margin-top: 39px;
   margin-bottom: 50px;

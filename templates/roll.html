@@ -4,118 +4,13 @@
 
   <body class="roll-body">
 
-  <!-- Configure days modal -->
-  <div class="modal fade" id="change-date-modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="h3">Zeitraum wählen</h1>
-        </div>
-        <form class="days-form" action="/roll/" method="post">
-          <div class="modal-body">
-            {% csrf_token %}
-            {{ date_form }}
-          </div>
+  {% include 'modals/date.html' %}
 
-          <div class="modal-footer">
-            <input type="submit" value="OK" data-wait="Please wait..." class="btn btn-default">
-          </div>
-        </form>
-      </div>
-      <!-- modal-content -->
-    </div>
-    <!-- modal-dialog -->
+  <div id="email">
+  {% include 'modals/email.html' %}
   </div>
 
-  <!-- Summary modal -->
-  <div class="modal fade" id="accept-modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="h3">Zeitraum wählen</h1>
-        </div>
-        <div class="modal-body">
-          <div class="w-row">
-            <div class="w-col w-col-6">
-              <h4 class="home-h5">Essensplan</h4>
-              <ul>
-                <li class="zusammenfassung-essen">23.11. Schweinebraten</li>
-                <li class="zusammenfassung-essen">24.11. Schweinebraten</li>
-                <li class="zusammenfassung-essen">25.11. Schweinebraten</li>
-                <li class="zusammenfassung-essen">26.11. Schweinebraten</li>
-                <li class="zusammenfassung-essen">27.11. Schweinebraten</li>
-                <li class="zusammenfassung-essen">28.11. Schweinebraten</li>
-                <li class="zusammenfassung-essen">29.11. Schweinebraten</li>
-              </ul>
-            </div>
-            <div class="w-col w-col-6">
-              <h4>Einkaufsliste</h4>
-              <ul>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-                <li>Karotten 500g</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <div class="w-row">
-            <div class="w-col w-col-6"><a href="#" data-dismiss="modal" class="w-button accept-btn">Abbrechen</a>
-            </div>
-            <div class="w-col w-col-6"><a href="#" data-dismiss="modal" class="w-button accept-btn">Ok</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <!-- End modal -->
-
-
-  <!-- Configure days modal -->
-  <div class="modal fade" id="search-modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="h3">Gericht suchen</h1>
-        </div>
-        <div class="modal-body">
-          <input type="text" name="textSearch" id="txtSearch"/>
-        </div>
-        <div class="modal-footer">
-          <input type="submit" id="submit-food" value="OK" data-wait="Please wait..." data-dismiss="modal"
-                 class="btn btn-default" onclick="getFood()">
-        </div>
-      </div>
-    </div>
-    <!-- modal-content -->
-  </div>
-  <!-- modal-dialog -->
+  {% include 'modals/search.html' %}
 
 
   {% include 'roll-config.html' with start=start end=end days=days categories=categories %}

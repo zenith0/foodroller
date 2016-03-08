@@ -110,6 +110,7 @@ def category_food_dict():
     cat_dict = {"categories": cat_dict}
     return cat_dict
 
+
 # Method to return random food
 def random_food(request, cat, time, day):
     # It is necessary to hold 2 caches:

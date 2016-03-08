@@ -12,22 +12,22 @@
         {#          <div class="day-form">#}
       {% for key,value in day.items %}
         <h3>{{ value }} </h3>
-        <select id="category-{{ value }}" name="field" required="required" class="w-select">
+        <select id="category-{{ key|date:"d-m-y" }}" name="field" required="required" class="w-select">
           {% for cat in categories %}
             <option value="{{ cat.name }}">{{ cat.name }}</option>
           {% endfor %}
         </select>
-        <select id="cooking-time-{{ value }}" name="field-2" data-name="Field 2" class="w-select">
+        <select id="cooking-time-{{ key|date:"d-m-y" }}" name="field-2" data-name="Field 2" class="w-select">
           <option value="">Cooking Time</option>
           <option value=1>&lt; 30 min</option>
           <option value=2>&lt; 1 hr</option>
           <option value=3>&lt; 2 hr</option>
           <option value=4>&gt; 2 hr</option>
         </select>
-        <button class="w-button go-btn" id="{{ value }}" onclick="roll($(this).attr('id'))">ROLL</button>
-        <button class="w-button man-btn" id="{{ value }}" onclick="openSearchModal($(this).attr('id'))">Select</button>
+        <button class="w-button go-btn" id="{{ key|date:"d-m-y" }}" onclick="roll($(this).attr('id'))">ROLL</button>
+        <button class="w-button man-btn" id="{{ key|date:"d-m-y" }}" onclick="openSearchModal($(this).attr('id'))">Select</button>
 
-        <div class="day-res" id="day-res-{{ value }}">
+        <div class="day-res" id="day-res-{{ key|date:"d-m-y" }}">
           {% include 'food-snippet.html' with food=food %}
         </div>
       {% endfor %}

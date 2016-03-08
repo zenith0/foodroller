@@ -1,12 +1,12 @@
 import datetime
 import json
-
+import re
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response
-from foodroller.forms import DateForm
-from foodroller.models import Category, Food, Foodplan
+from foodroller.forms import DateForm, EmailForm
+from foodroller.models import Category, Food
 from foodroller.utils import weekday_from_date, filter_food_by_duration, create_days_dict, get_end_date, \
-    category_food_dict, update_current_plan, random_food
+    category_food_dict, update_current_plan, random_food, get_cached_food_plan
 
 
 # The index site (start)
@@ -82,3 +82,48 @@ def roll_food(request):
     cat = request.GET['cat']
     food = random_food(request, cat, time, day)
     return render(request, 'food-snippet.html', {'food': food})
+
+
+def summary(request):
+    food_plan = get_cached_food_plan(request)
+    ingredients_list = []
+    message = "Essensplan: \n"
+    for item in food_plan:
+        message += '\n'
+        date = datetime.datetime.strptime(item['day'], '%d-%m-%y')
+        message += date.strftime('%d.%m.%y')
+        message += ':\t'
+        message += item['food']
+
+        food = Food.objects.get(name=item['food'])
+        ingredients = food.get_ingredients()
+        for ing in ingredients:
+            already_in_list = False
+            amount = re.findall("[-+]?\d*\.\d+|\d+", ing.amount)[0]
+            unit = re.sub("[-+]?\d*\.\d+|\d+", "", ing.amount)
+            amount_dict = {'amount': amount, 'unit': unit}
+            ing_dict = {'ingredient': ing.name, 'amount': amount_dict}
+            for saved_ing_dict in ingredients_list:
+                if saved_ing_dict['ingredient'].lower() == ing.name.lower():
+                    saved_amount_dict = saved_ing_dict['amount']
+                    if unit.lower() == saved_amount_dict['unit'].lower():
+                        saved_amount_dict['amount'] = str(float(amount) + float(saved_amount_dict['amount']))
+                        already_in_list = True
+            if not already_in_list:
+                ingredients_list.append(ing_dict)
+
+    message += "\n\n"
+    message += "Einkaufsliste: "
+    for ing in ingredients_list:
+        ingredient = ing['ingredient']
+        amount_dict = ing ['amount']
+        amount = amount_dict['amount']
+        unit = amount_dict['unit']
+        message += "\n"
+        message += ingredient
+        message += "\t\t"
+        message += amount + " " + unit
+
+    form = EmailForm(initial={'summary': message})
+
+    return render(request, 'modals/email.html', {'email_form': form})

@@ -19,7 +19,11 @@ function openSearchModal(id) {
 }
 
 function openSummaryModal() {
-    $("#accept-modal").modal('show');
+    $.get("/summary/", function(data){
+        $("#email").html(data);
+        $("#accept-modal").modal('show');
+
+    });
 }
 
 /// Autocomplete function for "search food"
@@ -31,7 +35,8 @@ $(function() {
 
 /// Sets received data into the resulting food div of the selected day
 function setFood(day, data) {
-    var divId = "#day-res-".concat(man_day);
+    var divId = "#day-res-".concat(day);
+    console.log(divId);
     $(divId).html(data);
 }
 
@@ -55,6 +60,7 @@ function roll(id) {
     var time = timeSelects.options[timeSelects.selectedIndex].value;
 
     $.get("/roll-food/", {day: man_day, cat: cat, time: time}, function(data) {
+        console.log(data);
         setFood(man_day, data);
     });
 }

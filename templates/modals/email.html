@@ -1,0 +1,67 @@
+<!-- Summary modal -->
+<div class="modal fade" id="accept-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="h3">Zusammenfassung</h1>
+      </div>
+      <div class="modal-body email-modal">
+        {% csrf_token %}
+        {{ email_form }}
+{#          <div class="w-col w-col-6">#}
+{#            <h4 class="home-h5">Essensplan</h4>#}
+{#            <ul>#}
+{#              <li class="zusammenfassung-essen">23.11. Schweinebraten</li>#}
+{#              <li class="zusammenfassung-essen">24.11. Schweinebraten</li>#}
+{#              <li class="zusammenfassung-essen">25.11. Schweinebraten</li>#}
+{#              <li class="zusammenfassung-essen">26.11. Schweinebraten</li>#}
+{#              <li class="zusammenfassung-essen">27.11. Schweinebraten</li>#}
+{#              <li class="zusammenfassung-essen">28.11. Schweinebraten</li>#}
+{#              <li class="zusammenfassung-essen">29.11. Schweinebraten</li>#}
+{#            </ul>#}
+{#          </div>#}
+{#          <div class="w-col w-col-6">#}
+{#            <h4>Einkaufsliste</h4>#}
+{#            <ul>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#              <li>Karotten 500g</li>#}
+{#            </ul>#}
+{#          </div>#}
+      </div>
+      <div class="modal-footer">
+        <div class="w-row">
+          <div class="w-col w-col-6"><a href="#" data-dismiss="modal" class="w-button accept-btn">Abbrechen</a>
+          </div>
+          <div class="w-col w-col-6"><a href="#" data-dismiss="modal" class="w-button accept-btn">Senden</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

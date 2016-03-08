@@ -25,5 +25,12 @@ class DateForm(forms.Form):
     date = forms.DateField(label="Startdatum:", required=True, widget=forms.DateInput(attrs={'class': 'datepicker'}))
 
 
+class EmailForm(forms.Form):
+    summary = forms.CharField(widget=forms.Textarea(attrs={'class': 'email-text'}))
+    to = forms.EmailField(label="Empfaenger:")
+
+    def __init__(self, *args, **kwargs):
+        super(EmailForm, self).__init__(*args, **kwargs)
+        self.fields['summary'].label = False
 
 

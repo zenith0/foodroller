@@ -1,0 +1,21 @@
+<div class="modal fade" id="change-date-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="h3">Zeitraum wählen</h1>
+      </div>
+      <form class="days-form" action="/roll/" method="post">
+        <div class="modal-body">
+          {% csrf_token %}
+          {{ date_form }}
+        </div>
+
+        <div class="modal-footer">
+          <input type="submit" value="OK" data-wait="Please wait..." class="btn btn-default">
+        </div>
+      </form>
+    </div>
+    <!-- modal-content -->
+  </div>
+  <!-- modal-dialog -->
+</div>

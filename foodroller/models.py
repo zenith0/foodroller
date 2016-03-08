@@ -51,22 +51,28 @@ class Ingredient(models.Model):
     def __str__(self):
         return self.name
 
+    # prettify the amount field
+    def save(self, *args, **kwargs):
+        self.amount = self.amount.replace(" ", "")
+        self.amount = self.amount.replace(",", ".")
+        super(Ingredient, self).save(*args, **kwargs)
+
     class Meta:
         verbose_name = 'Ingredient'
         verbose_name_plural = 'Ingredients'
 
-class Day(models.Model):
-    food = models.ForeignKey('Food')
-    date = models.DateTimeField()
-    #day = weekday_from_date(datetime.datetime(date.year, date.month, date.day))
 
-
-class Foodplan(models.Model):
-    start_date = models.DateField()
-    end_date = models.DateField()
-    food_list = models.ManyToManyField('Day')
-
-    def add_food(self, food, date):
-        plan_item = Day(food=food, date=date)
-        self.end_date = date
-        self.food_list.add(plan_item)
+# class Day(models.Model):
+#     food = models.ForeignKey('Food')
+#     date = models.DateTimeField()
+#
+#
+# class Foodplan(models.Model):
+#     start_date = models.DateField()
+#     end_date = models.DateField()
+#     food_list = models.ManyToManyField('Day')
+#
+#     def add_food(self, food, date):
+#         plan_item = Day(food=food, date=date)
+#         self.end_date = date
+#         self.food_list.add(plan_item)
