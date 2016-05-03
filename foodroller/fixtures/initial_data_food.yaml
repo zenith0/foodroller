@@ -1,0 +1,271 @@
+[
+  {
+    "model": "foodroller.food",
+    "pk": 1,
+    "fields": {
+      "name": "Ofengemüse mit Schafskäse",
+      "categories": [1],
+      "slug": "1"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 2,
+    "fields": {
+      "name": "Spinat-Schafkäse-Strudel",
+      "categories": [1],
+      "slug": "2"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 3,
+    "fields": {
+      "name": "Gemüsepizza",
+      "categories": [1],
+      "slug": "3"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 4,
+    "fields": {
+      "name": "Tomatenrisotto",
+      "categories": [1],
+      "slug": "4"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 5,
+    "fields": {
+      "name": "Kürbisrisotto",
+      "categories": [1],
+      "slug": "5"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 6,
+    "fields": {
+      "name": "Eiernockerl",
+      "categories": [1],
+      "slug": "6"
+    }
+  },
+
+# Vegan
+  {
+    "model": "foodroller.food",
+    "pk": 11,
+    "fields": {
+      "name": "Gemüsesuppe",
+      "categories": [2],
+      "slug": "11"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 12,
+    "fields": {
+      "name": "Kichererbsen-Karotten Eintopf",
+      "categories": [2],
+      "slug": "12"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 13,
+    "fields": {
+      "name": "Kartoffel-Gemüsesuppe",
+      "categories": [2],
+      "slug": "13"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 14,
+    "fields": {
+      "name": "Tomaten Gnocchi",
+      "categories": [2],
+      "slug": "14"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 15,
+    "fields": {
+      "name": "Zucchinicreme Suppe",
+      "categories": [2],
+      "slug": "15"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 16,
+    "fields": {
+      "name": "Paprikagnocchi",
+      "categories": [2],
+      "slug": "16"
+    }
+  },
+
+  # Fleisch
+  {
+    "model": "foodroller.food",
+    "pk": 21,
+    "fields": {
+      "name": "Lasagne",
+      "categories": [3],
+      "slug": "21"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 22,
+    "fields": {
+      "name": "Gyros mit Tomatenreis",
+      "categories": [3],
+      "slug": "22"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 23,
+    "fields": {
+      "name": "Köfte mit Zitronencouscous und Tomatensauce",
+      "categories": [3],
+      "slug": "23"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 24,
+    "fields": {
+      "name": "Putenspieß mit Pommes",
+      "categories": [3],
+      "slug": "24"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 25,
+    "fields": {
+      "name": "Kartoffelgulasch mit Frankfurter",
+      "categories": [3],
+      "slug": "25"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 26,
+    "fields": {
+      "name": "Spaghetti Bolognese",
+      "categories": [3],
+      "slug": "26"
+    }
+  },
+
+  # Fisch
+  {
+    "model": "foodroller.food",
+    "pk": 31,
+    "fields": {
+      "name": "Fischfilet und Petersilienkartoffeln",
+      "categories": [4],
+      "slug": "31"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 32,
+    "fields": {
+      "name": "Fischfilet mit Gemüsereis und Sauce Tartar",
+      "categories": [4],
+      "slug": "32"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 33,
+    "fields": {
+      "name": "Lachsfilet mit Zitronen Risotto",
+      "categories": [4],
+      "slug": "33"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 34,
+    "fields": {
+      "name": "Reismais mit Tunfisch",
+      "categories": [4],
+      "slug": "34"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 35,
+    "fields": {
+      "name": "Nasi Goreng",
+      "categories": [4],
+      "slug": "35"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 36,
+    "fields": {
+      "name": "Lachsnudeln",
+      "categories": [4],
+      "slug": "36"
+    }
+  },
+
+  # Süßes
+  {
+    "model": "foodroller.food",
+    "pk": 41,
+    "fields": {
+      "name": "Mohnnudeln mit Apfelmus",
+      "categories": [5],
+      "slug": "41"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 42,
+    "fields": {
+      "name": "Pofesen",
+      "categories": [5],
+      "slug": "42"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 43,
+    "fields": {
+      "name": "Kaiserschmarren mit Zwetschkenröster",
+      "categories": [5],
+      "slug": "43"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 44,
+    "fields": {
+      "name": "Pan Cakes",
+      "categories": [5],
+      "slug": "44"
+    }
+  },
+  {
+    "model": "foodroller.food",
+    "pk": 45,
+    "fields": {
+      "name": "Germknödel",
+      "categories": [5],
+      "slug": "45"
+    }
+  },
+]

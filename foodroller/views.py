@@ -110,8 +110,6 @@ def summary(request):
             food_plan.add_food(day)
         food_plan.save()
 
-
-
     else:
         ingredients_list = []
         message = "Essensplan: \n"
