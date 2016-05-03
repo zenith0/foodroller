@@ -62,17 +62,40 @@ class Ingredient(models.Model):
         verbose_name_plural = 'Ingredients'
 
 
-# class Day(models.Model):
-#     food = models.ForeignKey('Food')
-#     date = models.DateTimeField()
-#
-#
-# class Foodplan(models.Model):
-#     start_date = models.DateField()
-#     end_date = models.DateField()
-#     food_list = models.ManyToManyField('Day')
-#
-#     def add_food(self, food, date):
-#         plan_item = Day(food=food, date=date)
-#         self.end_date = date
-#         self.food_list.add(plan_item)
+class Day(models.Model):
+    date = models.DateField()
+    food = models.ForeignKey('Food')
+
+    def save(self, *args, **kwargs):
+        self.food.last_cooked = self.date
+        super(Day, self).save(*args, **kwargs)
+
+    def set_day(self, date_str, format):
+        self.date = datetime.datetime.strptime(date_str, format)
+
+    def set_food(self, food_name):
+        self.food = Food.objects.get(name=food_name)
+
+
+class Foodplan(models.Model):
+    name = models.CharField(max_length=100)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    food_list = models.ManyToManyField('Day')
+    year = models.DateField()
+    month = models.DateField()
+
+    def add_food(self, day):
+        self.food_list.add(day)
+
+    def save(self, *args, **kwargs):
+        self.name = self.start_date.strftime("%d.%m.%Y") + " - " + self.end_date.strftime("%d.%m.%Y")
+        self.year = datetime.datetime.strptime(str(self.start_date.year), "%Y")
+        self.month = datetime.datetime.strptime(str(self.start_date.month), "%Y")
+        super(Foodplan, self).save(*args, **kwargs)
+
+    def set_start_date(self, date_str, format):
+        self.start_date = datetime.datetime.strptime(date_str, format)
+
+    def set_end_date(self, date_str, format):
+        self.end_date = datetime.datetime.strptime(date_str, format)

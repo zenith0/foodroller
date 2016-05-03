@@ -1,5 +1,7 @@
+{% load thumbnail %}
+
 {% if food.img %}
-<img width="100%" src="{{ food.img.url }}" class="res-img">
+<img src="{{ food.img|thumbnail_url:'roll_thumb' }}" class="res-img">
 {% endif %}
 <h3>{{ food.name }}</h3>
 <h5>{{ food.duration }}</h5>

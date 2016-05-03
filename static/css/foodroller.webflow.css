@@ -911,7 +911,7 @@ p {
 }
 
 .config-section .row{
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.55);
   padding: 20px;
 
 }
@@ -969,6 +969,9 @@ p {
 
 .food-img-2 {
   border-radius: 20px;
+  border-style: solid;
+  border-width: medium;
+  border-color: black;
   -webkit-transition: -webkit-transform 500ms ease-in;
   transition: -webkit-transform 500ms ease-in;
   transition: transform 500ms ease-in;

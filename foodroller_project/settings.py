@@ -118,7 +118,8 @@ MEDIA_URL = '/media/'
 
 THUMBNAIL_ALIASES = {
     '': {
-        'thumb': {'size': (400, 400), 'crop': True},
+        'thumb': {'size': (300, 300), 'crop': True},
+        'roll_thumb': {'size': (300, 300), 'crop': True},
         'img_500': {'size': (500, 500), 'crop': True},
     },
 }
