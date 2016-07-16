@@ -21,3 +21,22 @@ $ python manage.py createsuperuser
 $ python manage.py runserver
 
 You can reach foodroller in your browser localhost:8000 and the admin interface @ localhost:8000/admin
+
+## TODOs:
+
+### v1:
+
+* Refactor views to class based views
+
+* Unittests for views
+
+* Remove django admin and add functionality to edit food to the food template
+
+* Add user management
+
+
+### v2:
+
+* provide API to add food from mobile client
+
+* import recipes from chefkoch.de
