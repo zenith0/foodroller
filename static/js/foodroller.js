@@ -20,6 +20,8 @@ function openSearchModal(id) {
 
 function openSummaryModal() {
     $.get("/summary/", function(data){
+        if (data == -1)
+        $(".alert").show();
         $("#email").html(data);
         $("#accept-modal").modal('show');
 
@@ -64,3 +66,12 @@ function roll(id) {
         setFood(man_day, data);
     });
 }
+
+$('#confirm-delete').on('show.bs.modal', function(e) {
+    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+});
+
+        $(".nav a").on("click", function(){
+   $(".nav").find(".active").removeClass("active");
+   $(this).parent().addClass("active");
+});

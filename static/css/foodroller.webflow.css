@@ -1,3 +1,4 @@
+
 body {
   height: 100%;
   padding-left: 0px;
@@ -8,6 +9,7 @@ body {
   color: rgba(0, 0, 0, .75);
   font-size: 16px;
   line-height: 20px;
+  padding-top: 65px;
 }
 
 .ui-autocomplete {
@@ -21,7 +23,7 @@ border-radius: 2px;
 
 
 h1 {
-  margin-top: 411px;
+  margin-top: 311px;
   margin-bottom: 63px;
   font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
   color: #000;
@@ -57,6 +59,7 @@ h3 {
   padding-right: 0px;
   color: #313131;
   font-size: 18px;
+  font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
   line-height: 30px;
   font-weight: 400;
   text-align: center;
@@ -499,7 +502,8 @@ p {
   background-color: transparent;
   -webkit-transition: background-color 200ms linear;
   transition: background-color 200ms linear;
-  font-family: Oswald, sans-serif;
+  font-family: "Trebuchet MS", sans-serif;
+
   color: #000;
   font-size: 16px;
   text-transform: uppercase;
@@ -667,8 +671,8 @@ p {
 }
 
 .food-row {
-  margin: 0px 0px 50px;
-  border-top: 1px none #fff;
+  /*margin: 0px 0px 50px;*/
+  /*border-top: 1px none #fff;*/
   text-align: center;
 }
 
@@ -686,13 +690,13 @@ p {
 
 .food-tab {
   display: inline-block;
-  font-family: Impact, Haettenschweiler, 'Franklin Gothic Bold', Charcoal, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
 }
 
 .food-tab.w--current {
   border: 3px solid #000;
   background-color: #fff;
-  font-family: Oswald, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
   font-size: 30px;
   text-transform: uppercase;
 }
@@ -710,10 +714,10 @@ p {
   background-color: hsla(0, 0%, 100%, 0);
 }
 
-.food-div {
-  display: inline-block;
-  text-align: center;
-}
+/*.food-div {*/
+  /*display: inline-block;*/
+  /*text-align: center;*/
+/*}*/
 
 .food-img {
   border-radius: 20px;
@@ -728,7 +732,7 @@ p {
 }
 
 .footer-section {
-  height: 400px;
+  height: 150px;
   margin-bottom: 0px;
   padding-top: 83px;
   background-color: #000;
@@ -781,6 +785,7 @@ p {
 
 .email-text {
   /*margin-top: 10px;*/
+  max-width: 100%;
 }
 
 .details-sections {
@@ -979,9 +984,9 @@ p {
 }
 
 .food-img-2:hover {
-  -webkit-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  transform: scale(1.1);
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .config-section {
@@ -1427,11 +1432,19 @@ html.w-mod-js *[data-ix="scale-on-scroll"] {
   transform: scale(0.01, 0.01);
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1420px) {
   body {
     margin-left: 0px;
     padding-left: 0px;
   }
+    h1{
+        font-size:24px;
+      text-align: center;
+    }
+
+    h2{
+        font-size:24px;
+    }
   h5 {
     margin-bottom: 11px;
     text-align: center;
@@ -1488,10 +1501,10 @@ html.w-mod-js *[data-ix="scale-on-scroll"] {
   .navmenu {
     background-color: #000;
   }
-  .food-row {
-    margin-right: 0px;
-    margin-left: 0px;
-  }
+  /*.food-row {*/
+    /*margin-right: 0px;*/
+    /*margin-left: 0px;*/
+  /*}*/
   .food-tabs-section {
     margin-top: 52px;
   }
@@ -1524,9 +1537,15 @@ html.w-mod-js *[data-ix="scale-on-scroll"] {
   .man-btn {
     display: inline-block;
   }
+  .roll-now {
+    padding: 10px;
+  }
 }
 
 @media (max-width: 767px) {
+  h2{
+        font-size:24px;
+    }
   h3 {
     margin-top: 10px;
   }

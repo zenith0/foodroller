@@ -1,36 +1,32 @@
 <div class="config-section" data-ix="fade-in-bottom-page-loads">
   {#  <h1 class="rool-heading">{{ start|date:"SHORT_DATE_FORMAT" }} - {{ end|date:"SHORT_DATE_FORMAT" }}</h1>#}
-  <div class="page-header">
-    <h1 class="heading-1-white">{{ start|date:"SHORT_DATE_FORMAT" }} - {{ end|date:"SHORT_DATE_FORMAT" }}</h1>
-    <button type="button" class="w-button change-date" id="change-date-btn" onclick="openDateModal()">Datum ändern</button>
+  <div>
+    <h1>{{ start|date:"SHORT_DATE_FORMAT" }} - {{ end|date:"SHORT_DATE_FORMAT" }}</h1>
+    <button type="button" class="w-button change-date" id="change-date-btn" onclick="openDateModal()">Change date</button>
   </div>
 
   <div class="row">
-    {% for day in days %}
+    {% for day in days%}
       <div class="col-md-3 col-centered">
-        {#        <div class="w-clearfix day-roll">#}
-        {#          <div class="day-form">#}
-      {% for key,value in day.items %}
         <h3>{{ value }} </h3>
-        <select id="category-{{ key|date:"d-m-y" }}" name="field" required="required" class="w-select">
+        <select id="category-{{ day.date|date:"d-m-y" }}" name="field" required="required" class="w-select">
           {% for cat in categories %}
             <option value="{{ cat.name }}">{{ cat.name }}</option>
           {% endfor %}
         </select>
-        <select id="cooking-time-{{ key|date:"d-m-y" }}" name="field-2" data-name="Field 2" class="w-select">
+        <select id="cooking-time-{{ day.date|date:"d-m-y" }}" name="field-2" data-name="Field 2" class="w-select">
           <option value="">Cooking Time</option>
           <option value=1>&lt; 30 min</option>
           <option value=2>&lt; 1 hr</option>
           <option value=3>&lt; 2 hr</option>
           <option value=4>&gt; 2 hr</option>
         </select>
-        <button class="w-button go-btn" id="{{ key|date:"d-m-y" }}" onclick="roll($(this).attr('id'))">ROLL</button>
-        <button class="w-button man-btn" id="{{ key|date:"d-m-y" }}" onclick="openSearchModal($(this).attr('id'))">Select</button>
+        <button class="w-button go-btn" id="{{ day.date|date:"d-m-y" }}" onclick="roll($(this).attr('id'))">ROLL</button>
+        <button class="w-button man-btn" id="{{ day.date|date:"d-m-y" }}" onclick="openSearchModal($(this).attr('id'))">Select</button>
 
-        <div class="day-res" id="day-res-{{ key|date:"d-m-y" }}">
-          {% include 'food-snippet.html' with food=food %}
+        <div class="day-res" id="day-res-{{ day.date|date:"d-m-y" }}">
+          {% include 'food-snippet.html' with food=day.food %}
         </div>
-      {% endfor %}
       </div>
       {% if forloop.counter|divisibleby:4 %}
         </div>
@@ -39,7 +35,7 @@
     {% endfor %}
 
     </div>
-<div class="row">    <button type="button" class="w-button roll-now" id="accept-btn" onclick="openSummaryModal()">Akzeptieren</button>
+<div class="row">    <button type="button" class="w-button roll-now" id="accept-btn" onclick="openSummaryModal()">Submit</button>
 </div>
 
 

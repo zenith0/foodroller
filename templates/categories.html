@@ -3,7 +3,7 @@
 {% load thumbnail %}
 
 {% block body %}
-  <body class="cat-body">
+  <h1>Food.</h1>
   <div class="w-section tabs-section" data-ix="fade-in-bottom-page-loads">
     <div data-duration-in="500" data-duration-out="100" data-easing="ease-in" class="w-tabs">
       <div class="w-tab-menu category-menu">
@@ -20,27 +20,27 @@
               <div class="row food-row">
                 {% for f in food %}
                   <div class="col-md-4 col-centered">
-                      <div class="food-div">
+                    <div class="food-div">
 
-                  <a href="/food/{{ f.slug  }}">
+                      <a href="/food/{{ f.slug  }}">
                         {% if f.img %}
-                            <img src="{{ f.img|thumbnail_url:'thumb' }}" class="food-img-2">
+                          <img src="{{ f.img|thumbnail_url:'thumb' }}" class="food-img-2">
                         {% else %}
-                            <img width="100%" src="{% static 'images/mains.jpg' %}" class="food-img-2">
+                          <img width="100%" src="{% static 'images/mains.jpg' %}" class="food-img-2">
                         {% endif %}
-                                          <h3>{{ f.name }}</h3>
+                        <h3>{{ f.name }}</h3>
 
-                                    </a>
+                      </a>
 
                     </div>
-                                    </div>
+                  </div>
 
                   {% if forloop.counter|divisibleby:3 %}
                     </div>
                     <div class="w-row food-row">
                   {% endif %}
                 {% endfor %}
-              </div>
+                </div>
             </div>
           </div>
         {% endfor %}
@@ -48,5 +48,4 @@
     </div>
   </div>
   </div>
-</body>
 {% endblock %}

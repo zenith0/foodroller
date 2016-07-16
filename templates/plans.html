@@ -1,10 +1,64 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-  <meta charset="UTF-8">
-  <title></title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load thumbnail %}
 
-</body>
-</html>
+{% block body %}
+
+  <body >
+
+      <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p>You are about to delete this foodplan, this procedure is irreversible.</p>
+                    <p>Do you want to proceed?</p>
+                    <p class="debug-url"></p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-danger btn-ok">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <h1>Plans.</h1>
+
+    <div class="w-section tabs-section" data-ix="fade-in-bottom-page-loads">
+
+  <div class="row food-row">
+
+    {% for m in menu %}
+      <div class="col-md-4 col-centered">
+        <div class="food-div" id="{{ m.name }}">
+
+          <a href="/plans/{{ m.slug  }}">
+            {% if m.img %}
+              <img src="{{ m.img|thumbnail_url:'thumb' }}" class="food-img-2">
+            {% else %}
+              <img width="100%" src="{% static 'images/mains.jpg' %}" class="food-img-2">
+            {% endif %}
+            <h3>{{ m.name }}</h3>
+          </a>
+        <a href="#" data-href="/deleteplan/{{ m.slug }}" data-toggle="modal" data-target="#confirm-delete">
+        <span class="glyphicon glyphicon-trash"></span>
+</a>
+        </div>
+      </div>
+
+      {% if forloop.counter|divisibleby:3 %}
+        </div>
+        <div class="w-row food-row">
+      {% endif %}
+    {% endfor %}
+    </div>
+</div>
+  </body>
+{% endblock %}

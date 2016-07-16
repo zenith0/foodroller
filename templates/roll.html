@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 
 {% block body %}
-
-  <body class="roll-body">
+  <body>
 
   {% include 'modals/date.html' %}
 
@@ -13,9 +12,18 @@
   {% include 'modals/search.html' %}
 
 
-  {% include 'roll-config.html' with start=start end=end days=days categories=categories %}
+  {% if food_list %}
+      {% include 'roll-update.html' with start=start end=end days=days categories=categories %}
+  {% else %}
+      {% include 'roll-config.html' with start=start end=end days=days categories=categories %}
+  {% endif %}
 
+  <div class="alert alert-danger" role="alert" style="display:none">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 
-  </body>
+  <strong>Oh snap!</strong> It seems that you have already created a plan for this date.
+</div>
+</body>
+
 {% endblock %}
 
