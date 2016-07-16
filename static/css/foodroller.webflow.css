@@ -538,6 +538,20 @@ p {
   padding-top: 0px;
   padding-bottom: 0px;
   background-color: hsla(0, 0%, 100%, .54);
+  border: 0;
+  font-weight: bold;
+}
+
+.navbar-nav > li  {
+    color: black;
+}
+
+.nav-list-item {
+  color: black;
+}
+
+.navbar-brand {
+  padding-top: 2px;
 }
 
 .hero-section {
