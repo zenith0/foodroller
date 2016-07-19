@@ -8,7 +8,7 @@
   <div class="row">
     {% for day in days%}
       <div class="col-md-3 col-centered">
-        <h3>{{ value }} </h3>
+        <h3>{{ day.date|date:'l' }} </h3>
         <select id="category-{{ day.date|date:"d-m-y" }}" name="field" required="required" class="w-select">
           {% for cat in categories %}
             <option value="{{ cat.name }}">{{ cat.name }}</option>

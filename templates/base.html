@@ -23,7 +23,7 @@
 
 <!-- NAVBAR -->
 
-<nav role="navigation" class="navbar navbar-default">
+<nav role="navigation" class="navbar navbar-inverse">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
@@ -37,32 +37,16 @@
         <!-- Collection of nav links, forms, and other content for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/">HOME</a></li>
+              <li><a href="/">HOME</a></li>
                 <li><a href="/categories">FOOD</a></li>
                 <li><a href="/roll">ROLL</a></li>
                 <li><a href="/plans">PLANS</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Login</a></li>
+                <li><a href="#">LOGIN</a></li>
             </ul>
         </div>
     </nav>
-
-
-{#<div data-collapse="medium" data-animation="default" data-duration="400" data-contain="1" class="w-nav navbar">#}
-{#    <div class="w-container navigation-cont">#}
-{#        <a href="/" class="w-nav-brand brand"><img width="200" src="{% static 'images/logo-food.png' %}">#}
-{#        </a>#}
-{#        <nav role="navigation" class="w-nav-menu">#}
-{#          <a href="/" class="w-nav-link nav-item">Home</a>#}
-{#          <a href="/categories" class="w-nav-link nav-item">food</a>#}
-{#          <a href="/roll" class="w-nav-link nav-item">roll</a>#}
-{#          <a href="/plans" class="w-nav-link nav-item">plans</a>#}
-{#          <a href="/admin" class="w-nav-link nav-item">Manage</a>#}
-{#        </nav>#}
-{##}
-{#    </div>#}
-{#</div>#}
 
 <!-- CUSTOM CODE -->
 {% block body %}

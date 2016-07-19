@@ -62,6 +62,7 @@ TEMPLATES = [
         'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
+
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -74,7 +75,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'foodroller_project.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -135,3 +135,4 @@ NOSE_ARGS = [
     '--cover-package=foodroller',
     '--cover-html',
 ]
+

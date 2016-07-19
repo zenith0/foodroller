@@ -31,12 +31,12 @@ function openSummaryModal() {
 /// Autocomplete function for "search food"
 $(function() {
     $("#txtSearch").autocomplete({
-        source: "/search"
+        source: "/search/"
     });
 });
 
 /// Sets received data into the resulting food div of the selected day
-function setFood(day, data) {
+function setFoodInDiv(day, data) {
     var divId = "#day-res-".concat(day);
     console.log(divId);
     $(divId).html(data);
@@ -49,6 +49,17 @@ function getFood() {
         setFood(man_day, data);
     });
 }
+
+function setFood() {
+    $.ajaxSetup({
+        headers: { "X-CSRFToken": getCookie("csrftoken") }
+    });
+    var name=$("#txtSearch").val();
+    $.post("/search/", {name: name, day: man_day}, function(data){
+        setFoodInDiv(man_day, data);
+    });
+}
+
 
 /// Roll food for a specific day
 function roll(id) {
@@ -63,7 +74,7 @@ function roll(id) {
 
     $.get("/roll-food/", {day: man_day, cat: cat, time: time}, function(data) {
         console.log(data);
-        setFood(man_day, data);
+        setFoodInDiv(man_day, data);
     });
 }
 

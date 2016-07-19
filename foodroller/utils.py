@@ -1,4 +1,5 @@
 import calendar
+import random
 import django
 import os
 import sys
@@ -13,7 +14,6 @@ __author__ = 'stefan'
 
 
 ######################################## Session Utils ########################################
-
 
 def get_cached_food_plan(request):
     return request.session[('%s' % PLAN)]
@@ -34,9 +34,16 @@ def update_current_plan(request, food, day):
                           "food": food})
         update_food_plan(request, dict_list)
 
-
 def update_already_rolled(request, already_rolled):
     request.session[('%s' % ALREADY_ROLLED)] = already_rolled
+
+def set_food_plan(request, food_plan):
+    days = food_plan.get_days()
+    dict_list = []
+    for day in days:
+        dict_list.append({"day": day.date_as_string(),
+                          "food": day.food.name})
+    update_food_plan(request, dict_list)
 
 
 def get_food_from_cached_plan(request):
@@ -52,26 +59,9 @@ def new_already_rolled(request):
     update_already_rolled(request, already_rolled)
     return already_rolled
 
-######################################## Date Utils ########################################
+def clear_food_plan(request):
+    request.session[('%s' % PLAN)] = []
 
-# Get the weekday as string from a given date
-def weekday_from_date(date):
-    return calendar.day_name[date.weekday()]
-
-
-# Get the end date of a time period
-def get_end_date(start_date, num_days):
-    return start_date + datetime.timedelta(days=num_days-1)
-
-
-# Create a dictionary containing a time period in the format: {'Tuesday': 23.02.1987, 'Wednesday': 24.02.1987,... }
-def create_days_dict(start_date, num_days):
-    days_in_row = [{start_date: weekday_from_date(start_date)}]
-    for x in range(1, num_days):
-        next_day = start_date + datetime.timedelta(days=x)
-        days_in_row.append({next_day: weekday_from_date(next_day)})
-
-    return days_in_row
 
 
 ######################################## Food Utils ########################################
@@ -109,32 +99,3 @@ def category_food_dict():
         cat_dict[cat] = cat.get_food()
     cat_dict = {"categories": cat_dict}
     return cat_dict
-
-
-# Method to return random food
-def random_food(request, cat, time, day):
-    # It is necessary to hold 2 caches:
-    # already_rolled: holds all food that has been ever rolled (this is needed if you want to re-roll)
-    # already_rolled is reset if it is full
-    already_rolled = get_already_rolled(request)
-    # cached_food: holds all desired food for the rolling week - if this cache is not present we would always bring up
-    # the same 2 results if a certain day is re-rolled
-    cached_food = get_food_from_cached_plan(request)
-
-    food_list = filter_food_by_category_name(cat).order_by('-last_cooked')
-    food_filtered = filter_food_by_duration(food_list, time)
-
-    food = None
-
-    for f in food_filtered:
-        if f.name not in already_rolled and f.name not in cached_food:
-            already_rolled.append(f.name)
-            update_current_plan(request, f.name, day)
-            request.session['already_rolled'] = already_rolled
-            food = f
-            break
-        # in this case all available food have been rolled --> reset the cache and fill in the day cache items
-        elif len(already_rolled) >= len(food_filtered):
-            already_rolled = new_already_rolled(request)
-
-    return food

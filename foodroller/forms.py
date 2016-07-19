@@ -11,14 +11,6 @@ DAYS_CHOICES = (
     (7, '7 Tage'),
 )
 
-
-def set_categories():
-    categories = Category.objects.all()
-    list = []
-    for cat in categories:
-        list.append(cat.name)
-
-
 class DateForm(forms.Form):
     days = forms.ChoiceField(label="Tage:", required=True, widget=forms.Select(attrs={'class': 'w-select days-sel',
                                                                         'required': True}), choices=DAYS_CHOICES)

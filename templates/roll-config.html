@@ -28,7 +28,7 @@
         <button class="w-button man-btn" id="{{ key|date:"d-m-y" }}" onclick="openSearchModal($(this).attr('id'))">Select</button>
 
         <div class="day-res" id="day-res-{{ key|date:"d-m-y" }}">
-          {% include 'food-snippet.html' with food=food %}
+          {% include 'food-snippet.html' with food=food_list.forloop.counter %}
         </div>
       {% endfor %}
       </div>

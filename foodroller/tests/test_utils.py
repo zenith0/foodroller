@@ -1,7 +1,7 @@
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.test import TestCase, Client, RequestFactory
 from foodroller.models import Category, Food, Ingredient
-from foodroller.utils import weekday_from_date, filter_food_by_duration, get_end_date, create_days_dict, \
+from foodroller.utils import filter_food_by_duration, \
     category_food_dict, get_cached_food_plan, get_already_rolled, update_food_plan, update_current_plan, \
     update_already_rolled, get_food_from_cached_plan, new_already_rolled, filter_food_by_category_name
 import datetime
@@ -79,29 +79,6 @@ class SessionUtilsTestCase(TestCase):
         self.assertTrue('Pasta' in already_rolled and 'Pie' in already_rolled)
 
 
-class DateUtilsTestCase(TestCase):
-    def test_get_weekday(self):
-        my_date = datetime.datetime(2016, 2, 14)
-        week_day = weekday_from_date(my_date)
-        self.assertEqual(week_day, "Sunday")
-
-    def test_get_end_date(self):
-        now = datetime.datetime.now()
-        days = 6
-        end_data = get_end_date(now, days)
-        self.assertEqual(end_data, now + datetime.timedelta(days=days-1))
-
-    def test_create_days_dict(self):
-        now = datetime.datetime.now()
-        list = create_days_dict(now, 4)
-        for k, v in list[0].items():
-            self.assertEqual(k, now)
-        for k, v in list[1].items():
-            self.assertEqual(k, now + datetime.timedelta(days=1))
-        for k, v in list[2].items():
-            self.assertEqual(k, now + datetime.timedelta(days=2))
-        for k, v in list[3].items():
-            self.assertEqual(k, now + datetime.timedelta(days=3))
 
 
 class FoodUtilsTestCase(TestCase):
@@ -111,16 +88,16 @@ class FoodUtilsTestCase(TestCase):
         category = Category.objects.get(name="Kategorie")
         category2 = Category.objects.get(name="Kategorie2")
 
-        food_29 = Food.objects.create(name="30 min", slug="30min", duration=datetime.timedelta(minutes=29))
+        food_29 = Food.objects.create(name="30 min", duration=datetime.timedelta(minutes=29))
         food_29.categories.add(category)
         food_29.save()
-        food_59 = Food.objects.create(name="1 hr", slug="1hr", duration=datetime.timedelta(minutes=59))
+        food_59 = Food.objects.create(name="1 hr", duration=datetime.timedelta(minutes=59))
         food_59.categories.add(category)
         food_59.save()
-        food_119 = Food.objects.create(name="2 hr", slug="2hr", duration=datetime.timedelta(minutes=119))
+        food_119 = Food.objects.create(name="2 hr", duration=datetime.timedelta(minutes=119))
         food_119.categories.add(category)
         food_119.save()
-        food_121 = Food.objects.create(name="2 hr+", slug="2hr+", duration=datetime.timedelta(minutes=121))
+        food_121 = Food.objects.create(name="3 hr", duration=datetime.timedelta(minutes=121))
         food_121.categories.add(category)
         food_121.save()
 
@@ -132,7 +109,7 @@ class FoodUtilsTestCase(TestCase):
         food_29 = Food.objects.get(name="30 min")
         food_59 = Food.objects.get(name="1 hr")
         food_119 = Food.objects.get(name="2 hr")
-        food_121 = Food.objects.get(name="2 hr+")
+        food_121 = Food.objects.get(name="3 hr")
 
         food_list = Food.objects.all()
 
@@ -173,7 +150,7 @@ class FoodUtilsTestCase(TestCase):
         food_29 = Food.objects.get(name="30 min")
         food_59 = Food.objects.get(name="1 hr")
         food_119 = Food.objects.get(name="2 hr")
-        food_121 = Food.objects.get(name="2 hr+")
+        food_121 = Food.objects.get(name="3 hr")
         food_test = Food.objects.get(name="Test")
         for k, v in dict.items():
             if k == cat1:

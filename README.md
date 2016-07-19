@@ -26,8 +26,6 @@ You can reach foodroller in your browser localhost:8000 and the admin interface 
 
 ### v1:
 
-* Refactor views to class based views
-
 * Unittests for views
 
 * Remove django admin and add functionality to edit food to the food template

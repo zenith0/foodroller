@@ -1,154 +1,198 @@
 import datetime
 import json
+from operator import itemgetter
+import random
+from collections import OrderedDict
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
-import re
+from django.views.generic import View, ListView, DetailView
+from foodroller.commons.date_utils import Date
 from django.http import HttpResponse
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, redirect
 from foodroller.forms import DateForm, EmailForm
 from foodroller.models import Category, Food, Foodplan, Day
-from foodroller.utils import weekday_from_date, filter_food_by_duration, create_days_dict, get_end_date, \
-    category_food_dict, update_current_plan, random_food, get_cached_food_plan
-
+from foodroller.utils import update_current_plan, get_cached_food_plan, \
+    get_food_from_cached_plan, filter_food_by_category_name, filter_food_by_duration, clear_food_plan, set_food_plan
 
 # The index site (start)
-def index(request):
-    return render_to_response('index.html')
+class FoodPreview(ListView):
+    model = Day
+    template_name = 'index.html'
+    context_object_name = 'next_days'
 
+    def get_next_days(self, number_days):
+        foodplan_list = Foodplan.objects.filter(end_date__gte=datetime.date.today()).order_by('end_date')
+        next_days = []
+        cnt = 0
+        try:
+            for foodplan in foodplan_list:
+                days = Day.objects.filter(foodplan=foodplan).order_by('date')
+                for day in days:
 
-# The Food pane
-def categories(request):
-    cat_dict = category_food_dict()
-    return render(request, 'categories.html', cat_dict)
+                    if cnt >= number_days:
+                        raise Exception
+                    if day.date >= datetime.date.today():
+                        cnt += 1
+                        next_days.append(day)
+        except Exception:
+            pass
+        return next_days
+
+    def get_queryset(self):
+        return self.get_next_days(6)
+
+class Categories(ListView):
+
+    template_name = 'categories.html'
+    context_object_name = 'categories'
+
+    @staticmethod
+    def category_food_dict():
+        category_list = Category.objects.all()
+        cat_dict = OrderedDict()
+        for cat in category_list:
+            cat_dict[cat] = cat.get_food()
+        return cat_dict
+
+    def get_queryset(self):
+        return self.category_food_dict()
 
 
 # The roll pane
-def roll(request):
-    request.session['plan'] = []
-    request.session['already_rolled'] = []
-    days = 6
+class RollView(View):
+    food_list = False
     start_date = datetime.date.today()
     date_form = DateForm()
+    days = 6
+    days_dict = Date.create_days_dict(start_date, days)
+    end_date = Date.get_end_date(start_date, days)
+    category_list = Category.objects.all()
+    template = 'roll-config.html'
 
-    if request.method == 'POST':
+
+    def init_with_start_end_date(self, start_date, end_date):
+        self.start_date = start_date
+        self.end_date = end_date
+        time_diff = self.end_date - self.start_date
+        self.days = int(time_diff.days) + 1
+        self.days_dict = Date.create_days_dict(self.start_date, self.days)
+        self.end_date = Date.get_end_date(self.start_date, self.days)
+
+    @staticmethod
+    def send_response(self, request):
+        return render(request, 'roll.html',
+                      {'start': self.start_date,
+                       'end': self.end_date,
+                       'days': self.days_dict,
+                       'categories': self.category_list,
+                       'date_form': self.date_form,
+                       'food_list': self.food_list,
+                       'template': self.template})
+
+    def get(self, request):
+        clear_food_plan(request)
+        return self.send_response(self, request)
+
+    def post(self, request):
         date_form = DateForm(request.POST)
         if date_form.is_valid():
-            days = int(date_form.cleaned_data['days'])
-            start_date = date_form.cleaned_data['date']
+            self.days = int(date_form.cleaned_data['days'])
+            self.start_date = date_form.cleaned_data['date']
+            self.end_date = self.start_date + datetime.timedelta(self.days)
+            self.init_with_start_end_date(self.start_date, self.end_date)
+        return self.send_response(self, request)
 
-    days_dict = create_days_dict(start_date, days)
-    end_date = get_end_date(start_date, days)
+class FoodDetails(DetailView):
 
-    category_list = Category.objects.all()
-
-    return render(request, 'roll.html',
-                  {'start': start_date,
-                   'end': end_date,
-                   'days': days_dict,
-                   'categories': category_list,
-                   'date_form': date_form})
-
-
-# Display details for a specific food
-def food_details(request, food_slug):
-    food_dict = {}
-    food = Food.objects.get(slug=food_slug)
-    food_dict['food'] = food
-    return render(request, 'food.html', food_dict)
-
+    model = Food
+    template_name = 'food.html'
+    context_object_name = 'food'
 
 # Returns json Data for autocomplete food-search
-def search(request):
-    search_qs = Food.objects.filter(name__icontains=request.GET['term'])
-    results = []
-    for r in search_qs:
-        results.append(r.name)
-    resp = json.dumps(results)
 
-    return HttpResponse(resp, content_type='application/json')
+class SearchFood(View):
 
+    def get(self, request):
+        search_qs = Food.objects.filter(name__icontains=request.GET['term'])
+        results = []
+        for r in search_qs:
+            results.append(r.name)
+            resp = json.dumps(results)
+            return HttpResponse(resp, content_type='application/json')
 
-# Set food manually for a specific day
-def set_food(request):
-    name = request.GET['name']
-    day = request.GET['day']
-    food = Food.objects.get(name=name)
-    update_current_plan(request, food.name, day)
-    return render(request, 'food-snippet.html', {'food': food})
+    def post(self, request):
+        name = request.POST['name']
+        day = request.POST['day']
+        food = Food.objects.get(name=name)
+        update_current_plan(request, food.name, day)
+        return render(request, 'food-snippet.html', {'food': food})
 
 
 # Set food randomly for a specific day
-def roll_food(request):
-    day = request.GET['day']
-    time = request.GET['time']
-    cat = request.GET['cat']
-    food = random_food(request, cat, time, day)
-    return render(request, 'food-snippet.html', {'food': food})
+class RollFood(View):
 
+    @staticmethod
+    def random_food(request, cat, time, day):
+        cached_food = get_food_from_cached_plan(request)
 
-def summary(request):
-    cached_food_plan = get_cached_food_plan(request)
+        food_list = filter_food_by_category_name(cat).order_by('last_cooked')
+        food_filtered = filter_food_by_duration(food_list, time)
 
-    if request.method == 'POST':
-        form = EmailForm(request.POST)
-        if form.is_valid():
-            pass
-            # send_mail('Essensplan', form.summary, settings.Mail, )
-        start_date = cached_food_plan(0)['day']
-        end_date = cached_food_plan(len(cached_food_plan)-1)['day']
+        food = random.choice(food_filtered)
+        while food.name in cached_food:
+            food = random.choice(food_filtered)
 
-        food_plan = Foodplan()
-        food_plan.set_start_date(start_date, "%d.%m.%y")
-        food_plan.set_end_date(end_date, "%d.%m.%y")
+        update_current_plan(request, food.name, day)
+        return food
 
-        for item in cached_food_plan:
-            food_name = item['food']
-            day_name = item['day']
-            day = Day()
-            day.set_day(day_name, "%d.%m.%y")
-            day.set_food(food_name)
-            day.save()
-            food_plan.add_food(day)
-        food_plan.save()
+    def get(self, request):
+        day = request.GET['day']
+        time = request.GET['time']
+        cat = request.GET['cat']
+        food = self.random_food(request, cat, time, day)
+        return render(request, 'food-snippet.html', {'food': food})
 
-    else:
-        ingredients_list = []
-        message = "Essensplan: \n"
-        for item in cached_food_plan:
-            message += '\n'
-            date = datetime.datetime.strptime(item['day'], '%d-%m-%y')
-            message += date.strftime('%d.%m.%y')
-            message += ':\t'
-            message += item['food']
+class SummaryView(View):
 
-            food = Food.objects.get(name=item['food'])
-            ingredients = food.get_ingredients()
-            for ing in ingredients:
-                already_in_list = False
-                amount = re.findall("[-+]?\d*\.\d+|\d+", ing.amount)[0]
-                unit = re.sub("[-+]?\d*\.\d+|\d+", "", ing.amount)
-                amount_dict = {'amount': amount, 'unit': unit}
-                ing_dict = {'ingredient': ing.name, 'amount': amount_dict}
-                for saved_ing_dict in ingredients_list:
-                    if saved_ing_dict['ingredient'].lower() == ing.name.lower():
-                        saved_amount_dict = saved_ing_dict['amount']
-                        if unit.lower() == saved_amount_dict['unit'].lower():
-                            saved_amount_dict['amount'] = str(float(amount) + float(saved_amount_dict['amount']))
-                            already_in_list = True
-                if not already_in_list:
-                    ingredients_list.append(ing_dict)
+    def get(self, request):
+        foodplan_list = get_cached_food_plan(request)
+        ordered_food_plan = sorted(foodplan_list, key=itemgetter('day'))
+        try:
+            food_plan = Foodplan.objects.get(start_date=datetime.datetime.strptime(
+                ordered_food_plan[0]['day'], "%d-%m-%y"))
+        except ObjectDoesNotExist:
+            food_plan = Foodplan()
+        food_plan.init_with_dict(ordered_food_plan)
+        summary = food_plan.get_summary()
 
-        message += "\n\n"
-        message += "Einkaufsliste: "
-        for ing in ingredients_list:
-            ingredient = ing['ingredient']
-            amount_dict = ing ['amount']
-            amount = amount_dict['amount']
-            unit = amount_dict['unit']
-            message += "\n"
-            message += ingredient
-            message += "\t\t"
-            message += amount + " " + unit
-
-        form = EmailForm(initial={'summary': message})
-
+        form = EmailForm(initial={'summary': summary})
         return render(request, 'modals/email.html', {'email_form': form})
+
+    def post(self, request):
+        clear_food_plan(request)
+        return redirect('/plans')
+
+class Plans(ListView):
+    template_name = 'plans.html'
+    context_object_name = 'plans'
+    model = Foodplan
+
+class PlanDetails(RollView):
+
+    def get(self, request, *args, **kwargs):
+        slug = kwargs.get('slug')
+        foodplan = Foodplan.objects.get(slug=slug)
+        set_food_plan(request, foodplan)
+        self.init_with_start_end_date(start_date=foodplan.start_date, end_date=foodplan.end_date)
+        self.days_dict = foodplan.get_days()
+        self.food_list = True
+        self.template = 'roll-update.html'
+        return self.send_response(self, request)
+
+def delete_details(request, slug):
+    foodplan_list = Foodplan.objects.filter(slug=slug)
+    for foodplan in foodplan_list:
+        foodplan.delete()
+
+    menu = Foodplan.objects.all().order_by('-start_date')
+    return render(request, 'plans.html', {'menu': menu})

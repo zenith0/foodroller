@@ -35,19 +35,19 @@
 
   <div class="row food-row">
 
-    {% for m in menu %}
+    {% for p in plans %}
       <div class="col-md-4 col-centered">
-        <div class="food-div" id="{{ m.name }}">
+        <div class="food-div" id="{{ p.name }}">
 
-          <a href="/plans/{{ m.slug  }}">
-            {% if m.img %}
-              <img src="{{ m.img|thumbnail_url:'thumb' }}" class="food-img-2">
+          <a href="/plans/{{ p.slug  }}">
+            {% if p.img %}
+              <img src="{{ p.img|thumbnail_url:'thumb' }}" class="food-img-2">
             {% else %}
               <img width="100%" src="{% static 'images/mains.jpg' %}" class="food-img-2">
             {% endif %}
-            <h3>{{ m.name }}</h3>
+            <h3>{{ p.name }}</h3>
           </a>
-        <a href="#" data-href="/deleteplan/{{ m.slug }}" data-toggle="modal" data-target="#confirm-delete">
+        <a href="#" data-href="/deleteplan/{{ p.slug }}" data-toggle="modal" data-target="#confirm-delete">
         <span class="glyphicon glyphicon-trash"></span>
 </a>
         </div>
