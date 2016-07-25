@@ -3,7 +3,8 @@ Django app to manage your favorite recipes and to get suggestions what to eat th
 
 
 ## Build
-https://travis-ci.org/zenith0/foodroller.svg?branch=master
+[![Build
+Status](https://travis-ci.org/zenith0/foodroller.svg?branch=master)](https://travis-ci.org/zenith0/foodroller)
 
 ## Prerequisites
 Python 3.4+ 
