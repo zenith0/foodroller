@@ -1,6 +1,10 @@
 # foodroller
 Django app to manage your favorite recipes and to get suggestions what to eat the next days.
 
+
+## Build
+https://travis-ci.org/zenith0/foodroller.svg?branch=master
+
 ## Prerequisites
 Python 3.4+ 
 Developed and tested with Python 3.5 and Django 1.9
