@@ -2,7 +2,7 @@
 Django app to manage your favorite recipes and to get suggestions what to eat the next days.
 
 ## Prerequisites
-Python 3.x 
+Python 3.4+ 
 Developed and tested with Python 3.5 and Django 1.9
 
 ## Installation

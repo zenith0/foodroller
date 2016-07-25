@@ -63,14 +63,14 @@ class CategoryTestCase(TestCase):
         food.set_last_cooked(today_str, '%d-%m-%y')
         self.assertEqual(food.get_last_cooked(), today_str)
 
-    def test_ingredients_list(self):
-        food = Food.objects.get(name="FreeSalad")
-        create_ing_for_food("Zucker", "1g", food)
-        create_ing_for_food("Zucker", "2g", food)
-        create_ing_for_food("Zucker", "3 g", food)
-        create_ing_for_food("Wasser", "1 ml", food)
-        ingredients = food.ingredients_as_dict()
-        self.assertEqual(len(ingredients), 2)
+#    def test_ingredients_list(self):
+#        food = Food.objects.get(name="FreeSalad")
+#        create_ing_for_food("Zucker", "1g", food)
+#        create_ing_for_food("Zucker", "2g", food)
+#        create_ing_for_food("Zucker", "3 g", food)
+#        create_ing_for_food("Wasser", "1 ml", food)
+#        ingredients = food.ingredients_as_dict()
+#        self.assertEqual(len(ingredients), 2)
 
 
 class FoodplanTestCase(TestCase):
