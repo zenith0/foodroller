@@ -12,6 +12,7 @@ def create_ing_for_food(name, amount, food):
     ingredient.food = food
     ingredient.save()
 
+
 class CategoryTestCase(TestCase):
     def setUp(self):
         category = Category.objects.create(name="Soup")
@@ -22,12 +23,6 @@ class CategoryTestCase(TestCase):
         food_2 = Food.objects.create(name="FreeSalad", slug="freesalad")
         food_2.categories.add(category_2, category)
         food_2.save()
-        in1 = Ingredient.objects.create(name="Salat", amount="1")
-        in2 = Ingredient.objects.create(name="Zucker", amount="1EL")
-        in1.food = food_2
-        in2.food = food_2
-        in1.save()
-        in2.save()
 
     def test_category_str(self):
         category = Category.objects.get(name="Soup")
@@ -49,8 +44,24 @@ class CategoryTestCase(TestCase):
         self.assertEqual(food[0].name, "FreeSalad")
 
 
+class FoodTestCase(TestCase):
+
+    def setUp(self):
+        food = Food.objects.create(name="Food1", slug="food1")
+        food.save()
+        in1 = Ingredient.objects.create(name="Salat", amount="1")
+        in2 = Ingredient.objects.create(name="Zucker", amount="1EL")
+        in1.food = food
+        in2.food = food
+        in1.save()
+        in2.save()
+
+    def test_food_str(self):
+        food = Food.objects.get(name='Food1')
+        self.assertEqual(food.__str__(), 'Food1')
+
     def test_get_ingredients(self):
-        food = Food.objects.get(name="FreeSalad")
+        food = Food.objects.get(name="Food1")
         in_list = food.get_ingredients()
         self.assertEqual(in_list[0].name, "Salat")
         self.assertEqual(in_list[0].amount, "1")
@@ -58,19 +69,63 @@ class CategoryTestCase(TestCase):
         self.assertEqual(in_list[1].amount, "1EL")
 
     def test_last_cooked(self):
-        food = Food.objects.get(name="FreeSalad")
+        food = Food.objects.get(name="Food1")
         today_str = datetime.datetime.now().strftime('%d-%m-%y')
         food.set_last_cooked(today_str, '%d-%m-%y')
         self.assertEqual(food.get_last_cooked(), today_str)
 
-#    def test_ingredients_list(self):
-#        food = Food.objects.get(name="FreeSalad")
-#        create_ing_for_food("Zucker", "1g", food)
-#        create_ing_for_food("Zucker", "2g", food)
-#        create_ing_for_food("Zucker", "3 g", food)
-#        create_ing_for_food("Wasser", "1 ml", food)
-#        ingredients = food.ingredients_as_dict()
-#        self.assertEqual(len(ingredients), 2)
+    def test_merge_ingredients(self):
+        food = Food.objects.create(name="Food2")
+        food.save()
+        create_ing_for_food("Zucker", "1g", food)
+        create_ing_for_food("Zucker", "2g", food)
+        create_ing_for_food("Zucker", "3 g", food)
+        create_ing_for_food("Wasser", "1 ml", food)
+        food = Food.objects.get(name="Food2")
+        ingredients = food.merge_ingredients()
+        self.assertEqual(len(ingredients), 2)
+
+
+class IngredientsTestCase(TestCase):
+    def setUp(self):
+        ingredient = Ingredient.objects.create(name='Ingredient', amount='1.1g')
+        ingredient.save()
+
+    def test_get_amount(self):
+        ingredient = Ingredient.objects.get(name='Ingredient')
+        self.assertEqual(ingredient.get_amount(), '1.1')
+
+    def test_get_unit(self):
+        ingredient = Ingredient.objects.get(name='Ingredient')
+        self.assertEqual(ingredient.get_unit(), 'g')
+
+    def test_normalization(self):
+        ingredient = Ingredient.objects.create(name='test1', amount='1,1g')
+        ingredient.save()
+        ingredient = Ingredient.objects.get(name='test1')
+        self.assertEqual(ingredient.get_amount(), '1.1')
+        self.assertEqual(ingredient.get_unit(), 'g')
+
+        ingredient = Ingredient.objects.create(name='test2', amount='1,1 g')
+        ingredient.save()
+        ingredient = Ingredient.objects.get(name='test2')
+        self.assertEqual(ingredient.get_amount(), '1.1')
+        self.assertEqual(ingredient.get_unit(), 'g')
+
+        ingredient = Ingredient.objects.create(name='TEST3', amount='1,1 G')
+        ingredient.save()
+        ingredient = Ingredient.objects.get(name='TEST3')
+        self.assertEqual(ingredient.get_amount(), '1.1')
+        self.assertEqual(ingredient.get_unit(), 'g')
+
+    def test_str(self):
+        ingredient = Ingredient.objects.get(name='Ingredient')
+        self.assertEqual(ingredient.__str__(), 'Ingredient')
+
+    def test_verbose(self):
+        ingredient = Ingredient.objects.get(name="Ingredient")
+        self.assertEqual(ingredient._meta.verbose_name, 'Ingredient')
+        self.assertEqual(ingredient._meta.verbose_name_plural, 'Ingredients')
 
 
 class FoodplanTestCase(TestCase):

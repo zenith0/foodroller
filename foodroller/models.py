@@ -2,6 +2,7 @@ import datetime
 from django.db import models
 from django.db.models import Model
 from django.utils.text import slugify
+from foodroller.utils import merge_ingredients
 import re
 
 __author__ = 'stefan'
@@ -50,23 +51,8 @@ class Food(models.Model):
     def get_last_cooked(self):
         return self.last_cooked.strftime("%d-%m-%y")
 
-    def ingredients_as_dict(self):
-        ingredients_list = []
-        for ing in self.get_ingredients():
-            already_in_list = False
-            amount = re.findall("[-+]?\d*\.\d+|\d+", ing.amount)[0]
-            unit = re.sub("[-+]?\d*\.\d+|\d+", "", ing.amount)
-            amount_dict = {'amount': amount, 'unit': unit}
-            ing_dict = {'ingredient': ing.name, 'amount': amount_dict}
-            for saved_ing_dict in ingredients_list:
-                if saved_ing_dict['ingredient'].lower() == ing.name.lower():
-                    saved_amount_dict = saved_ing_dict['amount']
-                    if unit.lower() == saved_amount_dict['unit'].lower():
-                        saved_amount_dict['amount'] = str(float(amount) + float(saved_amount_dict['amount']))
-                        already_in_list = True
-            if not already_in_list:
-                ingredients_list.append(ing_dict)
-        return ingredients_list
+    def merge_ingredients(self):
+        return merge_ingredients(self.get_ingredients())
 
 
 class Ingredient(models.Model):
@@ -86,6 +72,12 @@ class Ingredient(models.Model):
     class Meta:
         verbose_name = 'Ingredient'
         verbose_name_plural = 'Ingredients'
+
+    def get_amount(self):
+        return re.findall("[-+]?\d*\.\d+|\d+", self.amount.lower())[0]
+
+    def get_unit(self):
+        return re.sub("[-+]?\d*\.\d+|\d+", "", self.amount.lower())
 
 
 class Day(models.Model):
@@ -168,25 +160,10 @@ class Foodplan(models.Model):
             message += day.date.strftime('%d.%m.%y')
             message += ':\t'
             message += day.food.name
-
             food = Food.objects.get(name=day.food.name)
-            ingredients_list.extend(food.ingredients_as_dict())
-            ingredients = food.get_ingredients()
-            for ing in ingredients:
-                already_in_list = False
-                amount = re.findall("[-+]?\d*\.\d+|\d+", ing.amount)[0]
-                unit = re.sub("[-+]?\d*\.\d+|\d+", "", ing.amount)
-                amount_dict = {'amount': amount, 'unit': unit}
-                ing_dict = {'ingredient': ing.name, 'amount': amount_dict}
-                for saved_ing_dict in ingredients_list:
-                    if saved_ing_dict['ingredient'].lower() == ing.name.lower():
-                        saved_amount_dict = saved_ing_dict['amount']
-                        if unit.lower() == saved_amount_dict['unit'].lower():
-                            saved_amount_dict['amount'] = str(float(amount) + float(saved_amount_dict['amount']))
-                            already_in_list = True
-                if not already_in_list:
-                    ingredients_list.append(ing_dict)
+            ingredients_list.extend(food.merge_ingredients())
 
+        ingredients_list = merge_ingredients(ingredients_list)
         message += "\n\n"
         message += "Einkaufsliste: "
         for ing in ingredients_list:

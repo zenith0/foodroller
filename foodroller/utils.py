@@ -99,3 +99,20 @@ def category_food_dict():
         cat_dict[cat] = cat.get_food()
     cat_dict = {"categories": cat_dict}
     return cat_dict
+
+
+def merge_ingredients(ingredients):
+        ingredients_list = []
+        for ing in ingredients:
+            already_in_list = False
+            amount_dict = {'amount': ing.get_amount(), 'unit': ing.get_unit()}
+            ing_dict = {'ingredient': ing.name, 'amount': amount_dict}
+            for saved_ing_dict in ingredients_list:
+                if saved_ing_dict['ingredient'].lower() == ing.name.lower():
+                    saved_amount_dict = saved_ing_dict['amount']
+                    if ing.get_unit() == saved_amount_dict['unit']:
+                        saved_amount_dict['amount'] = str(float(ing.get_amount()) + float(saved_amount_dict['amount']))
+                        already_in_list = True
+            if not already_in_list:
+                ingredients_list.append(ing_dict)
+        return ingredients_list
