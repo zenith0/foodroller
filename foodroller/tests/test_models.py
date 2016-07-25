@@ -128,7 +128,38 @@ class IngredientsTestCase(TestCase):
         self.assertEqual(ingredient._meta.verbose_name_plural, 'Ingredients')
 
 
+class DayTestCase(TestCase):
+    def setUp(self):
+        food = Food.objects.create(name='DayFood')
+        food.save()
+
+    def test_food_last_cooked(self):
+        food = Food.objects.get(name='DayFood')
+        day = Day.objects.create(date=datetime.date.today(), food=food)
+        day.save()
+        food = Food.objects.get(name='DayFood')
+        self.assertEqual(food.last_cooked, datetime.date.today())
+
+    def test_set_date(self):
+        food = Food.objects.get(name='DayFood')
+        day = Day.objects.create(date=datetime.date.today(), food=food)
+        self.assertEqual(day.date_as_string(), datetime.date.today().strftime('%d-%m-%y'))
+
+
 class FoodplanTestCase(TestCase):
+    def create_food_day_dict(self):
+        day1 = '01-01-16'
+        day2 = '02-01-16'
+        day3 = '03-01-16'
+        Food.objects.create(name='Spaghetti').save()
+        Food.objects.create(name='Pizza').save()
+        Food.objects.create(name='Steak').save()
+        food_day_dict = [{'food': 'Spaghetti', 'day': day1},
+                         {'food': 'Pizza', 'day': day2},
+                         {'food': 'Steak', 'day': day3}]
+
+        return  food_day_dict
+
     def setUp(self):
         pass
 
@@ -157,5 +188,17 @@ class FoodplanTestCase(TestCase):
 
         day = Day.objects.filter(foodplan=foodplan)
         self.assertEqual(day[0].date.strftime("%d-%m-%y"), '01-02-16')
+
+    def test_create_plan_from_dict(self):
+        dict = self.create_food_day_dict()
+        foodplan = Foodplan()
+        foodplan.init_with_dict(dict)
+        self.assertEqual(len(foodplan.get_days()), 3)
+        i = 1
+        while i <= len(foodplan.get_days()):
+            self.assertEqual(foodplan.get_days()[i-1].date_as_string(), '0'+str(i)+'-01-16')
+            i += 1
+        self.assertEqual(foodplan.start_date, datetime.datetime.strptime('01-01-16', '%d-%m-%y'))
+        self.assertEqual(foodplan.end_date, datetime.datetime.strptime('03-01-16', '%d-%m-%y'))
 
 

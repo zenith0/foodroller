@@ -86,6 +86,7 @@ class Day(models.Model):
 
     def save(self, *args, **kwargs):
         self.food.last_cooked = self.date
+        self.food.save()
         super(Day, self).save(*args, **kwargs)
 
     def set_day(self, date_str, format):
