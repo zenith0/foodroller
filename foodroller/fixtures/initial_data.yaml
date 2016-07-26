@@ -3,35 +3,40 @@
     "model": "foodroller.category",
     "pk": 1,
     "fields": {
-      "name": "Vegetarisch"
+      "name": "Vegetarisch",
+      "slug": "vegetarisch"
     }
   },
   {
     "model": "foodroller.category",
     "pk": 2,
     "fields": {
-      "name": "Vegan"
+      "name": "Vegan",
+      "slug": "vegan"
     },
   },
   {
     "model": "foodroller.category",
     "pk": 3,
     "fields": {
-      "name": "Fleisch"
+      "name": "Fleisch",
+      "slug": "fleisch"
     }
   },
   {
     "model": "foodroller.category",
     "pk": 4,
     "fields": {
-      "name": "Fisch"
+      "name": "Fisch",
+      "slug": "fisch"
     }
   },
   {
     "model": "foodroller.category",
     "pk": 5,
     "fields": {
-      "name": "Süßes"
+      "name": "Süßes",
+      "slug": "suesses"
     }
   },
 

@@ -45,17 +45,28 @@ class Categories(ListView):
 
     template_name = 'categories.html'
     context_object_name = 'categories'
+    model = Category
 
-    @staticmethod
-    def category_food_dict():
-        category_list = Category.objects.all()
-        cat_dict = OrderedDict()
-        for cat in category_list:
-            cat_dict[cat] = cat.get_food()
-        return cat_dict
+    # @staticmethod
+    # def category_food_dict():
+    #     category_list = Category.objects.all()
+    #     cat_dict = OrderedDict()
+    #     for cat in category_list:
+    #         cat_dict[cat] = cat.get_food()
+    #     return cat_dict
+    #
+    # def get_queryset(self):
+    #     return self.category_food_dict()
+
+class CategoryDetails(ListView):
+    model = Food
+    context_object_name = 'food'
+    template_name = 'category-details.html'
 
     def get_queryset(self):
-        return self.category_food_dict()
+        category = Category.objects.get(slug=self.kwargs['slug'])
+        return category.get_food()
+
 
 
 # The roll pane

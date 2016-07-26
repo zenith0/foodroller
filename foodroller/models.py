@@ -10,7 +10,7 @@ __author__ = 'stefan'
 
 class Category(models.Model):
     name = models.CharField(unique=True, blank=False, max_length=50)
-
+    slug = models.SlugField(unique=True, blank=False, null=False)
     def __str__(self):
         return self.name
 
@@ -21,6 +21,9 @@ class Category(models.Model):
     def get_food(self):
         return self.food.all()
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Category, self).save(*args, **kwargs)
 
 class Food(models.Model):
     name = models.CharField(unique=True, blank=False, max_length=50)

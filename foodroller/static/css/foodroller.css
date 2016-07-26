@@ -1,8 +1,136 @@
+* {
+    font-family: BlinkMacSystemFont;
+  }
+
 .navbar {
     border-radius: 0;
+    border: none;
+    background: white;
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-top: 10px;
+}
+
+.nav.navbar-nav li a {
+    padding-top: 20px;
+    color: black;
+    font-size: 16px;
 }
 
 .navbar-brand {
     font-family: 'Lobster', cursive;
-    font-size: 26px;
+    font-size: 36px;
+}
+
+.navbar .navbar-brand {
+    color: black;
+}
+
+.heading-1-white {
+    padding-top: 50px;
+    font-size: 90px;
+    color: #fff;
+    padding-left: 40px;
+      text-align: left;
+
+}
+
+.hero-section {
+  height: 200px;
+  /*padding-top: 180px;*/
+  background-image: url('../images/original_001.jpg');
+  background-position: bottom;
+  background-size: cover;
+  /*background-repeat: repeat;*/
+}
+
+.roll-now {
+  position: static;
+  left: 0px;
+  top: 0px;
+  display: inline-block;
+  margin-bottom: 24px;
+  padding: 20px 86px;
+  float: none;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, .54);
+  -webkit-transition: opacity 200ms ease, all 500ms ease;
+  transition: opacity 200ms ease, all 500ms ease;
+  font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+  color: #fff;
+  font-size: 30px;
+  text-align: center;
+}
+
+.feature-section {
+    text-align: center;
+}
+
+.footer-section {
+  height: 50px;
+    margin-top: 50px;
+  /*margin-bottom: 0px;*/
+  /*background-color: #000;*/
+  text-align: left;
+    color: black;
+    position: fixed;
+    bottom: 0;
+}
+
+.preview-section {
+    text-align: center;
+}
+
+.categories {
+    text-align: center;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.category-row {
+    padding-left: 50px;
+}
+
+.thumbnail {
+    border: none;
+    border-bottom: solid;
+    border-color: darkslategrey;
+    margin-bottom: 50px;
+    background-color: whitesmoke;
+    width: 90%;
+}
+
+.white, .white a {
+  color: #fff;
+}
+
+.btn-favorite {
+    background-color: darkslategrey;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.padding-bottom {
+    padding-bottom: 30px;
+}
+
+
+@media (max-width: 1420px) {
+.navbar {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+}
+
+@media (max-width: 720px) {
+.heading-1-white {
+    font-size: 90px;
+    padding-left: 5px;
+    text-align: center;
+}
 }
