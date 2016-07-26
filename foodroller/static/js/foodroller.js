@@ -82,11 +82,7 @@ $('#confirm-delete').on('show.bs.modal', function(e) {
     $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 });
 
-$(document).ready(function() {
-    // -----------------------------------------------------------------------
-    $.each($('#navbar').find('li'), function() {
-        $(this).toggleClass('active',
-            window.location.pathname.indexOf($(this).find('a').attr('href')) > -1);
-    });
-    // -----------------------------------------------------------------------
+$(".nav a").on("click", function(){
+   $(".nav").find(".active").removeClass("active");
+   $(this).parent().addClass("active");
 });
