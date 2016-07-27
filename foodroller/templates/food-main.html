@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load thumbnail %}
+
+{% block body %}
+
+  <div class="centered">
+
+    <h1 class="padding-bottom">Food</h1>
+
+    <ul class="nav nav-tabs">
+
+      {% for category in categories %}
+        <li><a data-toggle="tab" href="#{{ category.slug }}" {% if forloop.first %} class="active" {% endif %}>{{ category.name }}</a></li>
+      {% endfor %}
+    </ul>
+
+    <div class="tab-content">
+      {% for category in categories %}
+        <div id="{{ category.slug }}" class="tab-pane fade in{% if forloop.first %} active {% endif %}">
+          <div class="row">
+            {% for food in category.get_food %}
+              <div class="col-md-4">
+              <a href="/food/{{ food.slug }}">
+                <div class="thumbnail">
+                  {% if food.img %}
+                    <img src="{{ food.img|thumbnail_url:'thumb' }}">
+                  {% else %}
+                    <img width="100%" src="{% static 'images/mains.jpg' %}" class="food-img-2">
+                  {% endif %}
+                  <h3>{{ food.name }}</h3>
+                </div>
+              </a>
+              </div>
+              {% if forloop.counter|divisibleby:"3" %}
+                </div>
+                <div class="row">
+              {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+{% endblock %}

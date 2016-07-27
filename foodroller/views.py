@@ -43,9 +43,10 @@ class FoodPreview(ListView):
 
 class Categories(ListView):
 
-    template_name = 'categories.html'
+    template_name = 'food-main.html'
     context_object_name = 'categories'
     model = Category
+
 
     # @staticmethod
     # def category_food_dict():

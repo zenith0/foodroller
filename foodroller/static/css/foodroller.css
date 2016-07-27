@@ -101,6 +101,8 @@
     margin-bottom: 50px;
     background-color: whitesmoke;
     width: 90%;
+    text-decoration: none;
+    color: black;
 }
 
 .white, .white a {
@@ -111,6 +113,12 @@
     background-color: darkslategrey;
 }
 
+.centered {
+    text-align: center;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
 a:hover {
     text-decoration: none;
 }
@@ -119,12 +127,41 @@ a:hover {
     padding-bottom: 30px;
 }
 
+.tab-content {
+    margin-top: 50px    ;
+}
+
+.nav-tabs > li{
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+     zoom:1; /* hasLayout ie7 trigger */
+}
+
+.nav-tabs > li > a {
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+
+}
+
+.nav-tabs, .nav-pills {
+    text-align:center;
+
+}
+
+
 
 @media (max-width: 1420px) {
 .navbar {
     padding-left: 0px;
     padding-right: 0px;
 }
+
+    .centered {
+        margin-right: 150px;
+        margin-left: 150px;
+    }
 }
 
 @media (max-width: 720px) {
@@ -133,4 +170,10 @@ a:hover {
     padding-left: 5px;
     text-align: center;
 }
+
+    .centered {
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+
 }
