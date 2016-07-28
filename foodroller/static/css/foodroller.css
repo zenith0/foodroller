@@ -1,6 +1,33 @@
 * {
-    font-family: BlinkMacSystemFont;
+    font-family: 'Lobster', cursive;
+
   }
+
+h1, h2, h3, h4, select, option {
+    font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+}
+
+.panel-default {
+    border: none;
+    background-color: transparent;
+}
+
+
+.form-control {
+    margin-bottom: 10px;
+}
+
+.form-control:focus {
+    border-color: #8e793E;
+}
+
+.form-control:hover {
+    border-color: #8e793E;
+}
+
+select {
+    border-color: #8e793E;
+}
 
 .navbar {
     border-radius: 0;
@@ -12,18 +39,39 @@
 }
 
 .nav.navbar-nav li a {
-    padding-top: 20px;
+    padding-top: 16px;
+    padding-left: 40px;
     color: black;
-    font-size: 16px;
-}
-
-.navbar-brand {
-    font-family: 'Lobster', cursive;
-    font-size: 36px;
+    font-size: 20px;
+        font-family: 'Lobster', cursive;
+     font-weight: 400;
 }
 
 .navbar .navbar-brand {
+    font-family: 'Lobster', cursive;
+     font-weight: 400;
+    font-size: 36px;
     color: black;
+}
+
+.navbar .navbar-brand .active {
+    color: #8e793E;
+        font-family: 'Lobster', cursive;
+    font-size: 36px;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover
+{
+    color: #8e793E;
+    border: none;
+    border-bottom: double;
+    font-weight: bold;
+}
+
+
+.food-thumb {
+    border-radius: 5px;
+    width: 80%;
 }
 
 .heading-1-white {
@@ -36,11 +84,12 @@
 }
 
 .hero-section {
-  height: 200px;
+  height: 800px;
   /*padding-top: 180px;*/
   background-image: url('../images/original_001.jpg');
   background-position: bottom;
   background-size: cover;
+    text-align: center;
   /*background-repeat: repeat;*/
 }
 
@@ -54,10 +103,11 @@
   float: none;
   border: 2px solid transparent;
   border-radius: 20px;
-  background-color: rgba(0, 0, 0, .54);
+  background-color: #8e793E;
+
   -webkit-transition: opacity 200ms ease, all 500ms ease;
   transition: opacity 200ms ease, all 500ms ease;
-  font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+  font-family: 'Lobster', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
   color: #fff;
   font-size: 30px;
   text-align: center;
@@ -68,14 +118,13 @@
 }
 
 .footer-section {
-  height: 50px;
-    margin-top: 50px;
-  /*margin-bottom: 0px;*/
-  /*background-color: #000;*/
-  text-align: left;
-    color: black;
     position: fixed;
+    height: 50px;
     bottom: 0;
+    padding-top: 15px;
+    padding-left: 20px;
+    color: lightgrey;
+    background-color: black;
 }
 
 .preview-section {
@@ -97,17 +146,29 @@
 .thumbnail {
     border: none;
     border-bottom: solid;
-    border-color: darkslategrey;
+    border-color: #8e793E;
     margin-bottom: 50px;
-    background-color: whitesmoke;
+    /*background-color: whitesmoke;*/
     width: 90%;
     text-decoration: none;
     color: black;
 }
 
+
+ul.nav a:hover { color: #8e793E !important; }
+
+
 .white, .white a {
   color: #fff;
 }
+
+/*.golden-border {*/
+    /*/!*margin-bottom: 50px;*!/*/
+    /*border-right: solid;*/
+    /*border-color: #8e793E; !important;*/
+    /*padding-right: 50px;*/
+
+/*}*/
 
 .btn-favorite {
     background-color: darkslategrey;
@@ -118,6 +179,18 @@
     margin-left: 150px;
     margin-right: 150px;
 }
+
+.nav.navbar-nav .active {
+    color: #8e793E; !important;
+}
+
+/*.box-shadow{*/
+    /*-moz-box-shadow: 0px 0px 0px 2px #8e793E; /!* Firefox *!/*/
+
+    /*-webkit-box-shadow: 0px 0px 0px 2px #8e793E; /!* Safari, Chrome *!/*/
+
+    /*box-shadow: 0px 0px 0px 2px #8e793E; /!* CSS3 *!/*/
+/*}*/
 
 a:hover {
     text-decoration: none;
@@ -136,20 +209,25 @@ a:hover {
     display:inline-block;
     *display:inline; /* ie7 fix */
      zoom:1; /* hasLayout ie7 trigger */
+
 }
 
 .nav-tabs > li > a {
     text-decoration: none;
     color: black;
     font-size: 24px;
-
 }
+
+.nav-tabs > li .active  {
+   border-bottom: 3px solid black;
+}
+
 
 .nav-tabs, .nav-pills {
-    text-align:center;
+    text-align: center;
+    border: none;
 
 }
-
 
 
 @media (max-width: 1420px) {
@@ -166,7 +244,7 @@ a:hover {
 
 @media (max-width: 720px) {
 .heading-1-white {
-    font-size: 90px;
+    font-size: 0px;
     padding-left: 5px;
     text-align: center;
 }

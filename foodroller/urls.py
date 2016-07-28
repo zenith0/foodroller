@@ -11,9 +11,9 @@ from foodroller import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', FoodPreview.as_view(), name='catalog'),
-    url(r'^categories/$', Categories.as_view(), name='catalog'),
-    url(r'^category/(?P<slug>[\w\-]+)/$', CategoryDetails.as_view(), name='food'),
+    url(r'^$', FoodPreview.as_view(), name='index'),
+    url(r'^food/$', Categories.as_view(), name='catalog'),
+    url(r'^category/(?P<slug>[\w\-]+)/$', CategoryDetails.as_view(), name='categories'),
     url(r'^roll/$', RollView.as_view(), name='roll'),
     url(r'^roll-food/$', RollFood.as_view(), name='roll_food'),
     url(r'^food/(?P<slug>[\w\-]+)/$', FoodDetails.as_view(), name='food'),
