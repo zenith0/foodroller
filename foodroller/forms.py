@@ -12,9 +12,9 @@ DAYS_CHOICES = (
 )
 
 class DateForm(forms.Form):
-    days = forms.ChoiceField(label="Tage:", required=True, widget=forms.Select(attrs={'class': 'w-select days-sel',
+    days = forms.ChoiceField(label="Tage:", required=True, widget=forms.Select(attrs={'class': 'form-control',
                                                                         'required': True}), choices=DAYS_CHOICES)
-    date = forms.DateField(label="Startdatum:", required=True, widget=forms.DateInput(attrs={'class': 'datepicker'}))
+    date = forms.DateField(label="Startdatum:", required=True, widget=forms.DateInput(attrs={'class': 'datepicker form-control'}))
 
 
 class EmailForm(forms.Form):

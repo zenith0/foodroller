@@ -125,12 +125,15 @@ class FoodDetails(DetailView):
 class SearchFood(View):
 
     def get(self, request):
+        s = request.GET['term']
+        if len(s) < 3:
+            return
         search_qs = Food.objects.filter(name__icontains=request.GET['term'])
         results = []
         for r in search_qs:
             results.append(r.name)
             resp = json.dumps(results)
-            return HttpResponse(resp, content_type='application/json')
+        return HttpResponse(resp, content_type='application/json')
 
     def post(self, request):
         name = request.POST['name']

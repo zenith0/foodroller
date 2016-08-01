@@ -18,7 +18,7 @@
               {% if day.food.img %}
                 <img src="{{ day.food.img|thumbnail_url:'thumb' }}" data-ix="fade-in-bottom-scroll-in" class="food-img">
               {% else %}
-                <img width="400" src="{% static 'images/mains.jpg' %}" data-ix="fade-in-bottom-scroll-in" class="food-img">
+                <img width="400" src="{% static 'images/placeholder3.png' %}" data-ix="fade-in-bottom-scroll-in" class="food-img">
               {% endif %}
             </a>
             <h4 class="home-h5">{{ day.date|date:"l, d.m.Y" }}</h4>

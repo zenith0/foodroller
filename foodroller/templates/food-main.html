@@ -26,7 +26,7 @@
                   {% if food.img %}
                     <img src="{{ food.img|thumbnail_url:'thumb' }}">
                   {% else %}
-                    <img width="100%" src="{% static 'images/mains.jpg' %}" class="food-thumb">
+                    <img width="100%" src="{% static 'images/placeholder3.png' %}" class="food-thumb">
                   {% endif %}
                   <h3>{{ food.name }}</h3>
                 </div>

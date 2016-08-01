@@ -3,7 +3,7 @@
 
   }
 
-h1, h2, h3, h4, select, option {
+h1, h2, h3, h4, select, option, input {
     font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
 }
 
@@ -97,20 +97,34 @@ select {
   position: static;
   left: 0px;
   top: 0px;
-  display: inline-block;
+  /*display: inline-block;*/
   margin-bottom: 24px;
-  padding: 20px 86px;
+  /*padding: 20px 86px;*/    font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+
+    padding: 20px;
   float: none;
   border: 2px solid transparent;
   border-radius: 20px;
   background-color: #8e793E;
-
   -webkit-transition: opacity 200ms ease, all 500ms ease;
   transition: opacity 200ms ease, all 500ms ease;
   font-family: 'Lobster', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
   color: #fff;
   font-size: 30px;
   text-align: center;
+    margin-top: 50px;
+}
+
+.roll-now:hover {
+    background-color: #AD974F;
+}
+
+
+.manual-btn {
+    padding: 10px;
+  font-size: 20px;
+    margin: 20px;
+    width: 80px;
 }
 
 .feature-section {
@@ -184,6 +198,13 @@ ul.nav a:hover { color: #8e793E !important; }
     color: #8e793E; !important;
 }
 
+.roll-col {
+    border: solid;
+    border-color: #8e793E;
+    border-radius: 5px;
+    margin: 5px;
+    width: 30%;
+}
 /*.box-shadow{*/
     /*-moz-box-shadow: 0px 0px 0px 2px #8e793E; /!* Firefox *!/*/
 
@@ -191,6 +212,18 @@ ul.nav a:hover { color: #8e793E !important; }
 
     /*box-shadow: 0px 0px 0px 2px #8e793E; /!* CSS3 *!/*/
 /*}*/
+
+.ui-autocomplete {
+position: absolute;
+z-index: 2150000000 !important;
+cursor: default;
+border: 2px solid #ccc;
+padding: 5px 0;
+border-radius: 2px;
+}
+
+ul.ui-autocomplete.ui-menu{font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif}
+
 
 a:hover {
     text-decoration: none;
@@ -229,6 +262,10 @@ a:hover {
 
 }
 
+.days-form {
+  text-align: center;
+  padding-bottom: 10px;
+}
 
 @media (max-width: 1420px) {
 .navbar {
@@ -240,6 +277,13 @@ a:hover {
         margin-right: 150px;
         margin-left: 150px;
     }
+
+}
+
+@media (max-width:  1080px) {
+            .roll-col {
+        width: 100%;
+    }
 }
 
 @media (max-width: 720px) {
@@ -248,6 +292,8 @@ a:hover {
     padding-left: 5px;
     text-align: center;
 }
+
+
 
     .centered {
         margin-right: 20px;
