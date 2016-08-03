@@ -4,61 +4,64 @@
 
 {% block body %}
 
-  <body >
 
-      <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
 
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-                </div>
+  <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
 
-                <div class="modal-body">
-                    <p>You are about to delete this foodplan, this procedure is irreversible.</p>
-                    <p>Do you want to proceed?</p>
-                    <p class="debug-url"></p>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-danger btn-ok">Delete</a>
-                </div>
-            </div>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
         </div>
-    </div>
 
-  <h1>Plans.</h1>
+        <div class="modal-body">
+          <p>You are about to delete this foodplan, this procedure is irreversible.</p>
+          <p>Do you want to proceed?</p>
+          <p class="debug-url"></p>
+        </div>
 
-    <div class="w-section tabs-section" data-ix="fade-in-bottom-page-loads">
-
-  <div class="row food-row">
-
-    {% for p in plans %}
-      <div class="col-md-4 col-centered">
-        <div class="food-div" id="{{ p.name }}">
-
-          <a href="/plans/{{ p.slug  }}">
-            {% if p.img %}
-              <img src="{{ p.img|thumbnail_url:'thumb' }}" class="food-img-2">
-            {% else %}
-              <img width="100%" src="{% static 'images/placeholder3.png' %}" class="food-img-2">
-            {% endif %}
-            <h3>{{ p.name }}</h3>
-          </a>
-        <a href="#" data-href="/deleteplan/{{ p.slug }}" data-toggle="modal" data-target="#confirm-delete">
-        <span class="glyphicon glyphicon-trash"></span>
-</a>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-danger btn-ok">Delete</a>
         </div>
       </div>
-
-      {% if forloop.counter|divisibleby:3 %}
-        </div>
-        <div class="w-row food-row">
-      {% endif %}
-    {% endfor %}
     </div>
-</div>
-  </body>
+  </div>
+
+  <div class="centered">
+    <h1 class="padding-bottom">Plans.</h1>
+
+    <div class="row">
+      {% for p in plans %}
+        <div class="col-md-3">
+          <div class="thumbnail" id="{{ p.name }}">
+            <a href="/plans/{{ p.slug }}">
+              {% if p.img %}
+                <img src="{{ p.img|thumbnail_url:'thumb' }}">
+              {% else %}
+                <img width="100%" src="{% static 'images/placeholder3.png' %}" class="food-thumb">
+              {% endif %}
+              <h3>{{ p.name }}</h3>
+            </a>
+            <a href="#" data-href="/deleteplan/{{ p.slug }}" data-toggle="modal" data-target="#confirm-delete">
+              <button class="roll-now manual-btn-small">
+                <span class="glyphicon glyphicon-trash"></span></button>
+            </a>
+            <a href="/plans/{{ p.slug }}">
+              <button class="roll-now manual-btn-small">
+                <span class="glyphicon glyphicon-edit"></span></button>
+            </a>
+          </div>
+        </div>
+          {% if forloop.counter|divisibleby:"3" %}
+            </div>
+            <div class="row">
+          {% endif %}
+      {% endfor %}
+
+
+      </div>
+    </div>
+
 {% endblock %}

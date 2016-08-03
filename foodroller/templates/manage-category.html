@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+  <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+        </div>
+
+        <div class="modal-body">
+          <p>You are about to delete this category, this procedure is irreversible.</p>
+          <p>Do you want to proceed?</p>
+          <p class="debug-url"></p>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-danger btn-ok">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="centered">
+    <h1 class="padding-bottom">Categories</h1>
+
+    <a href="/category/add">
+      <button type="button" class="btn btn-primary float-left"><span class="glyphicon glyphicon-plus"></span>&nbsp;Category</button>
+    </a>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+        <tr>
+          <th class="col-sm-1">Name</th>
+
+          <th class="col-md-2"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for cat in categories %}
+          <tr>
+
+            <th class="col-sm-1"><a href="/manage/food/{{ cat.slug }}">{{ cat.name }}</a></th>
+            <th class="col-md-2">
+            <a href="#" data-href="/deletecategory/{{ cat.slug }}" data-toggle="modal" data-target="#confirm-delete">
+              <button class="roll-now manual-btn-small">
+                <span class="glyphicon glyphicon-trash"></span></button>
+            </a>           <a href="/category/edit/{{ cat.slug }}">
+            <button class="roll-now manual-btn-small">
+              <span class="glyphicon glyphicon-edit"></span></button>
+          </a>
+
+            </th>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+{% endblock %}

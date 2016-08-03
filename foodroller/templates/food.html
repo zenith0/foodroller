@@ -18,7 +18,7 @@
       <div class="col-md-3 align-left golden-border">
         {#        <div class="recipe-div">#}
         <h2><span class="glyphicon glyphicon-book">&nbsp;Rezept</span></h2>
-        <p >
+        <p class="lobester">
           {% if food.recipe %}
           {{ food.recipe }}
           {% else %}
@@ -35,22 +35,22 @@ Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming 
 
           <div class="col-md-3 align-left golden-border">
         <h2 ><span class="glyphicon glyphicon glyphicon-shopping-cart">&nbsp;Zutaten</span> </h2>
-        <ul class="ingredients-list">
+        <ul class="ingredients-list ">
           {% if food.get_ingredients %}
             {% for ing in food.get_ingredients %}
-              <li class="list-item">{{ ing.amount }}&nbsp;{{ ing.name }}&nbsp;</li>
+              <li class="list-item lobester">{{ ing.amount }}&nbsp;{{ ing.name }}&nbsp;</li>
             {% endfor %}
             </ul>
           {% else %}
-            <li class="list-item">1g Zucker</li>
-            <li class="list-item">2g Mehl</li>
+            <li class="list-item lobester">1g Zucker</li>
+            <li class="list-item lobester">2g Mehl</li>
 
-            <li class="list-item">15ml Wasser</li>
+            <li class="list-item lobester">15ml Wasser</li>
 
-            <li class="list-item">1 Apfel</li>
+            <li class="list-item lobester">1 Apfel</li>
 
-            <li class="list-item">1 Birne</li>
-            <li class="list-item">Nochetwas</li>
+            <li class="list-item lobester">1 Birne</li>
+            <li class="list-item lobester">Nochetwas</li>
           {% endif %}
 
 

@@ -1,6 +1,6 @@
 from django.conf.urls.static import static
 from foodroller.views import RollView, FoodPreview, Categories, FoodDetails, SearchFood, RollFood, SummaryView, \
-    PlanDetails, Plans, CategoryDetails
+    PlanDetails, Plans, CategoryDetails, ManageCategories
 from foodroller_project import settings
 
 __author__ = 'stefan'
@@ -22,6 +22,8 @@ urlpatterns = [
     url(r'^plans/$', Plans.as_view(), name='plans'),
     url(r'^plans/(?P<slug>[\w\-]+)/$', PlanDetails.as_view(), name='plans'),
     url(r'^deleteplan/(?P<slug>[\w\-]+)/$', views.delete_details, name='deleteplan'),
+    url(r'^manage/$', ManageCategories.as_view(), name='manage'),
+
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 admin.site.site_header = settings.ADMIN_SITE_HEADER

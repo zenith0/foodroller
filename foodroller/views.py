@@ -81,7 +81,6 @@ class RollView(View):
     category_list = Category.objects.all()
     template = 'roll-config.html'
 
-
     def init_with_start_end_date(self, start_date, end_date):
         self.start_date = start_date
         self.end_date = end_date
@@ -110,7 +109,7 @@ class RollView(View):
         if date_form.is_valid():
             self.days = int(date_form.cleaned_data['days'])
             self.start_date = date_form.cleaned_data['date']
-            self.end_date = self.start_date + datetime.timedelta(self.days)
+            self.end_date = self.start_date + datetime.timedelta(self.days - 1)
             self.init_with_start_end_date(self.start_date, self.end_date)
         return self.send_response(self, request)
 
@@ -192,8 +191,8 @@ class Plans(ListView):
     context_object_name = 'plans'
     model = Foodplan
 
-class PlanDetails(RollView):
 
+class PlanDetails(RollView):
     def get(self, request, *args, **kwargs):
         slug = kwargs.get('slug')
         foodplan = Foodplan.objects.get(slug=slug)
@@ -204,6 +203,7 @@ class PlanDetails(RollView):
         self.template = 'roll-update.html'
         return self.send_response(self, request)
 
+
 def delete_details(request, slug):
     foodplan_list = Foodplan.objects.filter(slug=slug)
     for foodplan in foodplan_list:
@@ -211,3 +211,6 @@ def delete_details(request, slug):
 
     menu = Foodplan.objects.all().order_by('-start_date')
     return render(request, 'plans.html', {'menu': menu})
+
+class ManageCategories(Categories):
+    template_name = 'manage-category.html'

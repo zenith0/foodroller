@@ -7,7 +7,7 @@
     {% for day in days%}
       <div class="col-md-4 roll-col">
         <h3>{{ day.date|date:'l' }} </h3>
-        <div class="day-res" id="day-res-{{ day|date:"d-m-y" }}">
+        <div class="day-res" id="day-res-{{ day.date|date:"d-m-y" }}">
             {% include 'food-snippet.html' with food=day.food %}
           </div>
           <select id="category-{{ day.date|date:"d-m-y" }}" name="field" required="required" class="form-control">

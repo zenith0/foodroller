@@ -6,6 +6,10 @@ var man_day;
 
 $(document).ready(function() {
     $('.datepicker').datepicker();
+
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    });
 });
 
 function openDateModal() {
@@ -21,7 +25,7 @@ function openSearchModal(id) {
 function openSummaryModal() {
     $.get("/summary/", function(data){
         if (data == -1)
-        $(".alert").show();
+            $(".alert").show();
         $("#email").html(data);
         $("#accept-modal").modal('show');
 
@@ -78,11 +82,7 @@ function roll(id) {
     });
 }
 
-$('#confirm-delete').on('show.bs.modal', function(e) {
-    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-});
-
 $(".nav a").on("click", function(){
-   $(".nav").find(".active").removeClass("active");
-   $(this).parent().addClass("active");
+    $(".nav").find(".active").removeClass("active");
+    $(this).parent().addClass("active");
 });
