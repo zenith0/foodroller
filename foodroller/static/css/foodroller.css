@@ -5,8 +5,13 @@
 
 * {
     font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+
 }
 
+a {
+    color: black;
+    text-decoration: none;
+}
 
 .datepicker {
     font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
@@ -125,6 +130,15 @@ select {
     background-color: #AD974F;
 }
 
+.golden-btn {
+   background-color: #8e793E;
+    border: none;
+}
+
+.golden-btn:hover {
+    background-color: #AD974F;
+}
+
 
 .manual-btn {
     padding: 10px;
@@ -179,6 +193,10 @@ select {
     width: 90%;
     text-decoration: none;
     color: black;
+}
+
+.golden-font {
+    color: #8e793E;
 }
 
 .thumbnail >  a {

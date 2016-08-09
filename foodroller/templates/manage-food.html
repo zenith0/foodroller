@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
+{% load thumbnail %}
 
 {% block body %}
 
@@ -13,7 +14,7 @@
         </div>
 
         <div class="modal-body">
-          <p>You are about to delete this category, this procedure is irreversible.</p>
+          <p>You are about to delete this Meal, this procedure is irreversible.</p>
           <p>Do you want to proceed?</p>
           <p class="debug-url"></p>
         </div>
@@ -29,15 +30,16 @@
 
 
   <div class="centered">
-    <h1 class="padding-bottom">Categories</h1>
+    <h1 class="padding-bottom">Meals for {{ category.name }}</h1>
 
       <div class="col-md-6 align-left">
-        <h3 class="padding-bottom">Add a New Category</h3>
+        <h3 class="padding-bottom">Add a New Meal</h3>
         {% if error_message %}
           <p><strong>{{ error_message }}</strong></p>
         {% endif %}
         <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
           {% csrf_token %}
+
           {% include 'form_template.html' %}
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
@@ -55,24 +57,29 @@
             </tr>
             </thead>
             <tbody>
-            {% for cat in categories %}
+            {% for f in food %}
               <tr>
                 <th>
-                  <div class="col-xs-6">
-
-                    <a href="/manage/category/{{ cat.slug }}">{{ cat.name }}</a>
+                                    <div class="col-xs-2">
+                    {% if f.img %}
+                      <img src="{{ f.img|thumbnail_url:'img_50' }}"/>
+                    {% endif %}
                   </div>
                   <div class="col-xs-6">
+                    {{ f.name }}
+                  </div>
+                  <div class="col-xs-3">
 
-                    <a href="#" data-href="/category/delete/{{ cat.slug }}" data-toggle="modal" data-target="#confirm-delete">
+                    <a href="#" data-href="/manage/category/{{ category.slug }}/food/delete/{{ f.slug }}" data-toggle="modal" data-target="#confirm-delete">
                       <button class="roll-now manual-btn-small">
                         <span class="glyphicon glyphicon-trash"></span></button>
                     </a>
-                    <a href="/category/update/{{ cat.slug }}">
+                    <a href="/manage/category/{{ category.slug }}/food/update/{{ f.slug }}">
                       <button class="roll-now manual-btn-small">
                         <span class="glyphicon glyphicon-edit"></span></button>
                     </a>
                   </div>
+
 
                 </th>
               </tr>

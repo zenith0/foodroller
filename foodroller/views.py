@@ -1,16 +1,18 @@
 import datetime
 import json
+from django.core.urlresolvers import reverse_lazy
+from django.db import IntegrityError
+from django.forms import inlineformset_factory
 from operator import itemgetter
+import os
 import random
-from collections import OrderedDict
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.mail import send_mail
-from django.views.generic import View, ListView, DetailView
+from django.views.generic import View, ListView, DetailView, CreateView, DeleteView, UpdateView
 from foodroller.commons.date_utils import Date
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from foodroller.forms import DateForm, EmailForm
-from foodroller.models import Category, Food, Foodplan, Day
+from foodroller.forms import DateForm, EmailForm, CategoryForm, FoodForm
+from foodroller.models import Category, Food, Foodplan, Day, Ingredient
 from foodroller.utils import update_current_plan, get_cached_food_plan, \
     get_food_from_cached_plan, filter_food_by_category_name, filter_food_by_duration, clear_food_plan, set_food_plan
 
@@ -47,18 +49,6 @@ class Categories(ListView):
     context_object_name = 'categories'
     model = Category
 
-
-    # @staticmethod
-    # def category_food_dict():
-    #     category_list = Category.objects.all()
-    #     cat_dict = OrderedDict()
-    #     for cat in category_list:
-    #         cat_dict[cat] = cat.get_food()
-    #     return cat_dict
-    #
-    # def get_queryset(self):
-    #     return self.category_food_dict()
-
 class CategoryDetails(ListView):
     model = Food
     context_object_name = 'food'
@@ -67,6 +57,45 @@ class CategoryDetails(ListView):
     def get_queryset(self):
         category = Category.objects.get(slug=self.kwargs['slug'])
         return category.get_food()
+
+
+class CreateCategory(CreateView):
+    model = Category
+    fields = ['name']
+    template_name = 'category_form.html'
+
+class DeleteCategory(DeleteView):
+    model = Category
+    success_url = reverse_lazy('manage')
+
+    def get(self, request, *args, **kwargs):
+        return self.post(self, request, args, kwargs)
+
+class DeleteFood(DeleteView):
+    model = Food
+    success_url = ''
+
+    def get(self, request, *args, **kwargs):
+        slug = kwargs['slug']
+        cat_slug = kwargs['cat_slug']
+        food = Food.objects.get(slug=slug)
+        category = Category.objects.get(slug=cat_slug)
+        self.success_url = '/manage/category/' + category.slug
+        return self.post(self, request, args, kwargs)
+
+class UpdateCategory(UpdateView):
+    model = Category
+    fields = ['name']
+    template_name = 'manage-category.html'
+    success_url = reverse_lazy('manage')
+
+    def get(self, request, *args, **kwargs):
+        slug=self.kwargs['slug']
+        category = Category.objects.get(slug=slug)
+        data = {'name' : category.name, 'slug' : category.slug}
+        form = CategoryForm(initial=data)
+        return render(request, self.template_name, {'categories':Category.objects.all(),
+                                                    'form': form})
 
 
 
@@ -213,4 +242,108 @@ def delete_details(request, slug):
     return render(request, 'plans.html', {'menu': menu})
 
 class ManageCategories(Categories):
-    template_name = 'manage-category.html'
+    template = 'manage-category.html'
+    def get(self, request, *args, **kwargs):
+        form = CategoryForm()
+        return render(request, self.template, {'categories':Category.objects.all(),
+                                               'form': form})
+
+    def post(self, request):
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            try:
+                form.save()
+            except IntegrityError as e:
+                return render(request, self.template, {'categories':Category.objects.all(),
+                                               'form': CategoryForm()})
+        else: #invalid case
+            print (form.is_valid())   #form contains data and errors
+            print (form.errors)
+            return render(request, self.template, {'categories':Category.objects.all(),
+                                                   'form': form})
+
+        return render(request, self.template, {'categories':Category.objects.all(),
+                                               'form': CategoryForm()})
+
+class ManageFood(ListView):
+    template = 'manage-food.html'
+    ingredientFormSet = inlineformset_factory(Food, Ingredient,
+                                              can_delete=False,
+                                              extra=5,
+                                              fields=('name', 'amount'))
+    form = FoodForm()
+    category = None
+
+    def get(self, request, *args, **kwargs):
+        slug = kwargs['slug']
+        self.category = Category.objects.get(slug=slug)
+        ingredient_formset = self.ingredientFormSet(instance=Food())
+        return render(request, self.template, {'food':self.category.get_food(),
+                                               'form': FoodForm(initial={'categories': [self.category]}),
+                                               'ingredient_formset': ingredient_formset,
+                                               'category': self.category})
+
+    def post(self, request, *args, **kwargs):
+        ingredient_form_set = None
+        form = FoodForm(request.POST, request.FILES or None)
+        category_slug = os.path.basename(os.path.normpath(request.path_info))
+        self.category = Category.objects.get(slug=category_slug)
+        if form.is_valid():
+            try:
+                food = form.save()
+
+                ingredient_form_set = self.ingredientFormSet(request.POST, instance=food)
+                ingredient_form_set.save()
+                form = self.form
+                ingredient_form_set = self.ingredientFormSet
+            except IntegrityError as e:
+                print('Integrity error: ' + str(e))
+
+        return render(request, self.template, {'food':self.category.get_food(),
+                                               'form': form,
+                                               'ingredient_formset': ingredient_form_set,
+                                               'category': self.category})
+
+
+class UpdateFood(UpdateView):
+    model = Food
+    template = 'manage-food.html'
+    success_url = reverse_lazy('manage')
+    IngredientFormSet = inlineformset_factory(Food, Ingredient,
+                                              can_delete=True,
+                                              extra=5,
+                                              fields=('name', 'amount'))
+    food = None
+
+    def get(self, request, *args, **kwargs):
+        slug=self.kwargs['slug']
+        cat_slug=self.kwargs['cat_slug']
+        food = Food.objects.get(slug=slug)
+        category = Category.objects.get(slug=cat_slug)
+        form = FoodForm(instance=food)
+        ingredientFormSet = self.IngredientFormSet(instance=food)
+
+        return render(request, self.template, {'food':category.get_food(),
+                                               'form': form,
+                                               'ingredient_formset': ingredientFormSet,
+                                               'category': category})
+
+    def post(self, request, *args, **kwargs):
+        food = Food.objects.get(slug=self.kwargs['slug'])
+        form = FoodForm(request.POST, request.FILES or None, instance=food)
+        ingredient_form_set = self.IngredientFormSet(request.POST, instance=food)
+        category_slug = self.kwargs['cat_slug']
+        category = Category.objects.get(slug=category_slug)
+        if form.is_valid():
+            try:
+                form.save()
+                ingredient_form_set.save()
+                form = FoodForm(initial={'categories': [category]})
+                ingredient_form_set = self.IngredientFormSet
+            except IntegrityError as e:
+                print('Integrity error: ' + str(e))
+
+        return render(request, self.template, {'food': category.get_food(),
+                                               'form': form,
+                                               'ingredient_formset': ingredient_form_set,
+                                               'category': category})

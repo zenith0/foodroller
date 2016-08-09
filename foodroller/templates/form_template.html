@@ -1,0 +1,30 @@
+{% load thumbnail %}
+
+{% for field in form %}
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <span class="text-danger small">{{ field.errors }}</span>
+        </div>
+        <label class="control-label col-sm-2" for="song_title">{{ field.label_tag }}</label>
+        <div class="col-sm-10">{{ field }}</div>
+    </div>
+{% endfor %}
+{% if ingredient_formset %}
+<h3>Ingredients</h3>
+  {{ ingredient_formset.management_form }}
+{% for form in ingredient_formset %}
+      <div class="form-group table">
+        <div class="col-sm-offset-2 col-sm-10">
+            <span class="text-danger small">{{ field.errors }}</span>
+        </div>
+        <label class="control-label col-sm-2" for="song_title">{{ field.label_tag }}</label>
+        <div class="col-sm-10">{{ form.as_table }}</div>
+    </div>
+{% endfor %}
+  <button id="add_more" class="btn btn-link pull-right golden-font">Add Ingredient</button>
+<script>
+    $('#add_more').click(function() {
+        cloneMore('div.table:last', 'service');
+    });
+</script>
+{% endif %}

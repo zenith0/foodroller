@@ -1,5 +1,6 @@
 from django import forms
-from foodroller.models import Category
+from django.forms import ModelForm, inlineformset_factory
+from foodroller.models import Category, Food, Ingredient
 
 __author__ = 'stefanperndl'
 
@@ -25,4 +26,13 @@ class EmailForm(forms.Form):
         super(EmailForm, self).__init__(*args, **kwargs)
         self.fields['summary'].label = False
 
+class CategoryForm(ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name']
+
+class FoodForm(forms.ModelForm):
+    class Meta:
+        model = Food
+        exclude = ('slug', 'last_cooked', )
 

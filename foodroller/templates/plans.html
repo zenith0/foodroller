@@ -38,7 +38,7 @@
           <div class="thumbnail" id="{{ p.name }}">
             <a href="/plans/{{ p.slug }}">
               {% if p.img %}
-                <img src="{{ p.img|thumbnail_url:'thumb' }}">
+                <img src="{{ p.img|thumbnail_url:'thumb' }}" class="food-thumb">
               {% else %}
                 <img width="100%" src="{% static 'images/placeholder3.png' %}" class="food-thumb">
               {% endif %}
