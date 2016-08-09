@@ -1,4 +1,5 @@
 import datetime
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Model
 from django.utils.text import slugify
@@ -9,8 +10,9 @@ __author__ = 'stefan'
 
 
 class Category(models.Model):
-    name = models.CharField(unique=True, blank=False, max_length=50)
-
+    name = models.CharField(unique=True, blank=False, max_length=50, null=False)
+    slug = models.SlugField(unique=True, blank=False, null=False)
+    # user = models.ForeignKey(User, editable = False)
     def __str__(self):
         return self.name
 
@@ -21,13 +23,22 @@ class Category(models.Model):
     def get_food(self):
         return self.food.all()
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Category, self).save(*args, **kwargs)
 
 class Food(models.Model):
+    COOKING_TIMES = (
+        ('30min', '< 30 min'),
+        ('1hr', '< 1 h'),
+        ('2hr', '< 2 h'),
+        ('2hr+', '> 2 h'),
+    )
     name = models.CharField(unique=True, blank=False, max_length=50)
     slug = models.SlugField(unique=True, blank=False, null=False)
     categories = models.ManyToManyField('Category', related_name='food')
     recipe = models.TextField(blank=True, null=True)
-    duration = models.DurationField(null=True, blank=True, help_text="hh:mm:ss (01:30:00 = 1 hr 30 min)")
+    duration = models.CharField(null=True, blank=True, choices=COOKING_TIMES, max_length=5)
     last_cooked = models.DateField(null=True, blank=True)
     img = models.ImageField(upload_to="img", null=True)
 
@@ -65,9 +76,10 @@ class Ingredient(models.Model):
 
     # prettify the amount field
     def save(self, *args, **kwargs):
-        self.amount = self.amount.replace(" ", "")
-        self.amount = self.amount.replace(",", ".")
-        super(Ingredient, self).save(*args, **kwargs)
+        if self.amount:
+            self.amount = self.amount.replace(" ", "")
+            self.amount = self.amount.replace(",", ".")
+            super(Ingredient, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Ingredient'

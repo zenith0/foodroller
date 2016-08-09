@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+  <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+        </div>
+
+        <div class="modal-body">
+          <p>You are about to delete this category, this procedure is irreversible.</p>
+          <p>Do you want to proceed?</p>
+          <p class="debug-url"></p>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-danger btn-ok">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="centered">
+    <h1 class="padding-bottom">Categories</h1>
+
+      <div class="col-md-6 align-left">
+        <h3 class="padding-bottom">Add a New Category</h3>
+        {% if error_message %}
+          <p><strong>{{ error_message }}</strong></p>
+        {% endif %}
+        <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {% include 'form_template.html' %}
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-success golden-btn">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for cat in categories %}
+              <tr>
+                <th>
+                  <div class="col-xs-6">
+
+                    <a href="/manage/category/{{ cat.slug }}">{{ cat.name }}</a>
+                  </div>
+                  <div class="col-xs-6">
+
+                    <a href="#" data-href="/category/delete/{{ cat.slug }}" data-toggle="modal" data-target="#confirm-delete">
+                      <button class="roll-now manual-btn-small">
+                        <span class="glyphicon glyphicon-trash"></span></button>
+                    </a>
+                    <a href="/category/update/{{ cat.slug }}">
+                      <button class="roll-now manual-btn-small">
+                        <span class="glyphicon glyphicon-edit"></span></button>
+                    </a>
+                  </div>
+
+                </th>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  </div>
+  </div>
+
+{% endblock %}

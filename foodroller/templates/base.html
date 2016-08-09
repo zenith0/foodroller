@@ -1,0 +1,105 @@
+{% load staticfiles %}
+{% load base_extras %}
+
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>FoodRoller</title>
+  {#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
+  {#    <meta name="generator" content="Webflow">#}
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/foodroller.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+
+  {#      <link rel="stylesheet" type="text/css" href="{% static  'css/foodroller.webflow.css' %}">#}
+  {#        <link rel="stylesheet" type="text/css" href="{% static  'css/webflow.css' %}">#}
+
+  {#    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css" type="text/css" rel="stylesheet">#}
+
+  {#    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/fav_icon.png' %}">#}
+  {#    <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">#}
+  {#      <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>#}
+  {#  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>#}
+  <script   src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/foodroller.js' %}"></script>
+
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand ">
+        <span class={% navactive request 'index' %} "lobester"> Food-Roller</span></a>
+    </div>
+    <!-- Collection of nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/food" class="{% navactive request 'catalog' %}">
+            <span class="glyphicon glyphicon-cutlery"></span>&nbsp; Food</a></li>
+        <li>
+          <a href="/roll" class="{% navactive request 'roll' %}">
+            <span class="fa fa-cubes"></span>&nbsp; Roll</a></li>
+        <li><a href="/plans" class="{% navactive request 'plans' %}">
+          <span class="glyphicon glyphicon-calendar"></span>&nbsp;Plans</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right ">
+        <li><a href="/manage/">
+          <span class="glyphicon glyphicon-cog"></span>&nbsp;Manage</a></li>
+        {#                <li>#}
+        {#                  <a href="#">#}
+        {#                    <span class="glyphicon glyphicon-user"></span>&nbsp;Login</a></li>#}
+        <li>
+          <a href="#">
+            <span class="glyphicon glyphicon-off"></span>&nbsp;Logout</a></li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<div class="white-font">
+  <!-- CUSTOM CODE -->
+  {% block body %}
+
+  {% endblock %}
+</div>
+<!-- FOOTER -->
+
+<div class="panel panel-default">
+  <div class="panel-body"></div>
+  <div class="panel-footer">Copyright&nbsp;‍‍©&nbsp;Stefan&nbsp;Perndl.&nbsp;All&nbsp;rights&nbsp;reserved</div>
+</div>
+
+
+<!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+{#    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>#}
+{#    <script type="text/javascript" src="{% static 'js/webflow.js' %}"></script>#}
+{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.0/bootstrap3-typeahead.js"></script>#}
+{#    <script type="text/javascript" src="{% static 'js/foodroller.js' %}"></script>#}
+
+{#    <script type="text/javascript" src="{% static 'js/modernizr.js' %}"></script>#}
+{#      <script>#}
+{#        WebFont.load({#}
+{#            google: {#}
+{#                families: ["Oswald:300,400,700"]#}
+{#            }#}
+{#        });#}
+
+{#    </script>#}
+</body>
+</html>

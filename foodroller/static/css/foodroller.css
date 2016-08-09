@@ -1,0 +1,338 @@
+.lobester {
+    font-family: 'Lobster', cursive;
+
+  }
+
+* {
+    font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.datepicker {
+    font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+
+}
+
+.panel-default {
+    border: none;
+    background-color: transparent;
+}
+
+
+.form-control {
+    margin-bottom: 10px;
+}
+
+.form-control:focus {
+    border-color: #8e793E;
+}
+
+.form-control:hover {
+    border-color: #8e793E;
+}
+
+select {
+    border-color: #8e793E;
+}
+
+.navbar {
+    border-radius: 0;
+    border: none;
+    background: white;
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-top: 10px;
+}
+
+.nav.navbar-nav li a {
+    padding-top: 16px;
+    padding-left: 40px;
+    color: black;
+    font-size: 20px;
+        font-family: 'Lobster', cursive;
+     font-weight: 400;
+}
+
+.navbar .navbar-brand {
+    font-family: 'Lobster', cursive;
+     font-weight: 400;
+    font-size: 36px;
+    color: black;
+}
+
+.navbar .navbar-brand .active {
+    color: #8e793E;
+        font-family: 'Lobster', cursive;
+    font-size: 36px;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover
+{
+    color: #8e793E;
+    border: none;
+    border-bottom: double;
+    font-weight: bold;
+}
+
+
+.food-thumb {
+    border-radius: 5px;
+    width: 80%;
+}
+
+.heading-1-white {
+    padding-top: 50px;
+    font-size: 90px;
+    color: #fff;
+    padding-left: 40px;
+      text-align: left;
+
+}
+
+.hero-section {
+  height: 800px;
+  /*padding-top: 180px;*/
+  background-image: url('../images/original_001.jpg');
+  background-position: bottom;
+  background-size: cover;
+    text-align: center;
+  /*background-repeat: repeat;*/
+}
+
+.roll-now {
+  position: static;
+  left: 0px;
+  top: 0px;
+  /*display: inline-block;*/
+  margin-bottom: 24px;
+  /*padding: 20px 86px;*/    font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+
+    padding: 20px;
+  float: none;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  background-color: #8e793E;
+  -webkit-transition: opacity 200ms ease, all 500ms ease;
+  transition: opacity 200ms ease, all 500ms ease;
+  font-family: 'Lobster', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+  color: #fff;
+  font-size: 30px;
+  text-align: center;
+    margin-top: 50px;
+}
+
+.roll-now:hover {
+    background-color: #AD974F;
+}
+
+.golden-btn {
+   background-color: #8e793E;
+    border: none;
+}
+
+.golden-btn:hover {
+    background-color: #AD974F;
+}
+
+
+.manual-btn {
+    padding: 10px;
+  font-size: 20px;
+    margin: 20px;
+    width: 80px;
+}
+
+.manual-btn-small {
+    padding: 6px;
+  font-size: 15px;
+    margin: 10px;
+    width: 40px;
+}
+
+.feature-section {
+    text-align: center;
+}
+
+.footer-section {
+    position: fixed;
+    height: 50px;
+    bottom: 0;
+    padding-top: 15px;
+    padding-left: 20px;
+    color: lightgrey;
+    background-color: black;
+}
+
+.preview-section {
+    text-align: center;
+}
+
+.categories {
+    text-align: center;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.category-row {
+    padding-left: 50px;
+}
+
+.thumbnail {
+    border: none;
+    border-bottom: solid;
+    border-color: #8e793E;
+    margin-bottom: 50px;
+    /*background-color: whitesmoke;*/
+    width: 90%;
+    text-decoration: none;
+    color: black;
+}
+
+.golden-font {
+    color: #8e793E;
+}
+
+.thumbnail >  a {
+    text-decoration: none;
+    color: black;
+}
+
+ul.nav a:hover { color: #8e793E !important; }
+
+
+.white, .white a {
+  color: #fff;
+}
+
+/*.golden-border {*/
+    /*/!*margin-bottom: 50px;*!/*/
+    /*border-right: solid;*/
+    /*border-color: #8e793E; !important;*/
+    /*padding-right: 50px;*/
+
+/*}*/
+
+.btn-favorite {
+    background-color: darkslategrey;
+}
+
+.centered {
+    text-align: center;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.nav.navbar-nav .active {
+    color: #8e793E; !important;
+}
+
+.roll-col {
+    border: solid;
+    border-color: #8e793E;
+    border-radius: 5px;
+    margin: 5px;
+    width: 30%;
+}
+/*.box-shadow{*/
+    /*-moz-box-shadow: 0px 0px 0px 2px #8e793E; /!* Firefox *!/*/
+
+    /*-webkit-box-shadow: 0px 0px 0px 2px #8e793E; /!* Safari, Chrome *!/*/
+
+    /*box-shadow: 0px 0px 0px 2px #8e793E; /!* CSS3 *!/*/
+/*}*/
+
+.ui-autocomplete {
+position: absolute;
+z-index: 2150000000 !important;
+cursor: default;
+border: 2px solid #ccc;
+padding: 5px 0;
+border-radius: 2px;
+}
+
+ul.ui-autocomplete.ui-menu{font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif}
+
+
+a:hover {
+    text-decoration: none;
+}
+
+.padding-bottom {
+    padding-bottom: 30px;
+}
+
+.tab-content {
+    margin-top: 50px    ;
+}
+
+.nav-tabs > li{
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+     zoom:1; /* hasLayout ie7 trigger */
+
+}
+
+.nav-tabs > li > a {
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+}
+
+.nav-tabs > li .active  {
+   border-bottom: 3px solid black;
+}
+
+
+.nav-tabs, .nav-pills {
+    text-align: center;
+    border: none;
+
+}
+
+.days-form {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+@media (max-width: 1420px) {
+.navbar {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+    .centered {
+        margin-right: 150px;
+        margin-left: 150px;
+    }
+
+}
+
+@media (max-width:  1080px) {
+            .roll-col {
+        width: 100%;
+    }
+}
+
+@media (max-width: 720px) {
+.heading-1-white {
+    font-size: 0px;
+    padding-left: 5px;
+    text-align: center;
+}
+
+
+
+    .centered {
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+
+}

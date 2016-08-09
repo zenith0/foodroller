@@ -1,0 +1,19 @@
+{% load thumbnail %}
+{% load static %}
+{% load thumbnail %}
+
+{% if food.img %}
+  <img src="{{ food.img|thumbnail_url:'roll_thumb' }}" class="food-thumb">
+  {% else %}
+  <img width="100%" src="{% static 'images/placeholder3.png' %}" class="food-thumb">
+{% endif %}
+{% if food.name %}
+<h3>{{ food.name }}</h3>
+{% else %}
+<h3> &nbsp;</h3>
+{% endif %}
+{% if food.duration %}
+<h5><span class="glyphicon glyphicon-time"></span>&nbsp;{{ food.duration }}</h5>
+  {% else %}
+  <h4>&nbsp; </h4>
+{% endif %}

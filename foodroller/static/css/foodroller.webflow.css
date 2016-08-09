@@ -829,7 +829,8 @@ p {
 
 .list-item {
   margin-bottom: 10px;
-  text-align: right;
+  text-align: left; !important;
+  float: left;
 }
 
 .facts-row {

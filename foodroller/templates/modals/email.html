@@ -3,12 +3,17 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="h3">Zusammenfassung</h1>
+        <h3>Zusammenfassung</h3>
       </div>
       <form class="days-form" action="/summary/" method="post">
       <div class="modal-body ">
         {% csrf_token %}
-        {{ email_form }}
+        <h3>Menu</h3>
+          {{ email_form.summary }}
+        <h3>Recipient</h3>
+          {{ email_form.to }}
+
+{#        {{ email_form }}#}
       </div>
       <div class="modal-footer">
           <input type="submit" value="OK" data-wait="Please wait..." class="btn btn-default">

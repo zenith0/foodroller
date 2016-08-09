@@ -1,13 +1,20 @@
 {% load static %}
 
-<div class="modal fade" id="search-modal">
+<div class="modal fade" id="search-modal" xmlns="http://www.w3.org/1999/html">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="h3">Gericht suchen</h1>
       </div>
-      <div class="modal-body">
-        <input type="text" name="textSearch" id="txtSearch"/>
+      <div class="modal-body center">
+{#        <span class="glyphicon glyphicon-search"></span>#}
+{#        <input type="text"  class="form-control"/>#}
+
+      <div class="form-group has-feedback">
+    <input type="text" class="form-control" name="textSearch" id="txtSearch" placeholder="Food" />
+    <i class="glyphicon glyphicon-search form-control-feedback "></i>
+</div>
+
       </div>
       <div class="modal-footer">
         <input type="submit" id="submit-food" value="OK" data-wait="Please wait..." data-dismiss="modal"

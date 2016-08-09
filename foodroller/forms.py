@@ -1,5 +1,6 @@
 from django import forms
-from foodroller.models import Category
+from django.forms import ModelForm, inlineformset_factory
+from foodroller.models import Category, Food, Ingredient
 
 __author__ = 'stefanperndl'
 
@@ -12,9 +13,9 @@ DAYS_CHOICES = (
 )
 
 class DateForm(forms.Form):
-    days = forms.ChoiceField(label="Tage:", required=True, widget=forms.Select(attrs={'class': 'w-select days-sel',
+    days = forms.ChoiceField(label="Tage:", required=True, widget=forms.Select(attrs={'class': 'form-control',
                                                                         'required': True}), choices=DAYS_CHOICES)
-    date = forms.DateField(label="Startdatum:", required=True, widget=forms.DateInput(attrs={'class': 'datepicker'}))
+    date = forms.DateField(label="Startdatum:", required=True, widget=forms.DateInput(attrs={'class': 'datepicker form-control'}))
 
 
 class EmailForm(forms.Form):
@@ -25,4 +26,13 @@ class EmailForm(forms.Form):
         super(EmailForm, self).__init__(*args, **kwargs)
         self.fields['summary'].label = False
 
+class CategoryForm(ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name']
+
+class FoodForm(forms.ModelForm):
+    class Meta:
+        model = Food
+        exclude = ('slug', 'last_cooked', )
 

@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'foodroller',
     'django_nose',
     'coverage',
+    'crispy_forms',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -107,7 +108,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'foodroller/static'),
 )
 
 STATIC_ROOT = 'static-files/'
@@ -121,6 +122,7 @@ THUMBNAIL_ALIASES = {
         'thumb': {'size': (300, 300), 'crop': True},
         'roll_thumb': {'size': (300, 300), 'crop': True},
         'img_500': {'size': (500, 500), 'crop': True},
+        'img_50': {'size': (50, 50), 'crop': True},
     },
 }
 
@@ -136,3 +138,4 @@ NOSE_ARGS = [
     '--cover-html',
 ]
 
+CRISPY_TEMPLATE_PACK = 'uni_form'
