@@ -41,7 +41,6 @@ INSTALLED_APPS = (
     'foodroller',
     'django_nose',
     'coverage',
-    'crispy_forms',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -138,4 +137,3 @@ NOSE_ARGS = [
     '--cover-html',
 ]
 
-CRISPY_TEMPLATE_PACK = 'uni_form'
