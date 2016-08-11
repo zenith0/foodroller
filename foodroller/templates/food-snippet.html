@@ -13,7 +13,7 @@
 <h3> &nbsp;</h3>
 {% endif %}
 {% if food.duration %}
-<h5><span class="glyphicon glyphicon-time"></span>&nbsp;{{ food.duration }}</h5>
+<h5><span class="glyphicon glyphicon-time"></span>&nbsp;{{ food.get_duration_display }}</h5>
   {% else %}
   <h4>&nbsp; </h4>
 {% endif %}

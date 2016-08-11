@@ -127,7 +127,8 @@ class RollView(View):
                        'categories': self.category_list,
                        'date_form': self.date_form,
                        'food_list': self.food_list,
-                       'template': self.template})
+                       'template': self.template,
+                       'times': Food.COOKING_TIMES})
 
     def get(self, request):
         clear_food_plan(request)
@@ -182,8 +183,11 @@ class RollFood(View):
         food_filtered = filter_food_by_duration(food_list, time)
 
         food = random.choice(food_filtered)
-        while food.name in cached_food:
+        food_filtered = food_filtered.exclude(slug=food.slug)
+
+        while len(food_filtered) > 0 and food.name in cached_food:
             food = random.choice(food_filtered)
+            food_filtered = food_filtered.exclude(slug=food.slug)
 
         update_current_plan(request, food.name, day)
         return food
@@ -195,8 +199,8 @@ class RollFood(View):
         food = self.random_food(request, cat, time, day)
         return render(request, 'food-snippet.html', {'food': food})
 
-class SummaryView(View):
 
+class SummaryView(View):
     def get(self, request):
         foodplan_list = get_cached_food_plan(request)
         ordered_food_plan = sorted(foodplan_list, key=itemgetter('day'))
@@ -214,6 +218,7 @@ class SummaryView(View):
     def post(self, request):
         clear_food_plan(request)
         return redirect('/plans')
+
 
 class Plans(ListView):
     template_name = 'plans.html'

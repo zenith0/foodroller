@@ -63,24 +63,30 @@ def clear_food_plan(request):
     request.session[('%s' % PLAN)] = []
 
 
-
 ######################################## Food Utils ########################################
-
 # Returns a of food filtered by the given duration key (1,2,3,4,None)
 def filter_food_by_duration(food_list, duration):
-    if duration == "1":
-        cooking_time = datetime.timedelta(minutes=30)
-        food_list = food_list.filter(duration__lt=cooking_time)
-    elif duration == "2":
-        cooking_time = datetime.timedelta(hours=1)
-        food_list = food_list.filter(duration__lt=cooking_time)
-    elif duration == "3":
-        cooking_time = datetime.timedelta(hours=2)
-        food_list = food_list.filter(duration__lt=cooking_time)
-    elif duration == "4":
-        cooking_time = datetime.timedelta(hours=2)
-        food_list = food_list.filter(duration__gte=cooking_time)
+    filtered_food_list = []
+    valid_times = []
+    if duration == '30min':
+        valid_times.append('30min')
+    elif duration == '1hr':
+        valid_times.append('30min')
+        valid_times.append('1hr')
+    elif duration == '2hr':
+        valid_times.append('30min')
+        valid_times.append('1hr')
+        valid_times.append('2hr')
+    elif duration == '2hr+':
+        valid_times.append('2hr+')
+    else:
+        return food_list
 
+    for time in valid_times:
+        filtered_food_list.extend(food_list.filter(duration=time))
+
+    if len(filtered_food_list) > 0:
+        return filtered_food_list
     return food_list
 
 
