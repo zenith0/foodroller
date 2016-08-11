@@ -8,6 +8,18 @@
 
 }
 
+body {
+    background-color: white;
+}
+
+footer {
+    height: 30px;
+    background-color: black;
+    color: white;
+    padding-top: 5px;
+    font-size: small;
+}
+
 a {
     color: black;
     text-decoration: none;
@@ -17,12 +29,6 @@ a {
     font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
 
 }
-
-.panel-default {
-    border: none;
-    background-color: transparent;
-}
-
 
 .form-control {
     margin-bottom: 10px;
@@ -43,6 +49,9 @@ select {
 .navbar {
     border-radius: 0;
     border: none;
+    /*border-bottom: solid;*/
+    /*border-bottom-width: 50px;*/
+    /*border-color: black;*/
     background: white;
     padding-left: 150px;
     padding-right: 150px;
