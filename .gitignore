@@ -8,3 +8,8 @@ media
 .coverage
 pip-selfcheck.json
 cover*
+*.pyc
+db.sqlite3
+myvenv
+__pycache__
+local_settings.py
