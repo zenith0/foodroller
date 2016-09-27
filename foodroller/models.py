@@ -178,7 +178,7 @@ class Foodplan(models.Model):
     def get_summary(self, user):
         ingredients_list = []
 
-        message = "Essensplan: \n"
+        message = "Menu: \n"
         days = Day.objects.filter(foodplan=self)
         for day in days:
             message += '\n'
@@ -190,7 +190,7 @@ class Foodplan(models.Model):
 
         ingredients_list = merge_ingredients_dict(ingredients_list)
         message += "\n\n"
-        message += "Einkaufsliste: "
+        message += "Shopping list: "
         for ing in ingredients_list:
             ingredient = ing['ingredient']
             amount_dict = ing ['amount']
