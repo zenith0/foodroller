@@ -34,6 +34,11 @@ class CategoryForm(ModelForm):
         fields = ['name']
 
 class FoodForm(forms.ModelForm):
+
+    def __init__(self, user, *args, **kwargs):
+        super(FoodForm, self).__init__(*args, **kwargs)
+        self.fields['categories'].queryset = Category.objects.filter(user=user)
+
     class Meta:
         model = Food
         exclude = ('slug', 'last_cooked', )

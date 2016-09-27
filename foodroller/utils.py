@@ -84,9 +84,9 @@ def filter_food_by_duration(food_list, duration):
     return food_list
 
 
-def filter_food_by_category_name(cat):
+def filter_food_by_category_name(cat, user):
     from foodroller.models import Category
-    category = Category.objects.get(name=cat)
+    category = Category.objects.get(name=cat, user=user)
     return category.get_food()
 
 
@@ -112,6 +112,23 @@ def merge_ingredients(ingredients):
                     saved_amount_dict = saved_ing_dict['amount']
                     if ing.get_unit() == saved_amount_dict['unit']:
                         saved_amount_dict['amount'] = str(float(ing.get_amount()) + float(saved_amount_dict['amount']))
+                        already_in_list = True
+            if not already_in_list:
+                ingredients_list.append(ing_dict)
+        return ingredients_list
+
+def merge_ingredients_dict(ingredients):
+        ingredients_list = []
+        for ing in ingredients:
+            already_in_list = False
+            tmp = ing['amount']
+            amount_dict = {'amount': tmp['amount'], 'unit': tmp['unit']}
+            ing_dict = {'ingredient':ing['ingredient'], 'amount': amount_dict}
+            for saved_ing_dict in ingredients_list:
+                if saved_ing_dict['ingredient'].lower() == ing['ingredient'].lower():
+                    saved_amount_dict = saved_ing_dict['amount']
+                    if tmp['unit'] == saved_amount_dict['unit']:
+                        saved_amount_dict['amount'] = str(float(tmp['amount']) + float(saved_amount_dict['amount']))
                         already_in_list = True
             if not already_in_list:
                 ingredients_list.append(ing_dict)

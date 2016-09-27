@@ -13,6 +13,7 @@
     {#    <div class="w-container">#}
     <h1 data-ix="fade-in-bottom-page-loads" class="heading-1-white">Foodroller.</h1>
 
+  {% if login_needed %}
     <div class="centered margin-top">
       <div class="col-md-4"></div>
 
@@ -42,12 +43,15 @@
     </div>
 
     {#    </div>#}
+    {% endif %}
+
   </div>
-  <div class="w-section preview-section">
-    <h2>Next 6 days.</h2>
-    <div class="w-row food-row">
-      {% for day in next_days %}
-        <div class="w-col w-col-6">
+  {% if next_days %}
+  <div class="w-section preview-section centered">
+    <h2 class="align-left padding-bottom">Next 6 days.</h2>
+    <div class="row food-row">
+      {% for day in  next_days%}
+        <div class="col col-md-4">
           <div class="food-div">
             <a href="/food/{{ day.food.slug }}">
               {% if day.food.img %}
@@ -61,13 +65,14 @@
           </div>
         </div>
 
-        {% if forloop.counter|divisibleby:2 %}
+        {% if forloop.counter|divisibleby:3 %}
           </div>
           <div class="w-row food-row">
         {% endif %}
       {% endfor %}
 
       </div>
+  {% endif %}
   </div>
 
 {% endblock %}

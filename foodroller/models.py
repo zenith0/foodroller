@@ -3,22 +3,23 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Model
 from django.utils.text import slugify
-from foodroller.utils import merge_ingredients
+from foodroller.utils import merge_ingredients, merge_ingredients_dict
 import re
 
 __author__ = 'stefan'
 
 
 class Category(models.Model):
-    name = models.CharField(unique=True, blank=False, max_length=50, null=False)
-    slug = models.SlugField(unique=True, blank=False, null=False)
-    # user = models.ForeignKey(User, editable = False)
+    name = models.CharField(blank=False, max_length=50, null=False)
+    slug = models.SlugField(blank=False, null=False)
+    user = models.ForeignKey(User, null=True)
     def __str__(self):
         return self.name
 
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
+        unique_together = ("user", "slug")
 
     def get_food(self):
         return self.food.all()
@@ -41,6 +42,8 @@ class Food(models.Model):
     duration = models.CharField(null=True, blank=True, choices=COOKING_TIMES, max_length=5)
     last_cooked = models.DateField(null=True, blank=True)
     img = models.ImageField(upload_to="img", null=True)
+    user = models.ForeignKey(User, null=True)
+
 
     def __str__(self):
         return self.name
@@ -86,11 +89,18 @@ class Ingredient(models.Model):
         verbose_name_plural = 'Ingredients'
 
     def get_amount(self):
-        return re.findall("[-+]?\d*\.\d+|\d+", self.amount.lower())[0]
+        try:
+            amount = re.findall("[-+]?\d*\.\d+|\d+", self.amount.lower())[0]
+            return amount
+        except:
+            return ''
 
     def get_unit(self):
-        return re.sub("[-+]?\d*\.\d+|\d+", "", self.amount.lower())
-
+        try:
+            unit = re.sub("[-+]?\d*\.\d+|\d+", "", self.amount.lower())
+            return unit
+        except:
+            return ''
 
 class Day(models.Model):
     date = models.DateField()
@@ -115,6 +125,7 @@ class Foodplan(models.Model):
     days = models.ManyToManyField(Day)
     year = models.DateField()
     month = models.DateField()
+    user = models.ForeignKey(User, editable = False, null=True)
 
     class Meta:
         ordering = ["start_date"]
@@ -126,7 +137,7 @@ class Foodplan(models.Model):
         self.name = self.start_date.strftime("%d-%m-%y") + " - " + self.end_date.strftime("%d-%m-%y")
         self.year = datetime.datetime.strptime(str(self.start_date.year), "%Y")
         self.month = datetime.datetime.strptime(str(self.start_date.month), "%m")
-        self.slug = slugify(self.name)
+        self.slug = slugify(self.name+str(self.user.id))
         super(Foodplan, self).save(*args, **kwargs)
 
     def set_start_date(self, date_str, format):
@@ -141,19 +152,20 @@ class Foodplan(models.Model):
     def get_month(self):
         return self.month.strftime("%m")
 
-    def init_with_dict(self, cached_food_plan):
+    def init_with_dict(self, cached_food_plan, user):
         days = Day.objects.filter(foodplan=self)
         days.delete()
         start_date = cached_food_plan[0]['day']
         end_date = cached_food_plan[len(cached_food_plan)-1]['day']
         self.set_start_date(start_date, "%d-%m-%y")
         self.set_end_date(end_date, "%d-%m-%y")
+        self.user = user
         self.save()
 
         for item in cached_food_plan:
             food_name = item['food']
             day_name = item['day']
-            food = Food.objects.get(name=food_name)
+            food = Food.objects.get(name=food_name, user=user)
             food.set_last_cooked(day_name, "%d-%m-%y")
             food.save()
             day = Day()
@@ -163,7 +175,7 @@ class Foodplan(models.Model):
             self.days.add(day)
         self.save()
 
-    def get_summary(self):
+    def get_summary(self, user):
         ingredients_list = []
 
         message = "Essensplan: \n"
@@ -173,10 +185,10 @@ class Foodplan(models.Model):
             message += day.date.strftime('%d.%m.%y')
             message += ':\t'
             message += day.food.name
-            food = Food.objects.get(name=day.food.name)
+            food = Food.objects.get(name=day.food.name, user=user)
             ingredients_list.extend(food.merge_ingredients())
 
-        ingredients_list = merge_ingredients(ingredients_list)
+        ingredients_list = merge_ingredients_dict(ingredients_list)
         message += "\n\n"
         message += "Einkaufsliste: "
         for ing in ingredients_list:
