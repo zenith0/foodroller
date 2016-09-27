@@ -100,9 +100,16 @@ select {
   background-image: url('../images/original_001.jpg');
   background-position: bottom;
   background-size: cover;
-    text-align: center;
+
+        text-align: center;
+    color: white;
   /*background-repeat: repeat;*/
 }
+
+.margin-top {
+    /*margin-top: 30px;*/
+}
+
 
 .roll-now {
   position: static;

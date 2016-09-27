@@ -1,6 +1,8 @@
 from django import forms
 from django.forms import ModelForm, inlineformset_factory
 from foodroller.models import Category, Food, Ingredient
+from registration.forms import User
+from django.contrib.auth.forms import AuthenticationForm
 
 __author__ = 'stefanperndl'
 
@@ -35,4 +37,9 @@ class FoodForm(forms.ModelForm):
     class Meta:
         model = Food
         exclude = ('slug', 'last_cooked', )
+
+class LoginForm(AuthenticationForm):
+    class Meta:
+        model = User
+        fields = ['email', 'password']
 

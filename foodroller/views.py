@@ -11,38 +11,64 @@ from django.views.generic import View, ListView, DetailView, CreateView, DeleteV
 from foodroller.commons.date_utils import Date
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from foodroller.forms import DateForm, EmailForm, CategoryForm, FoodForm
+from foodroller.forms import DateForm, EmailForm, CategoryForm, FoodForm, LoginForm
 from foodroller.models import Category, Food, Foodplan, Day, Ingredient
 from foodroller.utils import update_current_plan, get_cached_food_plan, \
     get_food_from_cached_plan, filter_food_by_category_name, filter_food_by_duration, clear_food_plan, set_food_plan
+from django.shortcuts import render_to_response
+from django.http import HttpResponseRedirect
+from django.contrib.auth.forms import UserCreationForm
+from django.template.context_processors import csrf
+from registration.forms import RegistrationForm
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
+
+
+def registration_complete(request):
+    return render_to_response('registration/registration_complete.html')
 
 # The index site (start)
-class FoodPreview(ListView):
-    model = Day
+def get_next_days(number_days):
+    foodplan_list = Foodplan.objects.filter(end_date__gte=datetime.date.today()).order_by('end_date')
+    next_days = []
+    cnt = 0
+    try:
+        for foodplan in foodplan_list:
+            days = Day.objects.filter(foodplan=foodplan).order_by('date')
+            for day in days:
+
+                if cnt >= number_days:
+                    raise Exception
+                if day.date >= datetime.date.today():
+                    cnt += 1
+                    next_days.append(day)
+    except Exception:
+        pass
+    return next_days
+
+def index(request):
     template_name = 'index.html'
-    context_object_name = 'next_days'
+    log_form = AuthenticationForm()
+    error = None
 
-    def get_next_days(self, number_days):
-        foodplan_list = Foodplan.objects.filter(end_date__gte=datetime.date.today()).order_by('end_date')
-        next_days = []
-        cnt = 0
-        try:
-            for foodplan in foodplan_list:
-                days = Day.objects.filter(foodplan=foodplan).order_by('date')
-                for day in days:
+    if request.POST:
+        log_form = AuthenticationForm(data=request.POST)
+        if log_form.is_valid():
+            username = log_form.cleaned_data['username']
+            password = log_form.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                else:
+                    error = "Your account is not active, please contact the site admin."
+        else:
+            error = "Your username and/or password were incorrect."
 
-                    if cnt >= number_days:
-                        raise Exception
-                    if day.date >= datetime.date.today():
-                        cnt += 1
-                        next_days.append(day)
-        except Exception:
-            pass
-        return next_days
-
-    def get_queryset(self):
-        return self.get_next_days(6)
-
+    return render(request, template_name, {'next_days': get_next_days(6),
+                                           'log_form': log_form,
+                                           'error': error})
 class Categories(ListView):
 
     template_name = 'food-main.html'
@@ -57,7 +83,6 @@ class CategoryDetails(ListView):
     def get_queryset(self):
         category = Category.objects.get(slug=self.kwargs['slug'])
         return category.get_food()
-
 
 class CreateCategory(CreateView):
     model = Category
@@ -172,6 +197,7 @@ class SearchFood(View):
 
 
 # Set food randomly for a specific day
+
 class RollFood(View):
 
     @staticmethod
@@ -219,7 +245,6 @@ class Plans(ListView):
     template_name = 'plans.html'
     context_object_name = 'plans'
     model = Foodplan
-
 
 class PlanDetails(RollView):
     def get(self, request, *args, **kwargs):

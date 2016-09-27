@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load thumbnail %}
+
+{% block body %}
+  <div class="w-section hero-section">
+    {#    <div class="w-container">#}
+    <h1 data-ix="fade-in-bottom-page-loads" class="heading-1-white">Foodroller.</h1>
+
+    <div class="centered margin-top">
+      <div class="col-md-4"></div>
+
+      <div class="col-md-4">
+        <h1>Create an account</h1>
+
+        <form method="post" action="/accounts/register/" class="form-horizontal">
+          {% csrf_token %}
+          {% for field in reg_form %}
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <span class="text-danger small">{{ field.errors }}</span>
+              </div>
+              <label class="control-label col-sm-2" for="song_title">{{ field.label_tag }}</label>
+              <div class="col-sm-10">{{ field }}</div>
+            </div>
+          {% endfor %}
+          <input type="submit" value="Register" class="btn btn-primary golden-btn">
+        </form>
+      </div>
+      <div class="col-md-4">
+        <h1>Already have an account?</h1>
+        <form method="post" action="/accounts/login/" class="form-horizontal">
+          {% csrf_token %}
+          {% for field in log_form %}
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <span class="text-danger small">{{ field.errors }}</span>
+              </div>
+              <label class="control-label col-sm-2" for="song_title">{{ field.label_tag }}</label>
+              <div class="col-sm-10">{{ field }}</div>
+            </div>
+          {% endfor %}
+          <input type="submit" value="Login" class="btn btn-primary golden-btn">
+        </form></div>
+    </div>
+
+    {#    </div>#}
+  </div>
+
+{% endblock %}

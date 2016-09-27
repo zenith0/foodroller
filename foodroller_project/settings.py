@@ -60,7 +60,7 @@ ROOT_URLCONF = 'foodroller.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': ['templates',],
         'APP_DIRS': True,
         'OPTIONS': {
 
@@ -70,6 +70,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.media',
                 'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.request',
             ],
         },
     },
@@ -139,3 +140,12 @@ NOSE_ARGS = [
 ]
 
 CRISPY_TEMPLATE_PACK = 'uni_form'
+
+ACCOUNT_ACTIVATION_DAYS = 7
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'pernstef@gmail.com'
+EMAIL_HOST_PASSWORD = 'pgwpujci'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "FoodRoller"

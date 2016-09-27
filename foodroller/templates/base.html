@@ -47,6 +47,8 @@
     </div>
     <!-- Collection of nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbarCollapse">
+      {% if user.is_authenticated %}
+
       <ul class="nav navbar-nav">
         <li>
           <a href="/food" class="{% navactive request 'catalog' %}">
@@ -60,13 +62,12 @@
       <ul class="nav navbar-nav navbar-right ">
         <li><a href="/manage/">
           <span class="glyphicon glyphicon-cog"></span>&nbsp;Manage</a></li>
-        {#                <li>#}
-        {#                  <a href="#">#}
-        {#                    <span class="glyphicon glyphicon-user"></span>&nbsp;Login</a></li>#}
         <li>
-          <a href="#">
+          <a href="/logout">
             <span class="glyphicon glyphicon-off"></span>&nbsp;Logout</a></li>
       </ul>
+              {% endif %}
+
     </div>
 
   </div>

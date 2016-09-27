@@ -556,11 +556,10 @@ p {
 .hero-section {
   height: 900px;
   padding-top: 180px;
-  background-image: url('../images/original_001.jpg');
-  background-position: 40% 51%;
   background-size: cover;
-  background-repeat: repeat;
+  background: url('../images/original_001.jpg') repeat 40% 51%;
   text-align: center;
+  /*color: white;*/
 }
 
 /*.nav-container {*/

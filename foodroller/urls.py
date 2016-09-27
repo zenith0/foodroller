@@ -1,7 +1,8 @@
 from django.conf.urls.static import static
-from foodroller.views import RollView, FoodPreview, Categories, FoodDetails, SearchFood, RollFood, SummaryView, \
+from django.contrib.auth.decorators import login_required
+from foodroller.views import RollView, Categories, FoodDetails, SearchFood, RollFood, SummaryView, \
     PlanDetails, Plans, CategoryDetails, ManageCategories, CreateCategory, DeleteCategory, UpdateCategory, ManageFood, \
-    DeleteFood, UpdateFood
+    DeleteFood, UpdateFood, index
 from foodroller_project import settings
 
 __author__ = 'stefan'
@@ -12,24 +13,26 @@ from foodroller import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', FoodPreview.as_view(), name='index'),
-    url(r'^food/$', Categories.as_view(), name='catalog'),
-    url(r'^category/add/$', CreateCategory.as_view(), name='create_category'),
-    url(r'^category/delete/(?P<slug>[\w\-]+)/$', DeleteCategory.as_view(), name='delete_category'),
-    url(r'^category/update/(?P<slug>[\w\-]+)/$', UpdateCategory.as_view(), name='update_category'),
-    url(r'^category/(?P<slug>[\w\-]+)/$', CategoryDetails.as_view(), name='categories'),
-    url(r'^roll/$', RollView.as_view(), name='roll'),
-    url(r'^roll-food/$', RollFood.as_view(), name='roll_food'),
-    url(r'^food/(?P<slug>[\w\-]+)/$', FoodDetails.as_view(), name='food'),
-    url(r'^search/$', SearchFood.as_view(), name='search'),
-    url(r'^summary/$', SummaryView.as_view(), name='summary'),
-    url(r'^plans/$', Plans.as_view(), name='plans'),
-    url(r'^plans/(?P<slug>[\w\-]+)/$', PlanDetails.as_view(), name='plans'),
-    url(r'^deleteplan/(?P<slug>[\w\-]+)/$', views.delete_details, name='deleteplan'),
-    url(r'^manage/$', ManageCategories.as_view(), name='manage'),
-    url(r'^manage/category/(?P<slug>[\w\-]+)/$', ManageFood.as_view(), name='manage_food'),
-    url(r'^manage/category/(?P<cat_slug>[\w\-]+)/food/delete/(?P<slug>[\w\-]+)/$', DeleteFood.as_view(), name='delete_food'),
-    url(r'^manage/category/(?P<cat_slug>[\w\-]+)/food/update/(?P<slug>[\w\-]+)/$', UpdateFood.as_view(), name='delete_food'),
+    url(r'^$', index, name='index'),
+    url(r'^accounts/', include('registration.backends.hmac.urls')),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
+    url(r'^food/$', login_required(Categories.as_view(), login_url="/"), name='catalog'),
+    url(r'^category/add/$', login_required(CreateCategory.as_view(), login_url="/"), name='create_category'),
+    url(r'^category/delete/(?P<slug>[\w\-]+)/$', login_required(DeleteCategory.as_view(), login_url="/"), name='delete_category'),
+    url(r'^category/update/(?P<slug>[\w\-]+)/$', login_required(UpdateCategory.as_view(), login_url="/"), name='update_category'),
+    url(r'^category/(?P<slug>[\w\-]+)/$', login_required(CategoryDetails.as_view(), login_url="/"), name='categories'),
+    url(r'^roll/$', login_required(RollView.as_view(), login_url="/"), name='roll'),
+    url(r'^roll-food/$', login_required(RollFood.as_view(), login_url="/"), name='roll_food'),
+    url(r'^food/(?P<slug>[\w\-]+)/$', login_required(FoodDetails.as_view(), login_url="/"), name='food'),
+    url(r'^search/$', login_required(SearchFood.as_view(), login_url="/"), name='search'),
+    url(r'^summary/$', login_required(SummaryView.as_view(), login_url="/"), name='summary'),
+    url(r'^plans/$', login_required(Plans.as_view(), login_url="/"), name='plans'),
+    url(r'^plans/(?P<slug>[\w\-]+)/$', login_required(PlanDetails.as_view(), login_url="/"), name='plans'),
+    url(r'^deleteplan/(?P<slug>[\w\-]+)/$', login_required(views.delete_details, login_url="/"), name='deleteplan'),
+    url(r'^manage/$', login_required(ManageCategories.as_view(), login_url="/"), name='manage'),
+    url(r'^manage/category/(?P<slug>[\w\-]+)/$', login_required(ManageFood.as_view(), login_url="/"), name='manage_food'),
+    url(r'^manage/category/(?P<cat_slug>[\w\-]+)/food/delete/(?P<slug>[\w\-]+)/$', login_required(DeleteFood.as_view(), login_url="/"), name='delete_food'),
+    url(r'^manage/category/(?P<cat_slug>[\w\-]+)/food/update/(?P<slug>[\w\-]+)/$', login_required(UpdateFood.as_view(), login_url="/"), name='delete_food'),
 
 
 ]
