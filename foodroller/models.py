@@ -28,6 +28,7 @@ class Category(models.Model):
         self.slug = slugify(self.name)
         super(Category, self).save(*args, **kwargs)
 
+
 class Food(models.Model):
     COOKING_TIMES = (
         ('30min', '< 30 min'),

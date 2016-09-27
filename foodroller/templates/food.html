@@ -22,13 +22,7 @@
           {% if food.recipe %}
           {{ food.recipe }}
           {% else %}
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-
-Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-
-Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer
+            None
           {% endif %}
           {#        </div>#}
       </div>
@@ -41,16 +35,8 @@ Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming 
               <li class="list-item lobester">{{ ing.amount }}&nbsp;{{ ing.name }}&nbsp;</li>
             {% endfor %}
             </ul>
-          {% else %}
-            <li class="list-item lobester">1g Zucker</li>
-            <li class="list-item lobester">2g Mehl</li>
-
-            <li class="list-item lobester">15ml Wasser</li>
-
-            <li class="list-item lobester">1 Apfel</li>
-
-            <li class="list-item lobester">1 Birne</li>
-            <li class="list-item lobester">Nochetwas</li>
+            {% else %}
+            None
           {% endif %}
 
 
@@ -61,18 +47,18 @@ Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming 
           <div class="col-1 align-left">
             <h2><span class="glyphicon glyphicon-time">&nbsp;
             {% if food.duration %}
-              {{ food.duration|date:"%h:%m" }}
-              {% else %}
-              1:45
+              {{ food.get_duration_display }}
+                            {% else %}
+              -
               {% endif %}
             </span></h2>
           </div>
                   <div class="col-1 align-left golden-border">
-            <h2><span class="glyphicon glyphicon-ok">&nbsp;
+            <h2><span class="glyphicon glyphicon-calendar">&nbsp;
             {% if food.last_cooked%}
               {{ food.last_cooked|date:"%d-%m-%y" }}
               {% else %}
-              01.01.16
+              -
               {% endif %}
             </span></h2>
           </div>

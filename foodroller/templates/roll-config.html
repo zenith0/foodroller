@@ -21,10 +21,9 @@
           </select>
           <select id="cooking-time-{{ key|date:"d-m-y" }}" name="field-2" data-name="Field 2" class="form-control">
             <option value="">Cooking Time</option>
-            <option value=1>&lt; 30 min</option>
-            <option value=2>&lt; 1 hr</option>
-            <option value=3>&lt; 2 hr</option>
-            <option value=4>&gt; 2 hr</option>
+            {% for id, value in times %}
+              <option value={{ id }}>{{ value }}</option>
+            {% endfor %}
           </select>
           <button class="roll-now manual-btn" id="{{ key|date:"d-m-y" }}" onclick="roll($(this).attr('id'))"><span class="fa fa-cubes"></span></button>
           <button class="roll-now manual-btn" id="{{ key|date:"d-m-y" }}" onclick="openSearchModal($(this).attr('id'))"><span class="glyphicon glyphicon-edit"></span></button>
